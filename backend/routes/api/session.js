@@ -17,7 +17,7 @@ const validateLogin = [
 ];
 
 router.post(
-    '/',
+    '/api/csrf/restore',
     validateLogin,
     async (req, res, next) => {
         const { credential, password } = req.body;
@@ -42,7 +42,7 @@ router.post(
 
 // Log out
 router.delete(
-    '/',
+    '/api/csrf/restore',
     (_req, res) => {
         res.clearCookie('token');
         return res.json({ message: 'success' });
@@ -51,7 +51,7 @@ router.delete(
 
 // Restore session user
 router.get(
-    '/',
+    '/api/csrf/restore',
     restoreUser,
     (req, res) => {
         const { user } = req;
