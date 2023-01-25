@@ -33,7 +33,8 @@ module.exports = {
                 unique: true
             },
             token: {
-               type: Sequelize.STRING(20)
+               type: Sequelize.STRING(20),
+               allowNull: false
             },
 
             hashedPassword: {

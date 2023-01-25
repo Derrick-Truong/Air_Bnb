@@ -15,11 +15,10 @@ module.exports = {
         reviewId: 1,
         url: 'url-path1'
 
-
       },
       {
-        reviewId: 2,
-        url: 'url-path1'
+        reviewId: 1,
+        url: 'url-path2'
       },
       {
         reviewId: 3,
@@ -32,7 +31,7 @@ module.exports = {
     options.tableName = 'ReviewImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['url-path1', 'url-path1', 'url-path1'] }
+      url: { [Op.in]: ['url-path1', 'url-path2', 'url-path3'] }
     }, {});
   }
 };

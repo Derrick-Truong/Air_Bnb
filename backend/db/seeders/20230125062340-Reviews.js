@@ -14,13 +14,20 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        review:'It was magnificent'
+        review:'It was magnificent',
+        stars: 4
       },
       {
-        
+        spotId: 2,
+        userId: 2,
+        review:'Sucks',
+        stars: 3
       },
       {
-
+        spotId: 1,
+        userId: 2,
+        review:'Wish it was longer',
+        stars: 2
       }
     ], {});
   },
@@ -29,7 +36,7 @@ module.exports = {
     options.tableName = 'Reviews';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['DerrickTruong', 'BrandonTruong', 'JessicaTruong'] }
+      review: { [Op.in]: ['It was magnificent', 'Sucks', 'Wish it was longer'] }
     }, {});
   }
 };

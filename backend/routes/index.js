@@ -13,7 +13,7 @@ router.get("/api/csrf/restore", (req, res) => {
 });
 
 
-router.use('/api', apiRouter, requireAuth, properAuth);
+router.use('/api', apiRouter, properAuth, requireAuth);
 
 
 
