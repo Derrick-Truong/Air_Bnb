@@ -21,7 +21,7 @@ module.exports = {
         url: 'url-path2'
       },
       {
-        reviewId: 3,
+        reviewId: 2,
         url: 'url-path3'
       }
     ], {});
