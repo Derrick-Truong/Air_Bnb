@@ -63,6 +63,22 @@ const requireAuth = function (req, _res, next) {
     err.errors = ['Authentication required'];
     err.status = 401;
     return next(err);
-}
+};
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+const properAuth = function (req, _res, next) {
+    if (req.user.isUser === true) return next();
+
+    const err = new Error('Forbidden');
+    err.title = 'Forbidden';
+    err.errors = ['Forbidden'];
+    err.status = 403;
+    return next(err);
+}
+// const properAuth = function(req, _res, next) {
+
+// }
+// const requirePerm = function(req, _res, next) {
+//     if ()
+// };
+
+module.exports = { properAuth, setTokenCookie, restoreUser, requireAuth };

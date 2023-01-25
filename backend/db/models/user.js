@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     class User extends Model {
 
         toSafeObject() {
-            const { id, username, email, firstName, lastName } = this; // context will be the User instance
-            return { id, username, email, firstName, lastName };
+            const { id, username, email, firstName, lastName, token} = this; // context will be the User instance
+            return { id, username, email, firstName, lastName};
         }
 
         validatePassword(password) {
@@ -45,6 +45,18 @@ module.exports = (sequelize, DataTypes) => {
         }
 
         static associate(models) {
+        User.hasMany(
+            models.Spot,
+            { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks:true}
+        ),
+        User.belongsToMany(
+            models.Spot,
+            {through: models.Booking}
+        )
+        User.belongsToMany(
+            models.Spot,
+            {through: models.Review}
+        )
             // define association here
         }
     };
@@ -84,6 +96,17 @@ module.exports = (sequelize, DataTypes) => {
                     isEmail: true
                 }
             },
+            token: {
+                type: DataTypes.STRING,
+                validate: {
+                    len: [0,30]
+                }
+            },
+
+            isUser: {
+                type: DataTypes.BOOLEAN
+            },
+
             hashedPassword: {
                 type: DataTypes.STRING.BINARY,
                 allowNull: false,
@@ -97,12 +120,13 @@ module.exports = (sequelize, DataTypes) => {
             modelName: "User",
             defaultScope: {
                 attributes: {
-                    exclude: ["firstName", "lastName", "hashedPassword", "email", "createdAt", "updatedAt"]
+                    exclude: ["firstName", "lastName", "hashedPassword", "email", "createdAt", "updatedAt", "token", "isUser"]
                 }
             },
             scopes: {
                 currentUser: {
-                    attributes: { exclude: ["hashedPassword"] }
+                    attributes: {
+                    exclude: ["isUser", "hashedPassword","createdAt","updatedAt"] }
                 },
                 loginUser: {
                     attributes: {}

@@ -27,11 +27,11 @@ const validateSignup = [
 
 // Sign up
 router.post(
-    '/api/csrf/restore',
+    '/',
     validateSignup,
     async (req, res) => {
-        const { firstName, lastName, email, password, username } = req.body;
-        const user = await User.signup({ firstName, lastName, email, username, password });
+        const { firstName, lastName, email, username, password} = req.body;
+        const user = await User.signup({ firstName, lastName, email, username, password});
 
         await setTokenCookie(res, user);
 

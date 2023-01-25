@@ -32,9 +32,18 @@ module.exports = {
                 allowNull: false,
                 unique: true
             },
+            token: {
+               type: Sequelize.STRING(20)
+            },
+
             hashedPassword: {
                 type: Sequelize.STRING.BINARY,
                 allowNull: false,
+            },
+
+            isUser: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: true
             },
             createdAt: {
                 allowNull: false,

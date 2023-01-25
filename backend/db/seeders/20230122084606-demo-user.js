@@ -18,6 +18,8 @@ module.exports = {
                 lastName: 'Truong',
                 email: 'dtruong169@gmail.com',
                 username: 'DerrickTruong',
+                token: '',
+                isUser: true,
                 hashedPassword: bcrypt.hashSync('password')
             },
             {
@@ -25,6 +27,8 @@ module.exports = {
                 lastName: 'Truong',
                 email: 'btruong24@gmail.com',
                 username: 'BrandonTruong',
+                token: '',
+                isUser: true,
                 hashedPassword: bcrypt.hashSync('password')
             },
             {
@@ -32,6 +36,8 @@ module.exports = {
                 lastName: 'Truong',
                 email: 'jtruong30@gmail.com',
                 username: 'JessicaTruong',
+                token: '',
+                isUser: false,
                 hashedPassword: bcrypt.hashSync('password')
             }
 

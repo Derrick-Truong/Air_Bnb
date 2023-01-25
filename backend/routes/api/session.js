@@ -9,15 +9,15 @@ const validateLogin = [
     check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .withMessage('Please provide a valid email or username.'),
+        .withMessage('Email or username is required'),
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .withMessage('Password is required'),
     handleValidationErrors
 ];
 
 router.post(
-    '/api/csrf/restore',
+    '/',
     validateLogin,
     async (req, res, next) => {
         const { credential, password } = req.body;
@@ -25,10 +25,10 @@ router.post(
         const user = await User.login({ credential, password });
 
         if (!user) {
-            const err = new Error('Login failed');
+            const err = new Error('Invalid credentials');
             err.status = 401;
             err.title = 'Login failed';
-            err.errors = ['The provided credentials were invalid.'];
+            err.errors = ['Invalid credentials'];
             return next(err);
         }
 
@@ -42,7 +42,7 @@ router.post(
 
 // Log out
 router.delete(
-    '/api/csrf/restore',
+    '/',
     (_req, res) => {
         res.clearCookie('token');
         return res.json({ message: 'success' });
@@ -51,8 +51,8 @@ router.delete(
 
 // Restore session user
 router.get(
-    '/api/csrf/restore',
-    restoreUser,
+    '/',
+  restoreUser,
     (req, res) => {
         const { user } = req;
         if (user) {
