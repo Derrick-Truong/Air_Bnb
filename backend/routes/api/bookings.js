@@ -11,10 +11,10 @@ const Sequelize = require('sequelize');
 router.get('/current', requireAuth, async(req, res, next) => {
     let bookingAns = await Booking.findAll({
         where:{
-            userId: req.user.id 
+            userId: req.user.id
         },
         include:{
-            model:Spot,
+            model: Spot,
             attributes:['id','ownerId','address','city','state','country','lat','lng','name','price'],
             include: {
                 model: SpotImage
@@ -22,18 +22,17 @@ router.get('/current', requireAuth, async(req, res, next) => {
         }
 
     })
-    let array = [];
+    let bookArray = [];
     bookingAns.forEach(book => {
-        // array.push(book.toJSON())
-        console.log(book.toJSON())
+        array.push(book.toJSON())
+    })
+
+    bookArray.forEach(book => {
+        book.Spot.Spotimage
     })
 
 
 })
-
-
-
-
 
 
 module.exports = router;

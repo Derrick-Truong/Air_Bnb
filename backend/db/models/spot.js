@@ -39,8 +39,6 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.INTEGER,
-    previewImage: DataTypes.STRING,
-    avgRating: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'Spot',

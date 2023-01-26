@@ -8,6 +8,23 @@ const { handleValidationErrors } = require('../../utils/validation');
 const Sequelize = require('sequelize');
 
 
+//Get all Spots with Current User
+router.get('/current', requireAuth, async (req, res, next) => {
+    let userId = req.user.id
+    let spot = Spot.findAll({
+        where: {
+            ownerId:userId
+        },
+        include: {
+            model: Review
+        },
+        
+
+    })
+    let spotArray = [];
+
+})
+
 router.get('/', async (req, res, next) => {
     const all = await Spot.findAll()
     return res.json({
@@ -15,6 +32,8 @@ router.get('/', async (req, res, next) => {
     })
 
 });
+
+//Get all Spots with Current Id
 
 // router.get('/', async(req, res) => {
 
@@ -168,7 +187,9 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
     res.json(editSpot)
 });
 
-//Delete a Spot
+//Get Spots
+
+router.get('/current', requireAuth, )
 
 
 

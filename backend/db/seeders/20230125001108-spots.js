@@ -24,8 +24,6 @@ module.exports = {
         name: 'Bob McFarland',
         description: 'Happiness place on Earth',
         price: '3',
-        previewImage: 'urlpath1',
-        avgRating: 1.3
       },
       {
         ownerId: 2,
@@ -38,8 +36,6 @@ module.exports = {
         name: 'Eddie Brees',
         description: 'could be better, could be worse',
         price: '599',
-        previewImage: 'urlpath3',
-        avgRating: 5.5
       },
       {
         ownerId: 3,
@@ -52,8 +48,6 @@ module.exports = {
         name: 'Richard Depree',
         description: 'please stay here',
         price: 57,
-        previewImage: 'urlpath3',
-        avgRating: 6.3
       }
     ], {});
   },
