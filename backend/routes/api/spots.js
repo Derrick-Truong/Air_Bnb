@@ -11,18 +11,26 @@ const Sequelize = require('sequelize');
 //Get all Spots with Current User
 router.get('/current', requireAuth, async (req, res, next) => {
     let userId = req.user.id
-    let spot = Spot.findAll({
+    let spots = await Spot.findAll({
         where: {
             ownerId:userId
         },
-        include: {
-            model: Review
-        },
-        
+        include: [
+            {
+                model: Review
+            },
+            {
+                model: SpotImage
+            }
+        ]
 
-    })
+    }
+    )
     let spotArray = [];
-
+    spots.forEach(spot => {
+        console.log(spot.toJSON())
+        // spotArray.push(spot.toJSON())
+    })
 })
 
 router.get('/', async (req, res, next) => {
@@ -189,7 +197,6 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
 
 //Get Spots
 
-router.get('/current', requireAuth, )
 
 
 
