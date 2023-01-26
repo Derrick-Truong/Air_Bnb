@@ -4,33 +4,27 @@ const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-    static async createSpot({ address, city, state, country, lat, lng, name, description, price }) {
-      const spot = await Spot.create({
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price
-      });
-      return await Spot.findByPk(spot.id);
-    }
+
+
     static associate(models) {
       Spot.hasMany(
         models.SpotImage,
         { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true }
       ),
-        Spot.belongsToMany(
+        Spot.belongsTo(
           models.User,
-          { through: models.Booking }
+          { foreignKey:'ownerId',
+        as:'Owner' }
         ),
-      Spot.belongsToMany(
-        models.User,
-        { through: models.Review }
+      Spot.hasMany(
+        models.Review,
+        { foreignKey:'spotId', onDelete: 'CASCADE', hooks:true }
+      ),
+      Spot.hasMany(
+        models.Booking,
+        { foreignKey:'spotId', onDelete:'CASCADE', hooks:true}
       )
+
       // define association here
     }
   }
