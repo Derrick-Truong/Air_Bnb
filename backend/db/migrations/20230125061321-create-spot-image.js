@@ -18,8 +18,8 @@ module.exports = {
         references: {
           model: 'Spots',
           key: 'id'
-         },
-         onDelete: 'CASCADE'
+        },
+        onDelete: 'CASCADE'
       },
       url: {
         type: Sequelize.STRING
@@ -37,7 +37,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   down: async (queryInterface, Sequelize) => {
     options.tableName = 'SpotImages';

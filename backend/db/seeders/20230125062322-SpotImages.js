@@ -9,34 +9,42 @@ if (process.env.NODE_ENV === 'production') {
 }
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    options.tableName = 'Reviews';
+    options.tableName = 'SpotImages';
     return queryInterface.bulkInsert(options, [
       {
-        spotId: 1,
-        userId: 1,
-        review:'It was magnificent',
-        stars: 4
-      },
-      {
         spotId: 2,
-        userId: 2,
-        review:'Sucks',
-        stars: 3
+        url: 'url-path1',
+        preview: false
       },
       {
         spotId: 1,
-        userId: 2,
-        review:'Wish it was longer',
-        stars: 2
+        url: 'url-path2',
+        preview: true
+      },
+      {
+        spotId: 3,
+        url: 'url-path3',
+        preview: false
       }
     ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    options.tableName = 'Reviews';
+    options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      review: { [Op.in]: ['It was magnificent', 'Sucks', 'Wish it was longer'] }
+      url: { [Op.in]: ['url-path1', 'url-path2', 'url-path3'] }
     }, {});
   }
 };
+
+
+
+
+
+
+
+
+
+
+

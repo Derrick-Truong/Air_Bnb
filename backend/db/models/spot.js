@@ -1,14 +1,23 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const bcrypt = require('bcryptjs');
+const { Model, Validator } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    static async createSpot({ address, city, state, country, lat, lng, name, description, price }) {
+      const spot = await Spot.create({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      });
+      return await Spot.findByPk(spot.id);
+    }
     static associate(models) {
       Spot.hasMany(
         models.SpotImage,

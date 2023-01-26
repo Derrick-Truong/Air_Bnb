@@ -41,8 +41,6 @@ router.post(
     }
 );
 
-router.get('/:id', requireAuth, async(req, res, next) => {
-res.send('Success')
-})
+
 
 module.exports = router;

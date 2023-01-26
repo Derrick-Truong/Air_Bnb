@@ -1,3 +1,4 @@
+
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
@@ -9,29 +10,34 @@ if (process.env.NODE_ENV === 'production') {
 }
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    options.tableName = 'ReviewImages';
+    options.tableName = 'Reviews';
     return queryInterface.bulkInsert(options, [
       {
-        reviewId: 1,
-        url: 'url-path1'
-
+        spotId: 1,
+        userId: 1,
+        review: 'It was magnificent',
+        stars: 4
       },
       {
-        reviewId: 1,
-        url: 'url-path2'
+        spotId: 2,
+        userId: 2,
+        review: 'Sucks',
+        stars: 3
       },
       {
-        reviewId: 2,
-        url: 'url-path3'
+        spotId: 3,
+        userId: 3,
+        review: 'Wish it was longer',
+        stars: 2
       }
     ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    options.tableName = 'ReviewImages';
+    options.tableName = 'Reviews';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['url-path1', 'url-path2', 'url-path3'] }
+      review: { [Op.in]: ['It was magnificent', 'Sucks', 'Wish it was longer'] }
     }, {});
   }
 };

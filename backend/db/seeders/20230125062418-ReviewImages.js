@@ -1,4 +1,5 @@
-'use strict';
+
+// 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 const bcrypt = require("bcryptjs");
@@ -9,31 +10,29 @@ if (process.env.NODE_ENV === 'production') {
 }
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    options.tableName = 'SpotImages';
+    options.tableName = 'ReviewImages';
     return queryInterface.bulkInsert(options, [
       {
-        spotId: 2,
-        url: 'url-path1',
-        preview: false
+        reviewId: 1,
+        url: 'url-path7'
+
       },
       {
-        spotId: 1,
-        url: 'url-path2',
-        preview: true
+        reviewId: 2,
+        url: 'url-path9'
       },
       {
-        spotId: 1,
-        url: 'url-path3',
-        preview:false
+        reviewId: 3,
+        url: 'url-path6'
       }
     ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    options.tableName = 'SpotImages';
+    options.tableName = 'ReviewImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['url-path1', 'url-path2', 'url-path3'] }
+      url: { [Op.in]: ['url-path7', 'url-path9', 'url-path6'] }
     }, {});
   }
 };
