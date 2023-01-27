@@ -14,25 +14,34 @@ router.get('/current', requireAuth, async(req, res, next) => {
             userId: req.user.id
         },
         include:{
-            model: Spot,
-            attributes:['id','ownerId','address','city','state','country','lat','lng','name','price'],
+            model:Spot,
+            attributes:['id','ownerId','address','city','state','country','lat','name','price'],
             include: {
-                model: SpotImage
+                model:SpotImage
             }
         }
 
     })
     let bookArray = [];
     bookingAns.forEach(book => {
-        array.push(book.toJSON())
+        bookArray.push(book.toJSON())
     })
 
     bookArray.forEach(book => {
-        book.Spot.Spotimage
+        book.Spot.SpotImages.forEach(image => {
+            if (image.preview === true) {
+        book.Spot.previewImage = image.url
+            }
+        })
+        delete book.Spot.SpotImages
     })
 
+ res.json({
+    "Bookings":bookArray
+ })
+});
 
-})
+
 
 
 module.exports = router;

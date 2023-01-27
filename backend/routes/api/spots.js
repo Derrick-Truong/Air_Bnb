@@ -8,6 +8,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const Sequelize = require('sequelize');
 
 
+
 //Get all Spots with Current User
 router.get('/current', requireAuth, async (req, res, next) => {
     let userId = req.user.id
@@ -26,40 +27,108 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     }
     )
-    let spotArray = [];
+    let Spots = [];
     spots.forEach(spot => {
-        console.log(spot.toJSON())
+        Spots.push(spot.toJSON())
         // spotArray.push(spot.toJSON())
     })
+    Spots.forEach(spot => {
+    let adder = 0;
+    let i = 0;
+    spot.Reviews.forEach(review => {
+        i++;
+        adder= adder + review.stars
+    })
+    spot.avgRating = adder/i;
+    spot.SpotImages.forEach(image => {
+    if (image.url) {
+        spot.previewImage = image.url
+    }
+    })
+        delete spot.Reviews
+        delete spot.SpotImages
+    });
+
+    // console.log(spotArray)
+    res.json({Spots})
 })
 
-router.get('/', async (req, res, next) => {
-    const all = await Spot.findAll()
-    return res.json({
-        Spots: all
+router.get('/', requireAuth, async (req, res, next) => {
+    let spots = await Spot.findAll({
+
+        include: [
+            {
+                model: Review
+            },
+            {
+                model: SpotImage
+            }
+        ]
+
+    }
+    )
+    let Spots = [];
+    spots.forEach(spot => {
+        Spots.push(spot.toJSON())
+        // spotArray.push(spot.toJSON())
     })
+    Spots.forEach(spot => {
+        let adder = 0;
+        let i = 0;
+        spot.Reviews.forEach(review => {
+            i++;
+            adder = adder + review.stars
+        })
+        spot.avgRating = adder / i;
+        spot.SpotImages.forEach(image => {
+            if (image.url) {
+                spot.previewImage = image.url
+            }
+        })
+        delete spot.Reviews
+        delete spot.SpotImages
+    });
+
+    // console.log(spotArray)
+    res.json({ Spots })
 
 });
+// Get details of a Spot from an id
 
-//Get all Spots with Current Id
+router.get('/:id', requireAuth, async(req, res, next) => {
+    let spotty = await Spot.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model:Review
+            },
+            {
+                model:SpotImage,
+                attributes:['id','url','preview']
+            },
+            {
+                model:User,
+                as: 'Owner',
+                attributes: ['id','firstName','lastName']
+            }
+        ],
 
-// router.get('/', async(req, res) => {
+    });
 
-//     const spots = await Spot.findAll()
+    let count = 0;
+    let spotjson = spotty.toJSON();
+    spotjson.numReviews = spotty.Reviews.length;
+    spotjson.Reviews.forEach(review => {
+        count = count + review.stars
+    })
+   spotjson.avgStarRating = count/spotjson.numReviews
+    delete spotjson.Reviews
+ res.json(spotjson)
+} );
 
-//     let array = []
-//     for (let spot of spots) {
-//         const spotJson = spot.toJSON()
 
-//     let reviews = await Review.findAll({
-//         where: {spotId: spotJson.id},
-//         attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
-//     })
-//     spotJson.avgRating = reviews[0].toJSON().avgRating
-//     array.push(spotJson)
-//     }
-//    res.json({ Spots: array})
-// });
 const validateSpot = [
     check('address')
         .exists({ checkFalsy: true })
@@ -195,7 +264,26 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
     res.json(editSpot)
 });
 
-//Get Spots
+//Create a Booking Based on a Spot id
+
+router.post('/:id/bookings', requireAuth, async (req, res, next) => {
+    const {startDate, endDate} = req.body
+    let spotBook = await Spot.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    if (!spotBook) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    else {
+
+    }
+})
 
 
 
