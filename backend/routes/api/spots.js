@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser, validateReview, validateSpot } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
 
-const Sequelize = require('sequelize');
+
+const { sequelize, Op } = require('sequelize')
 
 
 
@@ -129,47 +129,47 @@ router.get('/:id', requireAuth, async(req, res, next) => {
 } );
 
 
-const validateSpot = [
-    check('address')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Street address is required"),
-    check('city')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("City is required"),
-    check('state')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("State is required"),
-    check('country')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Country is required"),
-    check('lat')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Latitude is not valid"),
-    check('lng')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Longitude is not valid"),
-    check('name')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Name is required")
-        .isLength({ max: 49})
-        .withMessage("Name must be less than 50 characters"),
-    check('description')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Description is required"),
-    check('price')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Price per day is required"),
-    handleValidationErrors
-];
+// const validateSpot = [
+//     check('address')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Street address is required"),
+//     check('city')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("City is required"),
+//     check('state')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("State is required"),
+//     check('country')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Country is required"),
+//     check('lat')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Latitude is not valid"),
+//     check('lng')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Longitude is not valid"),
+//     check('name')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Name is required")
+//         .isLength({ max: 49})
+//         .withMessage("Name must be less than 50 characters"),
+//     check('description')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Description is required"),
+//     check('price')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage("Price per day is required"),
+//     handleValidationErrors
+// ];
 
 router.post('/', [requireAuth, validateSpot],
     async (req, res, next) => {
@@ -267,23 +267,54 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
 
 //Create a Booking Based on a Spot id
 
-// router.post('/:id/bookings', requireAuth, async (req, res, next) => {
-//     const {startDate, endDate} = req.body
-//     let spotBook = await Spot.findOne({
-//         where: {
-//             id: req.params.id
-//         }
-//     })
-//     if (!spotBook) {
-//         res.status(404);
-//         return res.json({
-//             "message": "Spot couldn't be found",
-//             "statusCode": 404
-//         })
-//     }
-//     if (spotBook.ownerId === )
+router.post('/:id/bookings', requireAuth, async (req, res, next) => {
+    const {startDate, endDate} = req.body
+    let spotBook = await Spot.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    if (!spotBook) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    if (spotBook.ownerId === req.user.id) {
+        res.status(403);
+        return res.json({
+         "message": "Forbidden/not allowed",
+         "statusCode": 403
+        })
+    }
+    if (startDate >= endDate) {
+        res.status(400);
+        return res.json({
+            "message": "Validation error",
+            "statusCode": 400,
+            "errors": [
+                "endDate cannot be on or before startDate"
+            ]
+        })
+    }
+    const bookSpot = Booking.findAll({
+        where: {
+            spotId:req.params.id
+        }
+    })
 
-// });
+    bookSpot.forEach(book => {
+        let bookArray = [];
+      if (endDate <= book.endDate && endDate > book.startDate) {
+        bookArray = ["End date conflicts with an existing booking"]
+      } else if (startDate >= book.startDate && startDate < book.endDate) {
+        bookArray = ["End date conflicts with an existing booking"]
+      }
+    })
+
+
+});
 
 //Get a Booking based off Spot Id
 router.get('/:id/bookings', requireAuth, async(req, res, next) => {
@@ -358,19 +389,21 @@ let findReview = await Review.findAll({
     }
 })
 
-const validateReview = [
-    check('review')
-    .exists({checkFalsy: true})
-    .notEmpty()
-    .withMessage("Review text is required"),
-   check('stars')
-   .exists({checkFalsey: true})
-    .isInt({min:1, max:5})
-    .withMessage("Stars must be an integer from 1 to 5"),
-handleValidationErrors
-]
+// const validateReview = [
+//     check('review')
+//     .exists({checkFalsy: true})
+//     .notEmpty()
+//     .withMessage("Review text is required"),
+//    check('stars')
+//    .exists({checkFalsey: true})
+//     .isInt({min:1, max:5})
+//     .withMessage("Stars must be an integer from 1 to 5"),
+// handleValidationErrors
+// ];
+
 //Create a Review for a Spot
 router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) => {
+
     const {review, stars} = req.body
     let findPk = await Spot.findByPk(req.params.id);
 
@@ -384,7 +417,14 @@ router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) =
 
     let findReview = await Review.findOne({
         where: {
+        [Op.and]:[
+        {
             userId:req.user.id
+        },
+        {
+            spotId:req.params.id
+        }
+        ]
         }
     })
     if (findReview) {
@@ -394,14 +434,18 @@ router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) =
             "statusCode": 403
         })
     } else {
-        const reviewAns = await Review.create({
+        const reviewAns = await findPk.createReview({
             userId: req.user.id,
-            spotId: req.params.id
-
+            spotId: req.params.id,
+            review,
+            stars
         })
+        res.status(201);
+  return  res.json(reviewAns)
     }
-})
 
+
+});
 
 
 module.exports = router;

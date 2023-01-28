@@ -2,7 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const apiRouter = require('./api');
-const {requireAuth, properAuth} = require('../utils/auth');
+const {requireAuth, properAuth, validateReview} = require('../utils/auth');
+
+
+
+router.use('/api', apiRouter);
+
 
 router.get("/api/csrf/restore", (req, res) => {
     const csrfToken = req.csrfToken();
@@ -13,7 +18,7 @@ router.get("/api/csrf/restore", (req, res) => {
 });
 
 
-router.use('/api', apiRouter);
+
 
 
 

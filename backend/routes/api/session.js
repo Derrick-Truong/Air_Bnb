@@ -1,20 +1,21 @@
 const express = require('express');
 const { User } = require('../../db/models');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth, validateLogin } = require('../../utils/auth');
 const router = express.Router();
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+// const { handleValidationErrors } = require('../../utils/validation');
 // Log in
-const validateLogin = [
-    check('credential')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage('Email or username is required'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .withMessage('Password is required'),
-    handleValidationErrors
-];
+// const validateLogin = [
+
+//     check('credential')
+//         .exists({ checkFalsy: true })
+//         .notEmpty()
+//         .withMessage('Email or username is required'),
+//     check('password')
+//         .exists({ checkFalsy: true })
+//         .withMessage('Password is required'),
+//     handleValidationErrors
+// ];
 
 router.post(
     '/',
