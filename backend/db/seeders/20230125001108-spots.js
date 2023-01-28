@@ -15,7 +15,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '12 Poplar St' ,
+        address: '12 Poplar St',
         city: 'Millbrae',
         state: 'California',
         country: 'United States of America',
