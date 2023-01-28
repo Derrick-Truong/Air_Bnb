@@ -1,7 +1,7 @@
 
-// 'use strict';
+// "use strict";
 
-/** @type {import('sequelize-cli').Migration} */
+/** @type {import("sequelize-cli").Migration} */
 const bcrypt = require("bcryptjs");
 
 let options = {};
@@ -14,16 +14,16 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'url-path7'
+        url: "url-path7"
 
       },
       {
         reviewId: 2,
-        url: 'url-path9'
+        url: "url-path9"
       },
       {
         reviewId: 3,
-        url: 'url-path6'
+        url: "url-path6"
       }
     ], {});
   },
@@ -32,7 +32,7 @@ module.exports = {
     options.tableName = 'ReviewImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['url-path7', 'url-path9', 'url-path6'] }
+      url: { [Op.in]: ["url-path7", "url-path9", "url-path6"] }
     }, {});
   }
 };
