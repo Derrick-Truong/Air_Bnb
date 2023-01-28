@@ -22,6 +22,7 @@ router.get('/current', requireAuth, async(req, res, next) => {
         }
 
     })
+    if (bookingAns) {}
     let bookArray = [];
     bookingAns.forEach(book => {
         bookArray.push(book.toJSON())

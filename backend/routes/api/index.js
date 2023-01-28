@@ -3,6 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const spotsRouter = require('./spots.js');
 const bookRouter = require('./bookings.js');
+const reviewRouter = require('./reviews.js')
 const { restoreUser, requireAuth, setTokenCookie } = require('../../utils/auth.js');
 
 
@@ -17,6 +18,8 @@ router.get('/test', requireAuth, (req, res) => {
 // If current user session is valid, set req.user to the user in the database
 // If current user session is not valid, set req.user to null
 router.use('/bookings', bookRouter);
+
+router.use('/reviews', reviewRouter);
 
 router.use('/spots', spotsRouter);
 

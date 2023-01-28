@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { Spot, Review, SpotImage, User } = require('../../db/models');
+const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -245,7 +245,8 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
     if (editSpot.ownerId !== req.user.id) {
         res.status(403);
         return res.json({
-            message: 'Forbidden/not allowed'
+            message: 'Forbidden/not allowed',
+            statusCode: 403
         })
     }
     const {address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -266,25 +267,140 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
 
 //Create a Booking Based on a Spot id
 
-router.post('/:id/bookings', requireAuth, async (req, res, next) => {
-    const {startDate, endDate} = req.body
-    let spotBook = await Spot.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
-    if (!spotBook) {
+// router.post('/:id/bookings', requireAuth, async (req, res, next) => {
+//     const {startDate, endDate} = req.body
+//     let spotBook = await Spot.findOne({
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     if (!spotBook) {
+//         res.status(404);
+//         return res.json({
+//             "message": "Spot couldn't be found",
+//             "statusCode": 404
+//         })
+//     }
+//     if (spotBook.ownerId === )
+
+// });
+
+//Get a Booking based off Spot Id
+router.get('/:id/bookings', requireAuth, async(req, res, next) => {
+let findPk = await Spot.findByPk(req.params.id);
+
+    if (!findPk) {
         res.status(404);
         return res.json({
             "message": "Spot couldn't be found",
-            "statusCode": 404
+            "statusCode": '404'
         })
     }
-    else {
+    let findBook = await Booking.findAll({
+        where:{
+            spotId: req.params.id
+        },
+        include: {
+            model: User,
+            attributes: ['id','firstName','lastName']
+        }
+    })
 
+    let bookList = [];
+
+    if (findBook[0].toJSON().userId !== req.user.id) {
+      findBook.forEach(book => {
+        book.toJSON();
+      const message = {
+        'spotId': book.spotId,
+        'startDate': book.startDate,
+        'endDate': book.endDate
+      }
+      bookList.push(message)
+      })
+    return res.json({
+        "Bookings": bookList
+    })
+    } else {
+        return res.json({
+         "Bookings":findBook
+        })
     }
 })
 
+//Get Reviews by Spot Id
+router.get('/:id/reviews', requireAuth, async(req, res, next) => {
+let findReview = await Review.findAll({
+    where: {
+        spotId:req.params.id
+    },
+    include:[
+        {
+            model:User,
+            attributes:['id','firstName','lastName']
+        },
+        {
+            model:ReviewImage,
+            attributes:['id','url']
+        }
+    ]
+})
+    if (!Review.spotId) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": '404'
+        })
+    } else {
+        res.json({
+            "Reviews": findReview
+        })
+    }
+})
+
+const validateReview = [
+    check('review')
+    .exists({checkFalsy: true})
+    .notEmpty()
+    .withMessage("Review text is required"),
+   check('stars')
+   .exists({checkFalsey: true})
+    .isInt({min:1, max:5})
+    .withMessage("Stars must be an integer from 1 to 5"),
+handleValidationErrors
+]
+//Create a Review for a Spot
+router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) => {
+    const {review, stars} = req.body
+    let findPk = await Spot.findByPk(req.params.id);
+
+    if (!findPk) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": '404'
+        })
+    }
+
+    let findReview = await Review.findOne({
+        where: {
+            userId:req.user.id
+        }
+    })
+    if (findReview) {
+        res.status(403);
+        return res.json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+        })
+    } else {
+        const reviewAns = await Review.create({
+            userId: req.user.id,
+            spotId: req.params.id
+
+        })
+    }
+})
 
 
 
