@@ -23,7 +23,7 @@ module.exports = {
         lng: -122.1234567,
         name: 'Bob McFarland',
         description: 'Happiness place on Earth',
-        price: '3',
+        price: 3
       },
       {
         ownerId: 2,
@@ -35,7 +35,7 @@ module.exports = {
         lng: -133.6739573,
         name: 'Eddie Brees',
         description: 'could be better, could be worse',
-        price: '599',
+        price: 599
       },
       {
         ownerId: 3,
@@ -47,7 +47,7 @@ module.exports = {
         lng: -155.2957394,
         name: 'Richard Depree',
         description: 'please stay here',
-        price: 57,
+        price: 57
       }
     ], {});
   },
