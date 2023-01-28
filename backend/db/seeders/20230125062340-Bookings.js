@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up(queryInterface, Sequelize) {
     options.tableName = 'Bookings';
     return queryInterface.bulkInsert(options, [
       {
@@ -32,11 +32,11 @@ module.exports = {
     ], {});
   },
 
-  down: async (queryInterface, Sequelize) => {
+  async down(queryInterface, Sequelize) {
     options.tableName = 'Bookings';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      startDate: { [Op.in]: ["2021-10-22", "2020-07-15", "2018-10-23"] }
+      spotId: { [Op.in]: [1, 2, 3] }
     }, {});
   }
 };
