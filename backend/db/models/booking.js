@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Booking.belongsTo(
         models.Spot, {foreignKey:'spotId'}
-      ),
+      );
 
       Booking.belongsTo(
         models.User, {foreignKey:'userId'}
-      )
+      );
       // define association here
     }
   }
