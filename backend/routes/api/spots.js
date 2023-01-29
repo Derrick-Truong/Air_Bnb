@@ -3,7 +3,7 @@ const router = express.Router();
 const { setTokenCookie, requireAuth, restoreUser, validateReview, validateSpot } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { check } = require('express-validator');
-
+const { handleValidationErrors } = require('../../utils/validation');
 const { sequelize, Op } = require('sequelize')
 
 
@@ -297,21 +297,43 @@ router.post('/:id/bookings', requireAuth, async (req, res, next) => {
             ]
         })
     }
-    const bookSpot = Booking.findAll({
+    // let image;
+    // let err = new Error('Sorry, this spot is already booked for the specified dates');
+    // err.status = 403;
+
+    let bookSpot = await Booking.findAll({
         where: {
             spotId:req.params.id
         }
-    })
+    });
+    let image;
+    let err = new Error('Sorry, this spot is already booked for the specified dates');
+    err.status = 403;
+    err.title = 'Conflicting Dates'
 
     bookSpot.forEach(book => {
-        let bookArray = [];
       if (endDate <= book.endDate && endDate > book.startDate) {
-        bookArray = ["End date conflicts with an existing booking"]
+        err.errors = ["End date conflicts with an existing booking"]
       } else if (startDate >= book.startDate && startDate < book.endDate) {
-        bookArray = ["End date conflicts with an existing booking"]
+          err.errors = ["Start date conflicts with an existing booking"]
       }
-    })
+      else if (book.startDate < startDate && endDate < book.endDate) {
+          err.errors = ["Start date conflicts with an existing booking",
+              "End date conflicts with an existing booking"]
+      }
+    });
 
+    if (err.errors) {
+    return next(err)
+    } else {
+    image = await spotBook.createBooking({
+        spotId: req.params.id,
+        userId: req.user.id,
+        startDate,
+        endDate
+    })
+        return res.json(image)
+    }
 
 });
 
@@ -386,7 +408,10 @@ let findReview = await Review.findAll({
             "Reviews": findReview
         })
     }
-})
+});
+
+
+
 
 // const validateReview = [
 //     check('review')

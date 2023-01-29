@@ -3,7 +3,7 @@ const router = express.Router();
 const { setTokenCookie, requireAuth, valid, restoreUser, validateReview } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { check } = require('express-validator');
-const { get } = require('http');
+
 
 //All reviews of current user
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -43,13 +43,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
         delete review.Spot.SpotImages
     })
-    res.json({
+   return res.json({
         "Reviews": reviewArray
     })
 });
 
 //Add an Image to a Review based on the Review's id
-router.post('/:id/images', requireAuth, validateReview, async (req, res, next) => {
+router.post('/:id/images', requireAuth,  async (req, res, next) => {
     let reviewAns = await Review.findOne({
         where: {
             id: req.params.id
@@ -58,6 +58,14 @@ router.post('/:id/images', requireAuth, validateReview, async (req, res, next) =
             model: ReviewImage
         },
     })
+
+    if (!reviewAns) {
+        res.status(404);
+     return res.json({
+         "message": "Review couldn't be found",
+         "statusCode": 404
+     })
+    }
 
     if (reviewAns.userId !== req.user.id) {
         res.status(403);
@@ -79,7 +87,7 @@ router.post('/:id/images', requireAuth, validateReview, async (req, res, next) =
         url
 
     })
-    res.json({
+   return res.json({
         "id": createImage.id,
         "url": createImage.url
     }
