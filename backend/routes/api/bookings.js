@@ -105,7 +105,7 @@ let conflicts = await Booking.findAll({
         if (startDate >= book.startDate && startDate < book.endDate) {
             err.errors = ["Start date conflicts with an existing booking"]
         }
-        if (book.startDate > startDate && endDate > book.endDate) {
+        if (book.startDate < startDate && endDate < book.endDate) {
             err.errors = ["Start date conflicts with an existing booking",
                 "End date conflicts with an existing booking"]
         }
