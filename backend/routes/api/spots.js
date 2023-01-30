@@ -8,24 +8,50 @@ const { sequelize, Op } = require('sequelize')
 
 
 //Get all Spots
-router.get('/',  async (req, res, next) => {
+router.get('/', validatePage,  async (req, res, next) => {
+    // const validErr = {
+    //     "message": "Validation Error",
+    //     "statusCode": 400,
+    //     "errors": {}
+    // };
 
-    // let pag = {};
-    // let { page, size } = req.query;
+    let pagination = {};
+    let { page, size } = req.query;
     // page = parseInt(page)
     // size = parseInt(size)
 
-    // if (isNaN(page)) page = 1
-    // if (isNan(size)) size = 20
+    if (!page) page = 1
+    if (!size) size = 20
 
-    // if (size >= 1 && page >= 1) {
-    //     if (size >= 20) {
-    //         pag.limit = 20
-    //     } else {
-    //         pag.ofset = size;
-    //         pag.limit = size * (page - 1)
-    //     }
-    // }
+    if (size >= 1 && page >= 1) {
+    pagination.limit = size;
+    pagination.offset = size * (page - 1)
+        // if (size >= 20) {
+        //     // pag.limit = 20
+        // } else {
+        //     pag.ofset = size;
+        //     pag.limit = size * (page - 1)
+        // }
+    req.pagination = pagination
+    req.page = page
+    req.size = size
+    } else {
+     pagination.limit = 20;
+     pagination.offset = 0;
+     req.pagination = pagination;
+     req.page = 1;
+     req.size = 20;
+    }
+    // } else {
+// res.json({
+//     "message": "Validation Error",
+//     "statusCode": 400,
+//     "errors": {
+//         "page": "Page must be greater than or equal to 0",
+//         "size": "Size must be greater than or equal to 0"
+//     }
+// })
+//     }
 
     // const validErr = {
     //     "message": "Validation Error",
@@ -41,7 +67,7 @@ router.get('/',  async (req, res, next) => {
     //     return res.status(400).json(validErr)
     // }
     let spots = await Spot.findAll({
-
+        ...req.pagination,
         include: [
             {
                 model: Review
@@ -50,7 +76,7 @@ router.get('/',  async (req, res, next) => {
                 model: SpotImage
             }
         ]
-        // ...pag
+
 
     }
     )
@@ -78,7 +104,7 @@ router.get('/',  async (req, res, next) => {
 
     // console.log(spotArray)
     res.json({
-        "Spots":Spots
+        "Spots":Spots, page:parseInt(req.page), size:parseInt(req.size)
  })
 
 });
@@ -251,7 +277,7 @@ router.post('/', [requireAuth, validateSpot],
         res.json(spotAns)
     })
 
-// Add an Image to a Spot based on the Spot's id
+// Create an Image to a Spot based on the Spot's id
 router.post('/:id/images', requireAuth, async(req, res, next) => {
     let image;
     const spotId = req.params.id;
@@ -264,7 +290,8 @@ router.post('/:id/images', requireAuth, async(req, res, next) => {
     if (!spotOne) {
         res.status(404);
         return res.json({
-            message:"Spot couldn't be found"
+            "message":"Spot couldn't be found"
+
         })
     }
     if(spotOne.ownerId !== req.user.id){
@@ -281,7 +308,7 @@ router.post('/:id/images', requireAuth, async(req, res, next) => {
 
     })
 }
-res.json({
+return res.json({
     id: image.spotId,
     url: image.url,
     preview: image.preview
@@ -444,9 +471,18 @@ let findPk = await Spot.findByPk(req.params.id);
 
 //Get Reviews by Spot Id
 router.get('/:id/reviews', requireAuth, async(req, res, next) => {
+let findSpot = await Spot.findByPk(req.params.id)
+
+    if (!findSpot) {
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
 let findReview = await Review.findAll({
     where: {
-        spotId:req.params.id
+        spotId:findSpot.id
     },
     include:[
         {
@@ -459,17 +495,23 @@ let findReview = await Review.findAll({
         }
     ]
 })
-    if (!Review.spotId) {
-        res.status(404);
+    if (!findSpot) {
         return res.json({
             "message": "Spot couldn't be found",
-            "statusCode": '404'
-        })
-    } else {
-        res.json({
-            "Reviews": findReview
+            "statusCode": 404
         })
     }
+
+    // if (findReview.userId !== req.user.id) {
+    //     return res.json({
+    //         "message": "Forbidden/not allowed",
+    //         "statusCode": 403
+    //     })
+    // }
+        return res.json({
+            "Reviews": findReview
+        })
+
 });
 
 
@@ -526,8 +568,8 @@ router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) =
             review,
             stars
         })
-        res.status(201);
-  return  res.json(reviewAns)
+        // res.status(201);
+  return  res.status(201).json(reviewAns)
     }
 
 
