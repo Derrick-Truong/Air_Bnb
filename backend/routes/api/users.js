@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { setTokenCookie, requireAuth, restoreUser, validateSignup } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser, validateSignup, validatePage } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 
 // const validateSignup = [
@@ -28,17 +29,67 @@ const { check } = require('express-validator');
 // Sign up
 router.post(
     '/',
-    validateSignup,
-    async (req, res) => {
+    validateSignup, 
+    async (req, res, next) => {
         const { firstName, lastName, email, username, password} = req.body;
+
+        let sameEmail = await User.findOne({
+            where: {
+                email
+            }
+        })
+        let sameUser = await User.findOne({
+            where: {
+                username
+            }
+        })
+
+        if (sameEmail && !sameUser) {
+        //    res.status(403);
+           return res.json({
+               "message": "User already exists",
+               "statusCode": 403,
+               "errors": {
+                   "username": "User with that username already exists"
+               }
+           })
+        }
+        if (sameUser && !sameEmail) {
+            res.status(403);
+          return res.json({
+              "message": "User already exists",
+              "statusCode": 403,
+              "errors": {
+                  "email": "User with that email already exists"
+              }
+          })
+        }
+
+        if (sameUser && sameEmail){
+          res.status(403);
+          return res.json({
+              "message": "User already exists",
+              "statusCode": 403,
+              "errors": {
+                  "email": "User with that email already exists",
+                  "username": "User with that username already exists"
+              }
+          })
+        }
+
         const user = await User.signup({ firstName, lastName, email, username, password});
 
         await setTokenCookie(res, user);
 
         return res.json({
-            user: user
+           "firstName": firstName,
+           "lastName": lastName,
+           "email": email,
+           "username": username,
+           "token": ""
         });
-    }
+    },
+
 );
 
 

@@ -105,7 +105,7 @@ let conflicts = await Booking.findAll({
         if (startDate >= book.startDate && startDate < book.endDate) {
             err.errors = ["Start date conflicts with an existing booking"]
         }
-        if (book.startDate > startDate && endDate < book.endDate) {
+        if (book.startDate > startDate && endDate > book.endDate) {
             err.errors = ["Start date conflicts with an existing booking",
                 "End date conflicts with an existing booking"]
         }
@@ -121,6 +121,34 @@ let conflicts = await Booking.findAll({
     }
 });
 
+router.delete('/:id', requireAuth, async (req, res, next) => {
+    let deleteBook = await Booking.findByPk(req.params.id)
+
+    if (!deleteBook) {
+     res.status(404);
+     return res.json({
+         "message": "Booking couldn't be found",
+         "statusCode": 404
+     })
+    };
+
+    if (deleteBook.userId !== req.user.id && deleteBook.spotId !== req.params.id) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden/not allowed"
+        })
+    };
+    let present = new Date();
+    if (new Date(deleteBook.startDate) <= present) {
+        res.status(403);
+        res.json({
+            "message": "Bookings that have been started can't be deleted",
+            "statusCode": 403
+        })
+    };
+
+
+})
 // router.get('/:id', )
 
 

@@ -43,13 +43,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
         delete review.Spot.SpotImages
     })
-   return res.json({
+    return res.json({
         "Reviews": reviewArray
     })
 });
 
 //Add an Image to a Review based on the Review's id
-router.post('/:id/images', requireAuth,  async (req, res, next) => {
+router.post('/:id/images', requireAuth, async (req, res, next) => {
     let reviewAns = await Review.findOne({
         where: {
             id: req.params.id
@@ -61,10 +61,10 @@ router.post('/:id/images', requireAuth,  async (req, res, next) => {
 
     if (!reviewAns) {
         res.status(404);
-     return res.json({
-         "message": "Review couldn't be found",
-         "statusCode": 404
-     })
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
     }
 
     if (reviewAns.userId !== req.user.id) {
@@ -87,7 +87,7 @@ router.post('/:id/images', requireAuth,  async (req, res, next) => {
         url
 
     })
-   return res.json({
+    return res.json({
         "id": createImage.id,
         "url": createImage.url
     }
@@ -118,13 +118,45 @@ router.put('/:id', requireAuth, validateReview, async (req, res, next) => {
             'statusCode': 403
         })
     }
-    let {review, stars} = req.body
+    let { review, stars } = req.body
     reviews.update({
-       review,
-       stars
+        review,
+        stars
     })
-res.json(reviews)
+    res.json(reviews)
 
-})
+});
+
+router.delete('/:id', requireAuth, async (req, res, next) => {
+    let deleteReview = await Review.findByPk(req.params.id);
+
+    if (!deleteReview) {
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    };
+    if (deleteReview.userId !== req.user.id) {
+
+        return res.json({
+            "message": "Forbidden/not allowed",
+            "statusCode": 403
+        })
+    };
+
+    await deleteReview.destroy();
+
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+
+    })
+
+});
+
+
+
+
+
 
 module.exports = router;

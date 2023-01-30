@@ -83,18 +83,39 @@ const validateSignup = [
         .exists({ checkFalsy: true })
         .isEmail()
         .withMessage('Please provide a valid email.'),
-    check('username')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
+    // check('username')
+    //     .exists({ checkFalsy: true })
+    //     .isLength({ min: 4 })
+    //     .withMessage('Please provide a username with at least 4 characters.'),
     check('username')
         .not()
         .isEmail()
         .withMessage('Username cannot be an email.'),
-    check('password')
+    // check('password')
+    //     .exists({ checkFalsy: true })
+    //     .isLength({ min: 6 })
+    //     .withMessage('Password must be 6 characters or more.'),
+    check('firstName')
         .exists({ checkFalsy: true })
-        .isLength({ min: 6 })
-        .withMessage('Password must be 6 characters or more.'),
+        .notEmpty()
+        .withMessage("First name is required"),
+    check('lastName')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage("Last name is required"),
+    check('username')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage("Username is required"),
+    handleValidationErrors
+];
+const validatePage = [
+    check('page')
+    .isInt({ min: 1})
+    .withMessage("Page must be greater than or equal to 1"),
+    check('size')
+    .isInt({ min: 1 })
+    .withMessage("Page must be greater than or equal to 1"),
     handleValidationErrors
 ];
 
@@ -161,4 +182,4 @@ const validateLogin = [
 //     if ()
 // };
 
-module.exports = { validateLogin, validateSpot, validateSignup, validateReview, setTokenCookie, restoreUser, requireAuth };
+module.exports = { validatePage, validateLogin, validateSpot, validateSignup, validateReview, setTokenCookie, restoreUser, requireAuth };

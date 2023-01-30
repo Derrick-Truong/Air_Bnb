@@ -1,58 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const { setTokenCookie, requireAuth, restoreUser, validateReview, validateSpot } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser, validateReview, validateSpot, validatePage } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { sequelize, Op } = require('sequelize')
 
 
+//Get all Spots
+router.get('/',  async (req, res, next) => {
 
-//Get all Spots with Current User
-router.get('/current', requireAuth, async (req, res, next) => {
-    let userId = req.user.id
-    let spots = await Spot.findAll({
-        where: {
-            ownerId:userId
-        },
-        include: [
-            {
-                model: Review
-            },
-            {
-                model: SpotImage
-            }
-        ]
+    // let pag = {};
+    // let { page, size } = req.query;
+    // page = parseInt(page)
+    // size = parseInt(size)
 
-    }
-    )
-    let Spots = [];
-    spots.forEach(spot => {
-        Spots.push(spot.toJSON())
-        // spotArray.push(spot.toJSON())
-    })
-    Spots.forEach(spot => {
-    let adder = 0;
-    let i = 0;
-    spot.Reviews.forEach(review => {
-        i++;
-        adder= adder + review.stars
-    })
-    spot.avgRating = adder/i;
-    spot.SpotImages.forEach(image => {
-    if (image.url) {
-        spot.previewImage = image.url
-    }
-    })
-        delete spot.Reviews
-        delete spot.SpotImages
-    });
+    // if (isNaN(page)) page = 1
+    // if (isNan(size)) size = 20
 
-    // console.log(spotArray)
-    res.json({Spots})
-})
+    // if (size >= 1 && page >= 1) {
+    //     if (size >= 20) {
+    //         pag.limit = 20
+    //     } else {
+    //         pag.ofset = size;
+    //         pag.limit = size * (page - 1)
+    //     }
+    // }
 
-router.get('/', requireAuth, async (req, res, next) => {
+    // const validErr = {
+    //     "message": "Validation Error",
+    //     "statusCode": 400,
+    //     "errors": {}
+    // };
+
+    // if (size === 0) validErr.size = "Page must be greater than or equal to 1"
+    // if (page === 0) validErr.page = "Size must be greater than or equal to 1"
+
+
+    // if (page === 0 || size === 0) {
+    //     return res.status(400).json(validErr)
+    // }
     let spots = await Spot.findAll({
 
         include: [
@@ -63,6 +50,7 @@ router.get('/', requireAuth, async (req, res, next) => {
                 model: SpotImage
             }
         ]
+        // ...pag
 
     }
     )
@@ -89,9 +77,64 @@ router.get('/', requireAuth, async (req, res, next) => {
     });
 
     // console.log(spotArray)
-    res.json({ Spots })
+    res.json({
+        "Spots":Spots
+ })
 
 });
+
+
+//Get all Spots with Current User
+router.get('/current', requireAuth, async (req, res, next) => {
+    let userId = req.user.id
+    let spots = await Spot.findAll({
+        where: {
+            ownerId:userId
+        },
+        include: [
+            {
+                model: Review
+            },
+            {
+                model: SpotImage
+            }
+        ]
+
+    }
+    )
+    if (!spots) {
+        return res.json({
+
+        })
+    }
+    let Spots = [];
+    spots.forEach(spot => {
+        Spots.push(spot.toJSON())
+        // spotArray.push(spot.toJSON())
+    })
+    Spots.forEach(spot => {
+    let adder = 0;
+    let i = 0;
+    spot.Reviews.forEach(review => {
+        i++;
+        adder= adder + review.stars
+    })
+    spot.avgRating = adder/i;
+    spot.SpotImages.forEach(image => {
+    if (image.url) {
+        spot.previewImage = image.url
+    }
+    })
+        delete spot.Reviews
+        delete spot.SpotImages
+    });
+
+    // console.log(spotArray)
+    res.json({Spots})
+})
+
+
+
 // Get details of a Spot from an id
 
 router.get('/:id', requireAuth, async(req, res, next) => {
@@ -116,6 +159,13 @@ router.get('/:id', requireAuth, async(req, res, next) => {
 
     });
 
+    if (!spotty) {
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
     let count = 0;
     let spotjson = spotty.toJSON();
     spotjson.numReviews = spotty.Reviews.length;
@@ -124,6 +174,14 @@ router.get('/:id', requireAuth, async(req, res, next) => {
     })
    spotjson.avgStarRating = count/spotjson.numReviews
     delete spotjson.Reviews
+
+    if (spotjson.SpotImages.length > 1) {
+        if (spotjson.SpotImages[0].id !== spotjson.SpotImages[1].id) {
+            for (let i = 1; i < spotjson.SpotImages.length; i++) {
+                spotjson.SpotImages[i].preview = false
+            }
+        }
+    }
  res.json(spotjson)
 } );
 
@@ -170,6 +228,7 @@ router.get('/:id', requireAuth, async(req, res, next) => {
 //     handleValidationErrors
 // ];
 
+//Create Spot
 router.post('/', [requireAuth, validateSpot],
     async (req, res, next) => {
 
@@ -187,6 +246,7 @@ router.post('/', [requireAuth, validateSpot],
             description,
             price
         })
+    console.log(validateSpot);
         res.statusCode = 201
         res.json(spotAns)
     })
@@ -238,14 +298,15 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
     if (!editSpot) {
         res.status(404);
         return res.json({
-            message: 'Spot does not exist at this id'
+            "message": "Spot couldn't be found",
+            "statusCode": 404
         })
     }
     if (editSpot.ownerId !== req.user.id) {
         res.status(403);
         return res.json({
-            message: 'Forbidden/not allowed',
-            statusCode: 403
+            "message": "Forbidden/not allowed",
+            "statusCode": 403
         })
     }
     const {address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -314,10 +375,11 @@ router.post('/:id/bookings', requireAuth, async (req, res, next) => {
     bookSpot.forEach(book => {
       if (endDate <= book.endDate && endDate > book.startDate) {
         err.errors = ["End date conflicts with an existing booking"]
-      } else if (startDate >= book.startDate && startDate < book.endDate) {
+      }
+      if(startDate >= book.startDate && startDate < book.endDate) {
           err.errors = ["Start date conflicts with an existing booking"]
       }
-      else if (book.startDate < startDate && endDate < book.endDate) {
+      if(book.startDate < startDate && endDate < book.endDate) {
           err.errors = ["Start date conflicts with an existing booking",
               "End date conflicts with an existing booking"]
       }
@@ -470,6 +532,38 @@ router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) =
 
 
 });
+
+router.delete('/:id', requireAuth, async (req, res, next) => {
+
+    let deleteSpot = await Spot.findOne({
+        where: {
+            id: req.params.id
+        },
+
+    })
+
+    if (!deleteSpot) {
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    if (deleteSpot.ownerId !== req.user.id) {
+        res.status(403);
+        return res.json({
+            message: "Forbidden/not allowed"
+        })
+    }
+
+    await deleteSpot.destroy();
+    res.status(200),
+        res.json({
+            "message": "Successfully deleted",
+            "statusCode": 200
+        })
+
+
+})
 
 
 module.exports = router;
