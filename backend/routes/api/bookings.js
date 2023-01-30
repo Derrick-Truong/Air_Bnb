@@ -100,18 +100,16 @@ if (new Date(startDate) < present || new Date(endDate) < present) {
     err.title = 'Conflicting Dates'
 
     bookSpot.forEach(book => {
-     if(book.id !== currentBook.id) {
-         if (endDate <= book.endDate && endDate > book.startDate) {
-             err.errors = ["End date conflicts with an existing booking"]
-         }
-         if (startDate >= book.startDate && startDate < book.endDate) {
-             err.errors = ["Start date conflicts with an existing booking"]
-         }
-         if (book.startDate < startDate && endDate > book.endDate) {
-             err.errors = ["Start date conflicts with an existing booking",
-                 "End date conflicts with an existing booking"]
-         }
-    }
+        if (book.id !== currentBook.id) if (endDate <= book.endDate && endDate > book.startDate) {
+            err.errors = ["End date conflicts with an existing booking"]
+        }
+        if (startDate >= book.startDate && startDate < book.endDate) {
+            err.errors = ["Start date conflicts with an existing booking"]
+        }
+        if (book.startDate > startDate && endDate > book.endDate) {
+            err.errors = ["Start date conflicts with an existing booking",
+                "End date conflicts with an existing booking"]
+        }
  }) ;
 
     if (err.errors) {
