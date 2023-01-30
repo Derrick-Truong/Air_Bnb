@@ -8,7 +8,7 @@ const { sequelize, Op } = require('sequelize')
 
 
 //Get all Spots
-router.get('/', validatePage,  async (req, res, next) => {
+router.get('/',  async (req, res, next) => {
     // const validErr = {
     //     "message": "Validation Error",
     //     "statusCode": 400,
@@ -17,11 +17,23 @@ router.get('/', validatePage,  async (req, res, next) => {
 
     let pagination = {};
     let { page, size } = req.query;
+
     // page = parseInt(page)
     // size = parseInt(size)
 
     if (!page) page = 1
     if (!size) size = 20
+
+    if(page < 1 || size < 1) {
+      res.json({
+    "message": "Validation Error",
+    "statusCode": 400,
+    "errors": {
+        "page": "Page must be greater than or equal to 0",
+        "size": "Size must be greater than or equal to 0"
+    }
+})
+    }
 
     if (size >= 1 && page >= 1) {
     pagination.limit = size;
@@ -43,6 +55,7 @@ router.get('/', validatePage,  async (req, res, next) => {
      req.size = 20;
     }
     // } else {
+
 // res.json({
 //     "message": "Validation Error",
 //     "statusCode": 400,
@@ -406,7 +419,7 @@ router.post('/:id/bookings', requireAuth, async (req, res, next) => {
       if(startDate >= book.startDate && startDate < book.endDate) {
           err.errors = ["Start date conflicts with an existing booking"]
       }
-      if(book.startDate < startDate && endDate < book.endDate) {
+      if(book.startDate < startDate && endDate > book.endDate) {
           err.errors = ["Start date conflicts with an existing booking",
               "End date conflicts with an existing booking"]
       }
