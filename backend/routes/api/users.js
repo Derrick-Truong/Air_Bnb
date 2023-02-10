@@ -29,7 +29,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 // Sign up
 router.post(
     '/',
-    validateSignup, 
+    validateSignup,
     async (req, res, next) => {
         const { firstName, lastName, email, username, password} = req.body;
 
@@ -82,11 +82,7 @@ router.post(
         await setTokenCookie(res, user);
 
         return res.json({
-           "firstName": firstName,
-           "lastName": lastName,
-           "email": email,
-           "username": username,
-           "token": ""
+           user: user
         });
     },
 
