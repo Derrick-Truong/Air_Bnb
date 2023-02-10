@@ -51,7 +51,7 @@ const {startDate, endDate} = req.body
 
 let currentBook = await Booking.findByPk(req.params.id);
 
-// console.log(currentBook)
+
 if (!currentBook) {
     res.status(404)
     return res.json({

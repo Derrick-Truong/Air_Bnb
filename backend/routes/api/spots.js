@@ -168,7 +168,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         delete spot.SpotImages
     });
 
-    // console.log(spotArray)
+
     res.json({Spots})
 })
 
@@ -285,7 +285,7 @@ router.post('/', [requireAuth, validateSpot],
             description,
             price
         })
-    console.log(validateSpot);
+    // console.log(validateSpot);
         res.statusCode = 201
         res.json(spotAns)
     })
