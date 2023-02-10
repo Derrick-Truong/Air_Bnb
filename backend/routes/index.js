@@ -5,17 +5,8 @@ const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
 
-
-router.get("/api/csrf/restore", (req, res) => {
-    const csrfToken = req.csrfToken();
-    res.cookie("XSRF-TOKEN", csrfToken);
-    res.status(200).json({
-        'XSRF-Token': csrfToken
-    });
-});
-
-// // Static routes
-// // Serve React build files in production
+// Static routes
+// Serve React build files in production
 // if (process.env.NODE_ENV === 'production') {
 //     const path = require('path');
 //     // Serve the frontend's index.html file at the root route
