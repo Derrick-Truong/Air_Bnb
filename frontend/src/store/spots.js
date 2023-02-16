@@ -2,11 +2,11 @@ import { csrfFetch } from "./csrf";
 
 
 const SPOTS_LOAD = 'spots/SPOTS_LOAD';
-const ONE_SPOT_LOAD = 'spots/SPOT_DETAILS_LOAD';
 const ADD_TO_SPOT = 'spots/ADD_SPOT';
 const DELETE_SPOT = 'spots/DELETE_SPOT';
 const CURRENT_SPOTS_LOAD = 'spots/CURRENT_SPOTS_LOAD'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
+const ONE_SPOT_LOAD = 'spots/ONE_SPOT_LOAD'
 
 export const createOneSpot = spotCreated => ({
     type: CREATE_SPOT,
@@ -51,8 +51,8 @@ export const getCurrentSpots = () => async dispatch => {
     const res = await fetch('/api/spots/current')
 
     if (res.ok) {
-        const list = await res.json();
-        dispatch(currentSpotsLoad(list))
+        const currentList = await res.json();
+        dispatch(currentSpotsLoad(currentList))
     }
 };
 

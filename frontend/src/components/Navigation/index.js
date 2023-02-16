@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
                     {sessionUser ? (
                         <span className='create-spot'>
                     <NavLink exact to="/spots/new" className="create-spot-2">
-                        Create a New Spot 
+                        Create a New Spot
                     </NavLink>
 
                         </span>

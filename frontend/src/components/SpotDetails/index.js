@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOneSpot } from '../../store/spots';
 import { useParams } from 'react-router-dom';
+import './SpotDetails.css'
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
@@ -15,8 +16,11 @@ useEffect(() => {
 }, [dispatch, spotId])
 
 return (
-<section>
-</section>
+<div className= "spot-details">
+    <div className= "spot-images">
+        <img src={spot.previewImage}/>
+    </div>
+</div>
 )
 }
 

@@ -32,12 +32,15 @@ function App() {
           <Route exact path="/spots/new">
             <CreateSpot/>
           </Route>
+          <Route exact path="/spots/current">
+            <CurrentUser />
+          </Route>
           <Route exact path = "/spots/:spotId">
             <SpotDetails/>
           </Route>
-          <Route exact path = "/spots/current">
+          {/* <Route exact path = "/spots/current">
           <CurrentUser/>
-          </Route>
+          </Route> */}
           <Route exact path = "/spots/:spotId/edit">
             <EditSpot/>
           </Route>
