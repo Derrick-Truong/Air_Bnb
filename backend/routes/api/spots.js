@@ -38,12 +38,7 @@ router.get('/',  async (req, res, next) => {
     if (size >= 1 && page >= 1) {
     pagination.limit = size;
     pagination.offset = size * (page - 1)
-        // if (size >= 20) {
-        //     // pag.limit = 20
-        // } else {
-        //     pag.ofset = size;
-        //     pag.limit = size * (page - 1)
-        // }
+
     req.pagination = pagination
     req.page = page
     req.size = size
@@ -54,31 +49,7 @@ router.get('/',  async (req, res, next) => {
      req.page = 1;
      req.size = 20;
     }
-    // } else {
 
-// res.json({
-//     "message": "Validation Error",
-//     "statusCode": 400,
-//     "errors": {
-//         "page": "Page must be greater than or equal to 0",
-//         "size": "Size must be greater than or equal to 0"
-//     }
-// })
-//     }
-
-    // const validErr = {
-    //     "message": "Validation Error",
-    //     "statusCode": 400,
-    //     "errors": {}
-    // };
-
-    // if (size === 0) validErr.size = "Page must be greater than or equal to 1"
-    // if (page === 0) validErr.page = "Size must be greater than or equal to 1"
-
-
-    // if (page === 0 || size === 0) {
-    //     return res.status(400).json(validErr)
-    // }
     let spots = await Spot.findAll({
         ...req.pagination,
         include: [

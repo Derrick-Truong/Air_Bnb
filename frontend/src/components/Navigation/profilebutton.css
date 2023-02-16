@@ -1,0 +1,84 @@
+.log-sign-up {
+    list-style-type: none;
+}
+.profile-dropdown {
+    position: absolute;
+    top: 33px;
+    right: 0px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 8px;
+    margin: 8px;
+    background-color: white;
+}
+
+.profile-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-button {
+    border-radius: 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.profile-button-bars-div {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.profile-button-container:hover {
+    background-color: #ffffff;
+    border-radius: 21px;
+    box-shadow: -2px 3px 1px rgba(165, 165, 165, 0.2);
+    transition: box-shadow 0.3s;
+}
+
+#solid-bars {
+    margin-right: 7px;
+    font-size: 15px;
+    color: gray;
+}
+
+.dropdown-menu {
+    width: 100%;
+    height: inherit;
+}
+
+.log-in-sign-up,
+#sign-up-modal,
+#log-in-modal {
+    font-family:'Courier New', 'Courier', 'monospace';
+    font-size: 14px;
+    transition: all;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(165, 165, 165, 0.2);
+}
+
+#sign-up-modal:hover,
+#log-in-modal:hover,
+#demo-user-button:hover {
+    background-color: rgba(165, 165, 165, 0.1);
+}
+
+.profile-info-actions {
+    text-align: center;
+    font-family: 'Circular', 'BlinkMacSystemFont', 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    transition: all;
+}
+
+#profile-email {
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(165, 165, 165, 0.2);
+}
+
+#logout-button {
+    height: 25px;
+    width: 100%;
+    margin-top: 5px;
+    text-align: left;
+}

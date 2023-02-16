@@ -1,0 +1,213 @@
+.create-spot-div {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+
+}
+
+form {
+    display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+.please-1,
+.please-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-column: span 2;
+    float: auto;
+
+
+
+}
+
+.please-1 label,
+.please-1 input {
+    grid-column: 1 / 2;
+    width: 300px;
+}
+
+.please-2 input,
+.please-2 label {
+    grid-column: 2/3;
+    width: 300px;
+
+
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #e60000;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+    border-color: #ff5a5f;
+    box-shadow: 0 0 5px #ff5a5f;
+}
+
+input::placeholder {
+    color: #b4b4b4;
+}
+
+@media only screen and (max-width: 768px) {
+    .create-spot {
+        padding: 20px;
+    }
+
+    input,
+    button[type="submit"] {
+        font-size: 14px;
+    }
+}
+
+/* .create-spot-div{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #e60000;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+    border-color: #ff5a5f;
+    box-shadow: 0 0 5px #ff5a5f;
+}
+
+input::placeholder {
+    color: #b4b4b4;
+}
+
+.label {
+    display: inline;
+    width: 50px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+
+
+/* input[type="text1"] {
+    display: inline;
+    width: 100px;
+    box-sizing: border-box;
+    margin: right 10px;
+}
+
+input[type="text2"] {
+    display: inline;
+    margin: left 10px;
+    width: 100px;
+    box-sizing: border-box;
+} */
+
+/* .please-1 input {
+
+    display: table
+} */
+
+
+/* .please-1 input {
+
+    display: flex;
+    width: 100px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.please-2 input {
+
+    display: flex;
+        width: 100px;
+        box-sizing: border-box;
+        margin-left: 10px;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.please-1,
+.please-2 {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* Media Queries */
+/* @media only screen and (max-width: 768px) {
+    .create-spot {
+        padding: 20px;
+    }
+
+    input,
+    button[type="submit"] {
+        font-size: 14px;
+    }
+} */

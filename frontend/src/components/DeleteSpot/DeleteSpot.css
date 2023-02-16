@@ -1,0 +1,44 @@
+.form-div {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.errors {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.errors li {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ .submit-button { 
+    background-color: #FF5A5F;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #E74C3C;
+}

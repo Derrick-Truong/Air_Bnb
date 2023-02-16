@@ -1,0 +1,8 @@
+.navSpotImage {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    flex-direction: column;
+    margin: auto;
+
+}

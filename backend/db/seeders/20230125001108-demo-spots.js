@@ -21,7 +21,7 @@ module.exports = {
         country: "United States of America",
         lat: 21.1243254,
         lng: -122.1234567,
-        name: "Bob McFarland",
+        name: "Derrick Truong",
         description: "Happiness place on Earth",
         price: 3
       },
@@ -33,7 +33,7 @@ module.exports = {
         country: "United States of America",
         lat: 34.1326893,
         lng: -133.6739573,
-        name: "Eddie Brees",
+        name: "Brandon Truong",
         description: "could be better, could be worse",
         price: 599
       },
@@ -45,9 +45,33 @@ module.exports = {
         country: "United States of America",
         lat: 34.20376935,
         lng: -155.2957394,
-        name: "Richard Depree",
+        name: "Jessica Truong",
         description: "please stay here",
         price: 57
+      },
+      {
+        ownerId: 1,
+        address: "456 Middle",
+        city: "Nowhere",
+        state: "Missouri",
+        country: "United States of America",
+        lat: 12.20126935,
+        lng: -115.2957194,
+        name: "Derrick Truong",
+        description: "please stay here",
+        price: 80
+      },
+      {
+        ownerId: 2,
+        address: "333 Right Corner",
+        city: "Halibut",
+        state: "Arkansas",
+        country: "United States of America",
+        lat: 14.20377735,
+        lng: -125.2957312,
+        name: "Brandon Truong",
+        description: "please stay here",
+        price: 66
       }
     ], {});
   },
@@ -56,7 +80,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ["Bob McFarland", "Eddie Brees", "Richard Depree"] }
+      name: { [Op.in]: ["Derrick Truong", "Brandon Truong", "Jessica Truong"] }
     }, {});
   }
 };
