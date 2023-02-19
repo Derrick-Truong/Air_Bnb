@@ -32,16 +32,7 @@ function Navigation({ isLoaded }) {
                     </NavLink>
 
                         </span>
-                    ) : (
-                        <span className='create-spot'>
-                            <div>
-                                <OpenModalMenuItem
-                                    itemText="Sign Up!"
-                                    modalComponent={<SignupFormModal />}
-                                />
-                            </div>
-                        </span>
-                    )}
+                    ) : <></>}
                     <div className='profile-button'>
                         <ProfileButton user={sessionUser} />
                     </div>

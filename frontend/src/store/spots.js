@@ -58,7 +58,7 @@ export const getCurrentSpots = () => async dispatch => {
 
 export const getOneSpot = (spotId) => async dispatch => {
 
-    const res = await csrfFetch(`/api/spots/${spotId}`);
+    const res = await fetch(`/api/spots/${spotId}`);
     if (res.ok) {
         const spotDetails = await res.json();
         dispatch(oneSpotLoad(spotDetails))
@@ -136,6 +136,7 @@ const spotReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case SPOTS_LOAD:
+            // action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot))
         newState = {...state, allSpots: {...state.allSpots}, oneSpot: {...state.oneSpot}}
         action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id]= spot))
         return newState;
@@ -155,7 +156,7 @@ const spotReducer = (state = initialState, action) => {
             newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, currentSpots: { ...state.currentSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
             return newState
         case CREATE_SPOT_PLEASE:
-            newState = { ...state, oneSpot: { ...state.oneSpot, ...action.spot } }
+            newState = { ...state, allSpots: { ...state.allSpots, ...action.spot}, oneSpot: { ...state.oneSpot, ...action.spot } }
         return newState
          default:
             return state

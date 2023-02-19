@@ -6,13 +6,27 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { useHistory } from "react-router-dom";
 import './profilebutton.css'
+import { useSelector } from "react-redux";
+import { getCurrentSpots } from "../../store/spots";
+
 
 function ProfileButton({ user }) {
+    const currentSpots = useSelector(state => state.spots.allSpots)
+    const currentVal = Object.values(currentSpots)
     const history = useHistory()
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-
+    // useEffect(() => {
+    //     dispatch(getCurrentSpots(user.id))
+    // }, [dispatch])
+ const manage = () => {
+    for (let spot of currentVal ) {
+        if (user.id === spot.ownerId) {
+            return true
+        }
+    }
+ }
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -52,14 +66,16 @@ function ProfileButton({ user }) {
                 {user ? (
                     <>
                     <div className="profile-list">
-                        <li>{user.username}</li>
-                        <li>{user.firstName} {user.lastName}</li>
-                        <li>{user.email}</li>
+                        <li>{user?.username}</li>
+                        <li>{user?.firstName} {user.lastName}</li>
+                        <li>{user?.email}</li>
+                        <li className={manage() ? 'show' : 'dontShow'}>Manage Your Spots</li>
                         <li>
                             <button onClick={logout}>Log Out</button>
                         </li>
                         </div>
                     </>
+
                 ) : (
                     <>
                     <div className="log-sign-up">

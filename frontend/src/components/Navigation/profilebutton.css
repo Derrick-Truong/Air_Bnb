@@ -72,3 +72,7 @@ font-family: 'Montserrat', sans-serif;
     margin-top: 5px;
     text-align: left;
 }
+
+.dontShow {
+    display: none;
+}

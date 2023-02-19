@@ -111,42 +111,18 @@ const valid = () => {
 
 
     return (
-        //need to .map errors
-        <section className="edit-spot">
+        <section className="create-spot-div">
             <form onSubmit={handleSub}>
-                <h1 className="title">Update a Spot!</h1>
-                <h2>Where's your place located?</h2>
-                <h3>Guests will only get your exact address once they booked a
-                    reservation.</h3>
-                <label htmlFor="address">
-                    Address
-                </label>
-                <input
-                    type="text"
-                    placeholder="Address"
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
-                />
-                <label htmlFor="City">
-                    City
-                </label>
-                <input
-                    type="text"
-                    placeholder="City"
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                />
-                <label htmlFor="State">
-                    State
-                </label>
-                <input
-                    type="text"
-                    placeholder="State"
-                    value={state}
-                    onChange={e => setState(e.target.value)}
-                />
+
+                <h1 className="title">Update Your Spot!</h1>
+
+                <h3><b>Where's your place located? </b> </h3>
+                <br></br>
+                Guests will only get your exact address once they booked a
+                reservation <br></br>
+                <h4></h4>
                 <label htmlFor="Country">
-                    Country
+                    <b>Country <br></br></b>
                 </label>
                 <input
                     type="text"
@@ -154,41 +130,70 @@ const valid = () => {
                     value={country}
                     onChange={e => setCountry(e.target.value)}
                 />
-                <input
-                    type="text"
-                    placeholder="Name"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                 <label htmlFor="Latitude">
-                    Latitude
+                {errors.country && <span className="error">{errors.country}</span>}
+                <h4></h4>
+                <label htmlFor="address">
+                    {/* <b><br></br>Address</b> */}
+                    <div> <div>Address</div>  {errors.address && <span className="error">{errors.address}</span>} </div>
                 </label>
                 <input
                     type="text"
-                    placeholder="Latitude"
-                    value={lat}
-                    onChange={e => setLatitude(e.target.value)}
+                    placeholder="Address"
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
                 />
-                <label htmlFor="Longitude">
-                    Longitude
+                {/* {errors.address && <span className="error">{errors.address}</span>} */}
+                <h4></h4>
+                <label htmlFor="City">
+                    <div><div>City</div>{errors.city && <span className="error">{errors.city}</span>} </div>
                 </label>
                 <input
-                    type="text"
-                    placeholder="Longitude"
-                    value={lng}
-                    onChange={e => setLongitude(e.target.value)}
+                    type="text1"
+                    placeholder="City"
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
                 />
+                <h4></h4>
+                <label htmlFor="State">
+                    <div><div>State</div>{errors.state && <span className="error">{errors.state}</span>}</div>
+                </label>
+                <input
+                    type="text2"
+                    placeholder="State"
+                    value={state}
+                    onChange={e => setState(e.target.value)}
+                />
+                <hr class="new1"></hr>
                 <label htmlFor="Description">
-                    Description
+                    <h3> Describe your place to your guests </h3>
+
+                    <h8>Mention the best features of your space, any special amentities like
+                        fast wif or parking, and what you love about the neighborhood.</h8>
                 </label>
-                <input
-                    type="text"
+
+                <textarea
+                    rows="10" cols="60"
+                    // style="height: 200px"
+                    type="text3"
                     placeholder="Description"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
+
+                <div>{errors.description && <span className="error">{errors.description}</span>}</div>
+                <hr class="new1"></hr>
+                <label htmlFor="name">
+                    <h1>Create a title for your spot</h1>
+                    <h8>Catch guests' attention with a spot title that highlights what makes
+                        your place special</h8>
+                </label>
+                <input id="name" type="text" placeholder="Name your Spot" value={name} onChange={(e) => setName(e.target.value)} />
+                {errors.name && <span className="error">{errors.name}</span>}
+                <hr class="new1"></hr>
                 <label htmlFor="Price">
-                    Price
+                    <h3> Set a base price for your spot </h3>
+                    <h8>Competitive pricing can help your listing stand out and rank higher
+                        in search results.</h8>
                 </label>
                 <input
                     type="text"
@@ -196,6 +201,9 @@ const valid = () => {
                     value={price}
                     onChange={e => setPrice(e.target.value)}
                 />
+                {errors.price && <span className="error">{errors.price}</span>}
+
+                <hr class="new1"></hr>
                 {/* <input
                     type="text"
                     placeholder="Preview Image"

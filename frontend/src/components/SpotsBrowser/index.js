@@ -8,9 +8,9 @@ import './SpotsBrowser.css'
 const SpotBrowser = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const currentUser = useSelector(state => state.session.user)
     const spot = useSelector(state => state.spots.allSpots)
     const allSpots = Object.values(spot)
-
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch]);
@@ -26,6 +26,8 @@ const SpotBrowser = () => {
     return (
         <div className="show-spots">
             {allSpots.map(spot => {
+                const starRating = Number(spot.avgRating).toFixed(1)
+                const newPrice = Number(spot.price).toFixed(2)
                 return (
                     <nav key={spot.id} className='navSpots'>
                         <NavLink to={`/spots/${spot.id}`} className='navEachSpot'>
@@ -37,7 +39,7 @@ const SpotBrowser = () => {
                                 <div className="details-column">
                                     <div className="details-row">
                                         <div class="avg-rating">
-                                                 &#9733; {spot.avgRating ? spot.avgRating: 'New'}
+                                                 &#9733; {starRating ? starRating: 'New'}
                                         </div>
                                         {/* <div className="star">
                                             &#9733;
@@ -51,7 +53,7 @@ const SpotBrowser = () => {
                                 </div>
                                 <div className="details-column">
                                     <div className="details-row price">
-                                        {spot.price}
+                                        {newPrice}
                                     </div>
                                 </div>
                             </div>
