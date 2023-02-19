@@ -5,6 +5,8 @@
     align-items: stretch;
     border: 1px solid #ddd;
     padding: 10px;
+    padding-top: 60px;
+    padding-left: 50px;
 }
 
 .navEachSpot {
@@ -67,11 +69,7 @@
     font-size: 15px;
     margin-right: 10px;
     align-self: flex-end;
-}
 
-.star {
-    color: gold;
-    align-self: flex-end;
 }
 
 @media screen and (max-width: 768px) {

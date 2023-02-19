@@ -11,6 +11,8 @@ import CurrentUser from "./components/CurrentUserSpots";
 import EditSpot from "./components/EditSpot";
 import CreateSpot from "./components/CreateSpot";
 
+import CreateSpotPlease from "./components/CreateSpot";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,7 +32,7 @@ function App() {
             <SignupFormPage/>
           </Route>
           <Route exact path="/spots/new">
-            <CreateSpot/>
+            <CreateSpotPlease/>
           </Route>
           <Route exact path="/spots/current">
             <CurrentUser />
@@ -38,9 +40,6 @@ function App() {
           <Route exact path = "/spots/:spotId">
             <SpotDetails/>
           </Route>
-          {/* <Route exact path = "/spots/current">
-          <CurrentUser/>
-          </Route> */}
           <Route exact path = "/spots/:spotId/edit">
             <EditSpot/>
           </Route>

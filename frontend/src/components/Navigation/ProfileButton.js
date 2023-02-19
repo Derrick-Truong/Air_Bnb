@@ -4,9 +4,11 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { useHistory } from "react-router-dom";
 import './profilebutton.css'
 
 function ProfileButton({ user }) {
+    const history = useHistory()
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -36,6 +38,7 @@ function ProfileButton({ user }) {
         e.preventDefault();
         dispatch(sessionActions.logout());
         closeMenu();
+        history.push('/')
     };
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -48,7 +51,7 @@ function ProfileButton({ user }) {
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                    <div class="profile-list">
+                    <div className="profile-list">
                         <li>{user.username}</li>
                         <li>{user.firstName} {user.lastName}</li>
                         <li>{user.email}</li>
@@ -59,7 +62,7 @@ function ProfileButton({ user }) {
                     </>
                 ) : (
                     <>
-                    <div class="log-sign-up">
+                    <div className="log-sign-up">
                         <OpenModalMenuItem
                             itemText="Log In"
                             onItemClick={closeMenu}

@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
             <div className='nav-innerdiv'>
                 <div className='left-nav-div'>
                     <a href="/">
-                        <img src={please} alt="DrBnb"/>
+                        <img src={please} height="60px" width="80px" alt="DrBnb"/>
                     </a>
                 </div>
                 <div className='navigation-bar-default'>

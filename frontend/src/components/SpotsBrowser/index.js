@@ -31,17 +31,17 @@ const SpotBrowser = () => {
                         <NavLink to={`/spots/${spot.id}`} className='navEachSpot'>
                         <div>
                             <div className='navSpotImage'>
-                                <img src={spot.previewImage} height='270px' width='250px' alt="Spot Image" />
+                                <img src={spot.previewImage} height='270px' width='250px'/>
                             </div>
-                            <div class="navDetails">
-                                <div class="details-column">
-                                    <div class="details-row">
+                            <div className="navDetails">
+                                <div className="details-column">
+                                    <div className="details-row">
                                         <div class="avg-rating">
-                                            {spot.avgRating}
+                                                 &#9733; {spot.avgRating ? spot.avgRating: 'New'}
                                         </div>
-                                        <div class="star">
+                                        {/* <div className="star">
                                             &#9733;
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div class="details-row city-state">
                                         <div>
@@ -49,8 +49,8 @@ const SpotBrowser = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="details-column">
-                                    <div class="details-row price">
+                                <div className="details-column">
+                                    <div className="details-row price">
                                         {spot.price}
                                     </div>
                                 </div>

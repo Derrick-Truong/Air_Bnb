@@ -1,5 +1,11 @@
-import { useDispatch, useHistory } from "react-redux";
-export default function DeleteSpotForm({ spot }) {
+import { useDispatch} from "react-redux";
+import { removeSpot } from "../../store/spots";
+import { useHistory } from "react-router-dom";
+import { useModal } from "../../context/Modal";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+export default function DeleteSpotModal({spotId}) {
+    // const spot = useSelector()
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal();
@@ -7,11 +13,18 @@ export default function DeleteSpotForm({ spot }) {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
+        // setErrors([]);
+        dispatch(removeSpot(spotId))
+        .then(closeModal)
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                }
+            );
         try {
-            await dispatch(thunkDeleteSpot(spot.id));
+            await dispatch(removeSpot(spotId));
             closeModal();
-            history.push('/');
         } catch (err) {
             setErrors(err.response?.data?.errors || ['An unknown error occurred']);
         }

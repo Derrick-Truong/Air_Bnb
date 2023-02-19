@@ -1,0 +1,132 @@
+.spot-details{
+    padding: 50px;
+}
+
+.spot-area {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-end;
+
+    padding: 100px;
+    padding-top: 10px;
+    justify-content: space-around;
+    box-sizing: content-box;
+
+}
+
+images {
+    height: inherit;
+    width: fit-content;
+    display: inline-block;
+}
+/* .big-spot-image{
+    width: 50%;
+    height: 412px;
+    object-fit: cover;
+}
+
+.small-spot-images{
+    width: 25%;
+    height: 205px;
+    object-fit: cover;
+}
+
+.spot-area{
+
+
+} */
+/* .small-img{
+ height:50px;
+} */
+
+.image-container {
+        display: inline-block;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+.small img {
+    width: 25%;
+    height: auto;
+    margin: 5px;
+}
+
+ /* .images-container .small {
+    width: 25%;
+}
+
+.images-container .big {
+    width: 50%;
+} */
+.small {
+    flex-wrap: wrap;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-end;
+    box-sizing: content-box;
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+ .big{
+    flex-wrap: wrap;
+     width:px;
+     object-fit: cover;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 10px;
+    display: inline-block;
+ }
+
+button[type="submit-1"] {
+            width: 500PX;;
+            height: 50px;
+            background-color: #ff5a5f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-left: 800px;
+
+}
+
+/* img {
+    border: 150px;
+    border-image-width: 100px;
+}
+
+
+h1 {
+    margin: 5px;
+}
+
+h2 {
+    padding-bottom: 15px;
+}
+
+
+
+.new1 {
+    height: 1px;
+    margin-top: 50px;
+
+} */
+
+@media screen and (max-width: 768px) {
+.images{
+    padding: 0;
+    border: none;
+}
+}
+
+

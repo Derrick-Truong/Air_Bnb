@@ -1,5 +1,10 @@
 
 
+
+.current-delete-button{
+ list-style-type: none;
+}
+
 /* .show-spots-current {
     display: flex;
     flex-wrap: wrap;

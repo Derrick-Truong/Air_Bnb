@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createOneSpot } from "../../store/spots";
+import { createSpot } from "../../store/spots";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import "./CreateSpot.css";
 
-const CreateSpot = () => {
+const CreateSpotPlease = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [address, setAddress] = useState("");
@@ -17,259 +17,277 @@ const CreateSpot = () => {
     const [description, setDescription] = useState("");
     const { closeModal } = useModal();
     const [price, setPrice] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
+    const [errors, setErrors] = useState({});
+    const [lat, setLatitude] = useState("");
+    const [lng, setLongitude] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [imageUrl2, setImageUrl2] = useState("");
     const [imageUrl3, setImageUrl3] = useState("");
     const [imageUrl4, setImageUrl4] = useState("")
 
-    const createAddress = (e) => setAddress(e.target.value);
-    const createCity = (e) => setCity(e.target.value);
-    const createState = (e) => setState(e.target.value);
-    const createCountry = (e) => setCountry(e.target.value);
-    const createName = (e) => setName(e.target.value);
-    const createDescription = (e) => setDescription(e.target.value);
-    const createPrice = (e) => setPrice(e.target.value);
-    const createLatitude = (e) => setLatitude(e.target.value);
-    const createLongitude = (e) => setLongitude(e.target.value);
-    const createPreviewImage = (e) => setPreviewImage(e.target.value);
-    const createImageUrl = (e) => setImageUrl(e.target.value);
-    const createImageUrl2 = (e) => setImageUrl2(e.target.value)
-    const createImageUrl3 = (e) => setImageUrl3(e.target.value)
-    const createImageUrl4 = (e) => setImageUrl4(e.target.value)
 
+    function checkURL(url) {
+        return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+  const valid = () => {
+    let newErrors = {};
 
-    // const spot = useSelector((state) => (state.Spots))
-    // console.log(spot)
-    // const [address, useAddress]
+    if (!address) {
+        newErrors.address = "Address is required."
+    }
 
-    // useEffect(() => {
-    //     dispatch(getOneSpot(spotId))
-    // }, [dispatch])
+    if (!city) {
+        newErrors.city = "City is required."
+    }
 
+    if (!state) {
+        newErrors.state = "State is required."
+      }
+       console.log('newErrors:', JSON.stringify(newErrors));
+    if (!country) {
+        newErrors.country = "Country is required."
+    }
+
+    if (!name) {
+        newErrors.name = "Name is required."
+    }
+
+    if (description.length < 30) {
+        newErrors.description = "Description length must be at least 30 characters."
+    }
+
+    if (!price) {
+        newErrors.price = "Price per night is required."
+    }
+
+    if (!previewImage || !checkURL(previewImage)) {
+        newErrors.previewImage = "Preview image is required and must be a valid URL."
+    }
+    if (imageUrl && !checkURL(imageUrl)){
+        newErrors.imageUrl = "URL must end in jpeg, jpg, gif, or png"
+    }
+      if (imageUrl2 && !checkURL(imageUrl2)) {
+          newErrors.imageUrl2 = "URL must end in jpeg, jpg, gif, or png"
+      }
+      if (imageUrl3 && !checkURL(imageUrl3)) {
+          newErrors.imageUrl3 = "URL must end in jpeg, jpg, gif, or png"
+      }
+    //   if (imageUrl4 && !checkURL(imageUrl4)) {
+    //       newErrors.imageUrl4('URL must end in jpeg, jpg, gif, or png')
+    //   }
+    setErrors(newErrors)
+
+}
 
     const handleSub = async (e) => {
         e.preventDefault();
-        let newErrors = {};
+       valid()
+       if (errors.length > 0) {
+        setErrors({})
+       }
 
-        if (!address.length) {
-            newErrors['address'] ="Address is required."
-        }
-
-        if (!city.length) {
-            newErrors['city']="City is required."
-        }
-
-        if (!state.length) {
-            newErrors['state']= "State is required."
-        }
-
-        if (!country.length) {
-            newErrors['country']= "Country is required."
-        }
-
-        if (!name.length) {
-            newErrors['name'] = "Name is required."
-        }
-
-        if (!description.length) {
-            newErrors['description']= "Description is required."
-        }
-
-        if (description.length < 30) {
-            newErrors['description1']= "Description length must be at least 30 characters."
-        }
-
-        if (!price) {
-            newErrors[price]= "Price per night is required."
-        }
-
-        if (!previewImage) {
-            newErrors.push("Preview image is required.")
-        }
-
-        if (!imageUrl.includes('png')) {
-            newErrors['imageUrl'] = "Image url must end in png"
-        }
-
-        if (!latitude) {
-            newErrors['latitude'] = "Latitude is required."
-        }
-
-        if (!longitude) {
-            newErrors[longitude] = "Longitude is required."
-        }
-
-        setErrors(errors);
-
-        if (Object.keys(errors).length > 0) {
-         setErrors(errors)
-         return
-        }
 
         const payLoad = {
-            spot: {
+
             address: address,
             city: city,
             state: state,
+            lat: 99 || lat,
+            lng: 99 || lng,
             country: country,
             name: name,
             description: description,
             price: price
-            },
-            images: [{
+        };
+            let imageList =[];
+            const newImage = {
                 preview: true,
                 url: previewImage
-            },
-                {
+            };
+            imageList.push(newImage)
+            if (imageUrl) {
+                const addImage = {
                     preview: false,
                     url: imageUrl
-                },
-                {
-                    preview: false,
-                    url: imageUrl2
-                },
-                {
-                    preview: false,
-                    url: imageUrl3
-                },
-                {
-                    preview: false,
-                    url: imageUrl4
                 }
-        ]
+             imageList.push(addImage)
+            };
+        if (imageUrl) {
+            const addImage = {
+                preview: false,
+                url: imageUrl
+            }
+            imageList.push(addImage)
         };
-        dispatch(createOneSpot(payLoad));
-
-        history.push('/');
+        if (imageUrl2) {
+            const addImage = {
+                preview: false,
+                url: imageUrl2
+            }
+            imageList.push(addImage)
+        };
+        if (imageUrl3) {
+            const addImage = {
+                preview: false,
+                url: imageUrl3
+            }
+            imageList.push(addImage)
+        };
+        if (imageUrl4) {
+            const addImage = {
+                preview: false,
+                url: imageUrl4
+            }
+            imageList.push(addImage)
+        }
+        const newSpot = await dispatch(createSpot(payLoad, imageList));
+        if (newSpot && newSpot.id) {
+            history.push(`/spots/${newSpot.id}`);
+        }
     }
-
+    //   const newSpot=  await dispatch(createOneSpot(payLoad, imageList));
+    //     if (newSpot && newSpot.id) {
+    //         history.push(`/spots/${newSpot.id}`);
+    //     }
 
 
     return (
         <section className="create-spot-div">
-            <form>
+            <form onSubmit = {handleSub}>
+
                 <h1 className="title">Create a Spot!</h1>
 
-                <ul className="errors">
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-                <h2>Where's your place located?</h2>
-                <h3>Guests will only get your exact address once they booked a
-                    reservation.</h3>
-                <label htmlFor="address">
-                    Address
-                </label>
-                <input
-                    type="text"
-                    placeholder="Address"
-                    value={address}
-                    onChange={createAddress}
-                />
-                <div class="please-1">
-                <label htmlFor="City">
-                    City
-                </label>
-                <input
-                    type="text1"
-                    placeholder="City"
-                    value={city}
-                    onChange={createCity}
-                />
-                </div>
-                <div class="please-2">
-                <label htmlFor="State">
-                    State
-                </label>
-                <input type="text2"
-                    placeholder="State"
-                    value={state}
-                    onChange={createState}/>
-                </div>
+                <h3><b>Where's your place located? </b> </h3>
+                    <br></br>
+                    Guests will only get your exact address once they booked a
+                    reservation <br></br>
+                <h4></h4>
                 <label htmlFor="Country">
-                    Country
+                    <b>Country <br></br></b>
                 </label>
                 <input
                     type="text"
                     placeholder="Country"
                     value={country}
-                    onChange={createCountry}
+                    onChange={e => setCountry(e.target.value)}
                 />
-                <label htmlFor="Latitude">
-                    Latitude
+                {errors.country && <span className="error">{errors.country}</span>}
+                <h4></h4>
+                <label htmlFor="address">
+                    {/* <b><br></br>Address</b> */}
+                    <div> <div>Address</div>  {errors.address && <span className="error">{errors.address}</span>} </div>
                 </label>
                 <input
                     type="text"
-                    placeholder="Latitude"
-                    value={latitude}
-                    onChange={createLatitude}
-                />
-                <label htmlFor="Longitude">
-                    Longitude
-                </label>
-                <input
-                    type="text"
-                    placeholder="Longitude"
-                    value={longitude}
-                    onChange={createLongitude}
-                />
+                    placeholder="Address"
+                    value={address}
+                    onChange= {e => setAddress(e.target.value)}
+                    />
+                {/* {errors.address && <span className="error">{errors.address}</span>} */}
+                <h4></h4>
+                    <label htmlFor="City">
+                    <div><div>City</div>{errors.city && <span className="error">{errors.city}</span>} </div>
+                    </label>
+                    <input
+                        type="text1"
+                        placeholder="City"
+                        value={city}
+                    onChange={e => setCity(e.target.value)}
+                    />
+                                    <h4></h4>
+                    <label htmlFor="State">
+                    <div><div>State</div>{errors.state && <span className="error">{errors.state}</span>}</div>
+                    </label>
+                    <input
+                     type="text2"
+                        placeholder="State"
+                        value={state}
+                    onChange={e => setState(e.target.value)}
+                        />
+                <hr class="new1"></hr>
                 <label htmlFor="Description">
-                    Description
+                    <h3> Describe your place to your guests </h3>
+
+                    <h8>Mention the best features of your space, any special amentities like
+                        fast wif or parking, and what you love about the neighborhood.</h8>
                 </label>
-                <input
-                    type="text"
+
+                <textarea
+                    rows="10" cols="60"
+                    // style="height: 200px"
+                    type="text3"
                     placeholder="Description"
                     value={description}
-                    onChange={createDescription}
+                    onChange={e => setDescription(e.target.value)}
                 />
+
+                <div>{errors.description && <span className="error">{errors.description}</span>}</div>
+                <hr class="new1"></hr>
+                <label htmlFor="name">
+                    <h1>Create a title for your spot</h1>
+                    <h8>Catch guests' attention with a spot title that highlights what makes
+                        your place special</h8>
+                </label>
+                <input id="name" type="text" placeholder="Name your Spot" value={name} onChange={(e) => setName(e.target.value)} />
+                {errors.name && <span className="error">{errors.name}</span>}
+                <hr class="new1"></hr>
                 <label htmlFor="Price">
-                    Price
+                    <h3> Set a base price for your spot </h3>
+                    <h8>Competitive pricing can help your listing stand out and rank higher
+                        in search results.</h8>
                 </label>
                 <input
                     type="text"
                     placeholder="Price"
                     value={price}
-                    onChange={createPrice}
+                    onChange={e => setPrice(e.target.value)}
                 />
+                {errors.price && <span className="error">{errors.price}</span>}
+
+                <hr class="new1"></hr>
+                {/* <h3></h3> */}
                 <input
-                type="text"
-                placeholder="Preview Image"
-                value={previewImage}
-                onChange={createPreviewImage}
+                    type="text"
+                    placeholder="Preview Image"
+                    value={previewImage}
+                    onChange={e => setPreviewImage(e.target.value)}
                 />
+                {errors.previewImage && <span className="error">{errors.previewImage}</span>}
+
+                <h4></h4>
                 <input
                     type="text"
                     placeholder="Image Url"
                     value={imageUrl}
-                    onChange={createImageUrl}
+                    onChange={e => setImageUrl(e.target.value)}
                 />
+                <h4></h4>
                 <input
                     type="text"
                     placeholder="Image-Url2"
                     value={imageUrl2}
-                    onChange={createImageUrl2}
+                    onChange={e => setImageUrl2(e.target.value)}
                 />
+                <h4></h4>
+                <input
+                    type="text"
+                    placeholder="Image Url3"
+                    value={imageUrl3}
+                    onChange={e => setImageUrl3(e.target.value)}
+                />
+                <h4></h4>
                 <input
                     type="text"
                     placeholder="Image Url4"
-                    value={imageUrl3}
-                    onChange={createImageUrl3}
-                />
-                <input
-                    type="text"
-                    placeholder="Image Url"
                     value={imageUrl4}
-                    onChange={createImageUrl4}
+                    onChange={e => setImageUrl4(e.target.value)}
                 />
-                <button type="submit" className="create-button" onClick={handleSub}>Create Spot</button>
+                <hr class="new1"></hr>
+                <button type="submit" className="create-button">Create Spot</button>
             </form>
         </section>
     )
 }
 
-export default CreateSpot
+export default CreateSpotPlease
