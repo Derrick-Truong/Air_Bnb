@@ -118,8 +118,8 @@ const SpotDetails = () => {
                     return (
                         <div key={review?.id} clasName="Review-User-Info">
                             <div className='review-name'>{review?.User?.firstName}</div>
-                            <div className='review-date'>{review?.createdAt.slice(0, 10)}</div>
                             <div className='review-date'>{formattedDate}</div>
+                            <div className='review-comment'>{review?.review}</div>
                             {currentUser.id === review.userId ?
                                 <div className="delete-review-button">
                                     <button>
