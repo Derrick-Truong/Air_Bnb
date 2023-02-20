@@ -20,7 +20,6 @@ const SpotDetails = () => {
     const spotsVal = Object.values(spots)
     const [reviews, setReviews] = useState([]);
     const starRating = Number(spots.avgStarRating).toFixed(1)
-    const price = Number(spots.price).toFixed(2)
 
     // const spotVal = Object.values(spot)
     // console.log(spot)

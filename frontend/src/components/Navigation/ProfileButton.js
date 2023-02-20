@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
+import SignupFormPage   from '../SignupFormPage';
 import { useHistory } from "react-router-dom";
 import './profilebutton.css'
 import { useSelector } from "react-redux";
@@ -107,7 +107,7 @@ function ProfileButton({ user }) {
                             <OpenModalMenuItem
                                 itemText="Sign Up"
                                 onItemClick={closeMenu}
-                                modalComponent={<SignupFormModal />}
+                                modalComponent={<SignupFormPage />}
                             />
                         </div>
                     </>
