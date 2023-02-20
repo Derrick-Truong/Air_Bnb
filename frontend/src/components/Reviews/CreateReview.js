@@ -84,8 +84,8 @@ export default function CreateReview({ spotId }) {
                 </div>
 
                 <div className="star-icon">
-                    <i className={stars >= 1 ? "fa fa-star-or" : "fa fa-star-o"} onClick={() => setStars(1)}></i>
-                    <i className={stars >= 2 ? "fa fa-star-or" : "fa fa-star-o"} onClick={() => setStars(2)}></i>
+                    <i className={stars >= 1 ? "fa fa-star-o" : "fa fa-star-o"} onClick={() => setStars(1)}></i>
+                    <i className={stars >= 2 ? "fa fa-star-o" : "fa fa-star-o"} onClick={() => setStars(2)}></i>
                     <i className={stars >= 3 ? "fa fa-star-o" : "fa fa-star-o"} onClick={() => setStars(3)}></i>
                     <i className={stars >= 4 ? "fa fa-star-o" : "fa fa-star-o"} onClick={() => setStars(4)}></i>
                     <i className={stars >= 5 ? "fa fa-star-o" : "fa fa-star-o"} onClick={() => setStars(5)}></i>
