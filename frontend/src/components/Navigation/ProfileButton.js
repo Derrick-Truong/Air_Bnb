@@ -29,8 +29,10 @@ function ProfileButton({ user }) {
 
 
     const manage = () => {
-       if (currentVal) {
-        return true
+       for (let oneSpot of currentVal) {
+        if (user.id === oneSpot.ownerId) {
+            return true
+        }
        }
     }
     // useEffect(() => {
