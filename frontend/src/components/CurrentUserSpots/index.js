@@ -51,7 +51,7 @@ const CurrentUser = () => {
                                 </div>
                             </NavLink>
                             <div className= "current-buttons">
-                            <NavLink to={`/spots/${spot.id}/edit`} className='navEachSpotEdit'>
+                            <NavLink to={`/spots/${spot1.id}/edit`} className='navEachSpotEdit'>
                                 <button>Update</button>
                             </NavLink>
                             <button className="current-delete-button">
