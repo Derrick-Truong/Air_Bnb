@@ -24,7 +24,7 @@ const CurrentUser = () => {
     if (!allSpots) {
         return null
     }
-const click
+
     return (
         <div>
           <h1>Manage Your Spots</h1>
