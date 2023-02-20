@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpot';
+
 import './CurrentUser.css'
 
 
@@ -23,7 +24,7 @@ const CurrentUser = () => {
     if (!allSpots) {
         return null
     }
-
+const click
     return (
         <div>
           <h1>Manage Your Spots</h1>
