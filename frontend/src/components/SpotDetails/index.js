@@ -130,9 +130,9 @@ const SpotDetails = () => {
                             }
                         </div>
                     );
-                }) :
+                }) : reviewsVal.length === 0 && currentUser?.id !==spots?.ownerId ?
                     // !reviewsVal.length && currentUser && currentUser.id !== spots.ownerId && (
-                <p>Be the first to post a review!</p> }
+                <p>Be the first to post a review!</p>:<></> }
 
 
 
