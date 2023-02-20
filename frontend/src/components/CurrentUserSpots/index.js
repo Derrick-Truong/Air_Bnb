@@ -57,7 +57,7 @@ const CurrentUser = () => {
                             <button className="current-delete-button">
                         <OpenModalMenuItem
                         itemText="Delete"
-                        modalComponent={<DeleteSpotModal spotId={spot.id}/>}
+                        modalComponent={<DeleteSpotModal spotId={spot1.id}/>}
                         />
                             </button>
                         </div>
