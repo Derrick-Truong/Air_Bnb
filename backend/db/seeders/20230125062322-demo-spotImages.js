@@ -13,27 +13,27 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "https://a0.muscache.com/im/pictures/8fa2e8aa-fecd-440b-91fc-ad97960b92d9.jpg?im_w=960",
+        url: "https://media.designcafe.com/wp-content/uploads/2020/07/23205856/home-interior-design-ideas.jpg",
         preview: true
       },
       {
         spotId: 2,
-        url: "https://a0.muscache.com/im/pictures/miso/Hosting-48381226/original/88d44ac7-cfa2-432f-8e7e-37fdef42a2e7.jpeg?im_w=1200",
+        url: "https://media.architecturaldigest.com/photos/5e9f0a12d5eaf100086259e0/master/w_1600%2Cc_limit/Peter_Sandel_0222.jpg",
         preview: true
       },
       {
         spotId: 3,
-        url: "https://a0.muscache.com/im/pictures/ab705410-ed9c-428f-b59d-ba6c74e44d74.jpg?im_w=1200",
+        url: "https://www.coloradohomesmag.com/content/uploads/2021/01/living-room2c-entrepreneur-laura-lovee28099s-denver-home2c-hentschel-designs2c-colorado-homes-and-lifestyles-magazine.jpg",
         preview: true
       },
       {
         spotId: 4,
-        url: "https://a0.muscache.com/im/pictures/miso/Hosting-763901226738818596/original/79778ad8-15b2-49b4-a60f-e61e88095ad7.jpeg?im_w=720",
+        url: "https://luxesource.com/wp-content/uploads/2022/01/LX_Arizona67_HOM_Wright_07.jpg",
         preview: true
       },
       {
         spotId: 5,
-        url: "https://a0.muscache.com/im/pictures/d6003505-bc69-4772-b8f2-54f753be6fd3.jpg?im_w=720",
+        url: "https://cdn2.lamag.com/wp-content/uploads/sites/6/2018/06/house-los-angeles-getty.jpg",
         preview: true
       }
     ], {});
