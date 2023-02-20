@@ -65,7 +65,7 @@ export default function CreateReview({ spotId }) {
 
     return (
         <div className="form-div">
-            <h1 className="title">Leave a Review!</h1>
+            <h1 className="title">How was your stay?</h1>
             {error && <p className="error">{error}</p>}
             <form onSubmit={onSubmit} className="form">
                 <div className="entries">
@@ -74,22 +74,18 @@ export default function CreateReview({ spotId }) {
                         type="text"
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
-                        placeholder="Leave your review"
+                        placeholder="Leave your review here..."
                         required
                     />
                 </div>
 
-                <div className="entries">
-                    <input
-                        id="star-rating"
-                        type="number"
-                        value={stars}
-                        onChange={(e) => setStars(e.target.value)}
-                        placeholder="Stars"
-                        required
-                    />
+                <div className="star-icon">
+                    <i className={stars >= 1 ? "fas fa-star" : "far fa-star"} onClick={() => setStars(1)}></i>
+                    <i className={stars >= 2 ? "fas fa-star" : "far fa-star"} onClick={() => setStars(2)}></i>
+                    <i className={stars >= 3 ? "fas fa-star" : "far fa-star"} onClick={() => setStars(3)}></i>
+                    <i className={stars >= 4 ? "fas fa-star" : "far fa-star"} onClick={() => setStars(4)}></i>
+                    <i className={stars >= 5 ? "fas fa-star" : "far fa-star"} onClick={() => setStars(5)}></i>
                 </div>
-
                 <button type="submit" className="submit-button">
                     Leave Review
                 </button>

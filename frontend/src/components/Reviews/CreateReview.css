@@ -119,3 +119,20 @@
 #leave-review-button {
     margin-top: 20px;
 }
+
+#leave-review-button {
+    margin-top: 20px;
+}
+
+.star-icon {
+    top: 10px;
+    right: 10px;
+    color: #FFC107;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.star-icon:hover {
+    transform: scale(1.5);
+}
