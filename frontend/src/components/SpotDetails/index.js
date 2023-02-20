@@ -20,6 +20,7 @@ const SpotDetails = () => {
     const spotsVal = Object.values(spots)
     const [reviews, setReviews] = useState([]);
     const starRating = Number(spots.avgStarRating).toFixed(1)
+    const price = Number(spots.price).toFixed(2)
 
     // const spotVal = Object.values(spot)
     // console.log(spot)
@@ -83,7 +84,7 @@ const SpotDetails = () => {
                 </div>
                 <div className='floating-reserve'>
 
-                    <div class="price">${spots.price}  per night
+                    <div class="price">${price}  per night
                      {reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
                       : <div> &#9733; {starRating} · {spots.numReviews} Reviews </div>}
                         <button type="reserve-button" onClick= {() => alert('This feature is coming')}className="reserve-button">Register</button></div>
