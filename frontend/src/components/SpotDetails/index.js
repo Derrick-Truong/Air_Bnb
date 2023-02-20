@@ -58,9 +58,7 @@ const SpotDetails = () => {
         }
 
 
-        if (currentUser?.id === spots.ownerId) {
-            return true
-        }
+
     }
 
 
@@ -94,6 +92,9 @@ const SpotDetails = () => {
             <p>{spots?.description}</p>
 
             <br></br> <hr class="new1"></hr>
+            <div className='review-star-new'>
+                <h1>{reviewsVal.length === 0 ? <div>&#9733; New</div>  : "Review"  } </h1>
+            </div>
             <div className="review-show">
                 <div className='post-review'>
                     <div className={dontreview() ? 'noRev' : 'showRev'}>
@@ -108,7 +109,6 @@ const SpotDetails = () => {
                 {reviewsVal.length ? reviewsVal.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(review => {
                     return (
                         <div key={review?.id} clasName="Review-User-Info">
-                            <h3>Reviews</h3>
                             <div className='review-name'>{review?.User?.firstName}</div>
                             <div className='review-date'>{review?.createdAt.slice(0, 10)}</div>
                             <div className='review-comment'>{review?.review}</div>
@@ -125,8 +125,9 @@ const SpotDetails = () => {
                         </div>
                     );
                 }) :
-            
-                 <p>No reviews yet.</p>}
+                    // !reviewsVal.length && currentUser && currentUser.id !== spots.ownerId && (
+                <p>Be the first to post a review!</p> }
+
 
 
 

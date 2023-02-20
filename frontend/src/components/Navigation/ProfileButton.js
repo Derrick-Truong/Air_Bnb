@@ -22,14 +22,14 @@ function ProfileButton({ user }) {
     // useEffect(() => {
     //     dispatch(getCurrentSpots(user.id))
     // }, [dispatch])
-    const manage = () => {
-        for (let spot of currentVal) {
-            if (user.id === spot.ownerId) {
-                return true
-            }
-        }
+    // const manage = () => {
+    //     for (let spot of currentVal) {
+    //         if (user.id === spot.ownerId) {
+    //             return true
+    //         }
+    //     }
 
-    }
+    // }
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -74,7 +74,7 @@ function ProfileButton({ user }) {
                             <li>Hello, {user?.username}</li>
                             <li>{user?.email}</li>
                             <hr class="new1"></hr>
-                            <li className={manage() ? 'show' : 'dontShow'}>Manage Your Spots</li>
+                            {/* <li className={manage() ? 'show' : 'dontShow'}>Manage Your Spots</li> */}
                             <li> <hr class="new1"></hr>
                                 <button class="sign-out-button" onClick={logout}>Log Out</button>
 

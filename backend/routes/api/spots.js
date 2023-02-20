@@ -243,7 +243,7 @@ router.post('/', [requireAuth, validateSpot],
     async (req, res, next) => {
 
         const { address, city, state, country, lat, lng, name, description, price } = req.body;
-      if (req.user) {
+
         const spotAns = await Spot.create({
             ownerId: req.user.id,
             address,
@@ -259,7 +259,7 @@ router.post('/', [requireAuth, validateSpot],
     // console.log(validateSpot);
         res.statusCode = 201
         res.json(spotAns)
-      }
+      
     })
 
 // Create an Image to a Spot based on the Spot's id
