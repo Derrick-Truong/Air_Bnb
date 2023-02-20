@@ -48,10 +48,7 @@ const SpotBrowser = () => {
                             </div>
                         </NavLink>
                     </nav>
-                    // <div key={spot.id} onClick={() => clickSub(spot)}>
-                    //     <h2>{spot.name}</h2>
-                    //     <p>{spot.description}</p>
-                    // </div>
+                
                 )
             })}
 

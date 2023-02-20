@@ -19,7 +19,7 @@ const SpotDetails = () => {
     const reviewsVal = Object.values(getReview1)
     const spotsVal = Object.values(spots)
     const [reviews, setReviews] = useState([]);
-    const starRating = Number(spots.avgRating).toFixed(1)
+    const starRating = Number(spots.avgStarRating).toFixed(1)
 
     // const spotVal = Object.values(spot)
     // console.log(spot)
@@ -118,15 +118,15 @@ const SpotDetails = () => {
                             <div className='review-name'>{review?.User?.firstName}</div>
                             <div className='review-date'>{review?.createdAt.slice(0, 10)}</div>
                             <div className='review-comment'>{review?.review}</div>
-                            {currentUser.id === review.userId &&
+                            {currentUser.id === review.userId ?
                                 <div className="delete-review-button">
                                     <button>
                                         <OpenModalMenuItem
-                                            itemText="Delete-Review"
-                                            modalComponent={<DeleteReviewForm spotId={spots.id} review={review} />}
+                                            itemText="Delete Review"
+                                            modalComponent={<DeleteReviewForm spotId={spots.id} reviewId={review.id} />}
                                         />
                                     </button>
-                                </div>
+                                </div>:<></>
                             }
                         </div>
                     );

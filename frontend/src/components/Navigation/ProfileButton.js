@@ -8,9 +8,12 @@ import { useHistory } from "react-router-dom";
 import './profilebutton.css'
 import { useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
+import { NavLink } from "react-router-dom";
+import { getCurrentSpots } from "../../store/spots";
 
 
 function ProfileButton({ user }) {
+
     const currentSpots = useSelector(state => state.spots.allSpots)
 
     const currentVal = Object.values(currentSpots)
@@ -19,11 +22,17 @@ function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-    console.log(currentSpots)
+
     useEffect(() => {
-        dispatch(getSpots())
+        dispatch(getCurrentSpots())
     }, [dispatch])
-    
+
+
+    const manage = () => {
+       if (currentSpots) {
+        return true
+       }
+    }
     // useEffect(() => {
     //     dispatch(getCurrentSpots(user.id))
     // }, [dispatch])
@@ -79,7 +88,7 @@ function ProfileButton({ user }) {
                             <li>Hello, {user?.username}</li>
                             <li>{user?.email}</li>
                             <hr class="new1"></hr>
-                            {/* <li className={manage() ? 'show' : 'dontShow'}>Manage Your Spots</li> */}
+                            <li className={manage() ? 'show' : 'dontShow'}><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
                             <li> <hr class="new1"></hr>
                                 <button class="sign-out-button" onClick={logout}>Log Out</button>
 

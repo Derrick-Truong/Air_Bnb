@@ -25,62 +25,41 @@ const CurrentUser = () => {
     }
 
     return (
+        <div>
+          <h1>Manage Your Spots</h1>
         <div className="show-spots">
-            {allSpots.map(spot => {
-                return (
-                    <nav key={spot.id} className='navSpots'>
-                        <NavLink to={`/spots/${spot.id}`} className='navEachSpot'>
-                            <div>
-                                <div className='navSpotImage'>
-                                    <img src={spot.previewImage} height='270px' width='250px' alt="Spot Image" />
-                                </div>
-                                <div className="navDetails">
-                                    <div className="details-column">
-                                        <div className="details-row">
-                                            <div className="avg-rating">
-                                                &#9733; {spot.avgRating ? spot.avgRating:"New"}
-                                            </div>
-                                            {/* <div className="star">
-                                                &#9733;
-                                            </div> */}
-                                        </div>
-                                        <div className="details-row city-state">
-                                            <div>
-                                                {spot.city}, {spot.state}
-                                            </div>
+                {allSpots.map(spot1 => {
+                    const starRating = Number(spot1.avgRating).toFixed(1)
+                    const newPrice = Number(spot1.price).toFixed(2)
+                    return (
+                        <nav key={spot1.id} className='navSpots'>
+                            <NavLink to={`/spots/${spot1.id}`} className='navEachSpot'>
+                                <div>
+                                    <div className='navSpotImage'>
+                                        <img src={spot1.previewImage} height='270px' width='250px' />
+                                    </div>
+                                    <div className="navDetails">
+                                        <div className="details-city-rating">
+                                            <div class="city-state">{spot1.city}, {spot1.state} </div>
+                                            <div class="avg-rating"> &#9733; {spot1.avgRating ? starRating : "New"} </div>
                                         </div>
                                     </div>
-                                    <div className="details-column">
-                                        <div className="details-row price">
-                                            {spot.price}
-                                        </div>
+                                    <div className="details-price">
+                                        $  {newPrice} per night
                                     </div>
-                                </div>
 
-                            </div>
-                        </NavLink>
-                        <div className= "current-buttons">
-                            <NavLink to={`/spots/${spot.id}/edit`} className='navEachSpotEdit'>
-                                <button>Update</button>
+                                </div>
                             </NavLink>
-                            <button className="current-delete-button">
-                        <OpenModalMenuItem
-                        itemText="Delete"
-                        modalComponent={<DeleteSpotModal spotId={spot.id}/>}
-                        />
-                            </button>
-                        </div>
-                    </nav>
-                    // <div key={spot.id} onClick={() => clickSub(spot)}>
-                    //     <h2>{spot.name}</h2>
-                    //     <p>{spot.description}</p>
-                    // </div>
-                )
-            })}
+                        </nav>
+
+                    )
+                })}
+
+
 
 
         </div >
-
+        </div>
     );
 
 }
