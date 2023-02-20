@@ -7,7 +7,7 @@ import SignupFormModal from '../SignupFormModal';
 import { useHistory } from "react-router-dom";
 import './profilebutton.css'
 import { useSelector } from "react-redux";
-import { getCurrentSpots } from "../../store/spots";
+import { getSpots } from "../../store/spots";
 
 
 function ProfileButton({ user }) {
@@ -19,6 +19,11 @@ function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
+    console.log(currentSpots)
+    useEffect(() => {
+        dispatch(getSpots())
+    }, [dispatch])
+    
     // useEffect(() => {
     //     dispatch(getCurrentSpots(user.id))
     // }, [dispatch])

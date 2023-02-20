@@ -53,6 +53,7 @@
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     padding: 25px;
@@ -64,10 +65,13 @@
 }
 
 .price {
-    font-size: 20px;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
 }
 
+.price div {
+    margin-left: 10px;
+}
 .reserve-button {
     padding: 8px;
     font-size: 20px;

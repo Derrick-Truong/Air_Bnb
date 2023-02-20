@@ -20,7 +20,7 @@ const SpotDetails = () => {
     const spotsVal = Object.values(spots)
     const [reviews, setReviews] = useState([]);
 
-
+console.log(spotsVal)
     // const spotVal = Object.values(spot)
     // console.log(spot)
 
@@ -80,7 +80,9 @@ const SpotDetails = () => {
                 </div>
                 <div className='floating-reserve'>
 
-                    <div class="price">${spots.price}  per night        {spots.avgRating}
+                    <div class="price">${spots.price}  per night
+                     {reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
+                      : <div> &#9733; {spots.avgRating} · {spots.numReviews} Reviews </div>}
                         <button type="reserve-button" className="reserve-button">Register</button></div>
 
 
@@ -93,7 +95,8 @@ const SpotDetails = () => {
 
             <br></br> <hr class="new1"></hr>
             <div className='review-star-new'>
-                <h1>{reviewsVal.length === 0 ? <div>&#9733; New</div>  : "Review"  } </h1>
+                <h1>{reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
+                    : <div> &#9733; {spots.avgRating} · {spots.numReviews} Reviews </div>}</h1>
             </div>
             <div className="review-show">
                 <div className='post-review'>
@@ -117,7 +120,7 @@ const SpotDetails = () => {
                                     <button>
                                         <OpenModalMenuItem
                                             itemText="Delete-Review"
-                                            modalComponent={<DeleteReviewForm reviewId={review.id} />}
+                                            modalComponent={<DeleteReviewForm spotId={spots.id} review={review} />}
                                         />
                                     </button>
                                 </div>
