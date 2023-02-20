@@ -23,13 +23,13 @@ function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
-    useEffect(() => {
-        dispatch(getCurrentSpots())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getCurrentSpots())
+    // }, [dispatch])
 
 
     const manage = () => {
-       if (currentSpots) {
+       if (currentVal) {
         return true
        }
     }
