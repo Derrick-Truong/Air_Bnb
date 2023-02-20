@@ -83,4 +83,6 @@
     border-radius: 15px;
 }
 
-
+.dontShow {
+    display: none;
+}
