@@ -9,14 +9,11 @@ import './profilebutton.css'
 import { useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
-import { getCurrentSpots } from "../../store/spots";
 
 
 function ProfileButton({ user }) {
 
-    const currentSpots = useSelector(state => state.spots.allSpots)
-
-    const currentVal = Object.values(currentSpots)
+    
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -30,13 +27,7 @@ function ProfileButton({ user }) {
     // }, [dispatch])
 
 
-    const manage = () => {
-       for (let oneSpot of currentVal) {
-        if (user.id === oneSpot.ownerId) {
-            return true
-        }
-       }
-    }
+ 
     // useEffect(() => {
     //     dispatch(getCurrentSpots(user.id))
     // }, [dispatch])
@@ -75,10 +66,7 @@ function ProfileButton({ user }) {
         closeMenu();
         history.push('/')
     };
-    const clickSub = (e) => {
-        e.preventDefault()
-         history.push('/spots/current')
-     }
+    
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
@@ -95,7 +83,7 @@ function ProfileButton({ user }) {
                             <li>Hello, {user?.username}</li>
                             <li>{user?.email}</li>
                             <hr class="new1"></hr>
-                            <li className={manage() ? 'show' : 'dontShow'}><NavLink exact to="/spots/current" onClick={clickSub}>Manage Your Spots</NavLink></li>
+                            <li className="show"><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
                             <li> <hr class="new1"></hr>
                                 <button class="sign-out-button" onClick={logout}>Log Out</button>
 
