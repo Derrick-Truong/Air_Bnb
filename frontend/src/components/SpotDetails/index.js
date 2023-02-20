@@ -19,8 +19,8 @@ const SpotDetails = () => {
     const reviewsVal = Object.values(getReview1)
     const spotsVal = Object.values(spots)
     const [reviews, setReviews] = useState([]);
+    const starRating = Number(spots.avgRating).toFixed(1)
 
-console.log(spotsVal)
     // const spotVal = Object.values(spot)
     // console.log(spot)
 
@@ -32,6 +32,9 @@ console.log(spotsVal)
         refresh()
     }, [dispatch])
 
+    if (!starRating) {
+        return null
+    }
 
     if (!imagesArr) {
         return null
@@ -82,8 +85,8 @@ console.log(spotsVal)
 
                     <div class="price">${spots.price}  per night
                      {reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
-                      : <div> &#9733; {spots.avgRating} · {spots.numReviews} Reviews </div>}
-                        <button type="reserve-button" className="reserve-button">Register</button></div>
+                      : <div> &#9733; {starRating} · {spots.numReviews} Reviews </div>}
+                        <button type="reserve-button" onClick= {() => alert('This feature is coming')}className="reserve-button">Register</button></div>
 
 
                 </div>
@@ -96,7 +99,7 @@ console.log(spotsVal)
             <br></br> <hr class="new1"></hr>
             <div className='review-star-new'>
                 <h1>{reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
-                    : <div> &#9733; {spots.avgRating} · {spots.numReviews} Reviews </div>}</h1>
+                    : <div> &#9733; {starRating} · {spots.numReviews} Reviews </div>}</h1>
             </div>
             <div className="review-show">
                 <div className='post-review'>

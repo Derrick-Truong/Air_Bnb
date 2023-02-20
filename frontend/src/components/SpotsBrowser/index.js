@@ -38,7 +38,7 @@ const SpotBrowser = () => {
                                 <div className="navDetails">
                                     <div className="details-city-rating">
                                         <div class="city-state">{spot.city}, {spot.state} </div>
-                                        <div class="avg-rating"> &#9733; {starRating ? starRating : 'New'} </div>
+                                        <div class="avg-rating"> &#9733; {spot.avgRating ? starRating : "New"} </div>
                                     </div>
                                 </div>
                                 <div className="details-price">

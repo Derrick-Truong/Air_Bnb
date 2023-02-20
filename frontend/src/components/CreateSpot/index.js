@@ -73,9 +73,9 @@ const CreateSpotPlease = () => {
       if (imageUrl3 && !checkURL(imageUrl3)) {
           newErrors.imageUrl3 = "URL must end in jpeg, jpg, gif, or png"
       }
-    //   if (imageUrl4 && !checkURL(imageUrl4)) {
-    //       newErrors.imageUrl4('URL must end in jpeg, jpg, gif, or png')
-    //   }
+      if (imageUrl4 && !checkURL(imageUrl4)) {
+          newErrors.imageUrl4('URL must end in jpeg, jpg, gif, or png')
+      }
     setErrors(newErrors)
 
 }
@@ -262,6 +262,7 @@ const CreateSpotPlease = () => {
                     value={imageUrl}
                     onChange={e => setImageUrl(e.target.value)}
                 />
+                {errors.imageUrl && <span className="error">{errors.imageUrl}</span>}
                 <h4></h4>
                 <input
                     type="text"
@@ -270,6 +271,7 @@ const CreateSpotPlease = () => {
                     onChange={e => setImageUrl2(e.target.value)}
                 />
                 <h4></h4>
+                {errors.imageUrl2 && <span className="error">{errors.imageUrl2}</span>}
                 <input
                     type="text"
                     placeholder="Image Url3"
@@ -277,12 +279,14 @@ const CreateSpotPlease = () => {
                     onChange={e => setImageUrl3(e.target.value)}
                 />
                 <h4></h4>
+                {errors.imageUrl3 && <span className="error">{errors.imageUrl3}</span>}
                 <input
                     type="text"
                     placeholder="Image Url4"
                     value={imageUrl4}
                     onChange={e => setImageUrl4(e.target.value)}
                 />
+                {errors.imageUrl4 && <span className="error">{errors.imageUrl4}</span>}
                 <hr class="new1"></hr>
                 <button type="submit" className="create-button">Create Spot</button>
             </form>
