@@ -23,8 +23,8 @@ function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
-    const clickSub = (a) => {
-        a.preventDefault()
+    const clickSub = (e) => {
+       e.preventDefault()
         history.push('/spots/current')
     }
 
