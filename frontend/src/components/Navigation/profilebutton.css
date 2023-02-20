@@ -1,78 +1,84 @@
-.log-sign-up,
-.profile-list {
-    list-style-type: none;
+.profile-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #484848;
+    width: 50px;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    size-adjust: 1.5%;
+}
+
+.no-spots #ManageSpots {
+    display: none;
 }
 
 .profile-dropdown {
     position: absolute;
-    top: 33px;
-    right: 0px;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 8px;
-    margin: 8px;
+    top: 50px;
+
+    width: 200px;
     background-color: white;
-}
-
-
-
-.profile-button {
-    border-radius: 150px;
-    background-color: #ffffff;
-    cursor: pointer;
-}
-
-.profile-button-bars-div {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.profile-button-container:hover {
-    background-color: #ffffff;
-    border-radius: 21px;
-    box-shadow: -2px 3px 1px rgba(165, 165, 165, 0.2);
-    transition: box-shadow 0.3s;
-}
-
-
-
-.dropdown-menu {
-    width: 100%;
-    height: inherit;
-}
-
-.log-in-sign-up,
-#sign-up-modal,
-#log-in-modal {
-    font-family:'Courier New', 'Courier', 'monospace';
-    font-size: 14px;
-    transition: all;
-    cursor: pointer;
-    font-weight: bold;
-    border-bottom: 2px solid rgba(165, 165, 165, 0.2);
-}
-
-
-.profile-info-actions {
+    border: 1px solid #EBEBEB;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 2;
+    list-style-type: none;
     text-align: center;
-font-family: 'Montserrat', sans-serif;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-dropdown li {
+    margin-bottom: 10px;
     font-size: 14px;
-    transition: all;
+    color: #484848;
 }
 
-#profile-email {
-    padding-bottom: 15px;
-    border-bottom: 2px solid rgba(165, 165, 165, 0.2);
+.profile-dropdown a {
+    color: #008489;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-#logout-button {
-    height: 25px;
-    width: 100%;
-    margin-top: 5px;
-    text-align: left;
+.profile-dropdown a:hover {
+    text-decoration: underline;
 }
 
-.dontShow {
-    display: none;
+.sign-out-button {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.sign-out-button:hover {
+    background-color: #bbb;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 30px;
+    background-color: rgb(212, 212, 228);
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
 }

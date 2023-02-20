@@ -3,10 +3,11 @@
     flex-wrap: wrap;
     flex-direction: row;
     align-items: stretch;
-    border: 1px solid #ddd;
-    padding: 10px;
-    padding-top: 60px;
-    padding-left: 50px;
+    border: 0px solid #ddd;
+    padding: 50px;
+    padding-top: 30px;
+    padding-left: 100px;
+
 }
 
 .navEachSpot {
@@ -16,13 +17,15 @@
     height: auto;
     margin: 10px;
     text-decoration: none;
-    color: #222;
+    color: #000000;
+    font-size: 15px;
 }
 
 .navSpotImage {
     height: 270px;
     width: 100%;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .navSpotImage img {
@@ -32,29 +35,16 @@
 }
 
 .navDetails {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: column;
     justify-content: space-between;
     height: 50%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 17px;
     text-align: center;
-    color: #555;
+    color: #000000;
 }
 
-.details-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
-.details-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .city-state {
     align-self: flex-start;
@@ -68,7 +58,7 @@
 .avg-rating {
     font-size: 15px;
     margin-right: 10px;
-    align-self: flex-end;
+    text-align: right;
 
 }
 
@@ -86,4 +76,22 @@
     .navSpotImage {
         height: 200px;
     }
+}
+
+.details-city-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.city-state {
+    font-size: 15px;
+}
+
+.avg-rating {
+    font-size: 15px;
+}
+
+.details-price {
+    font-size: 20px;
 }

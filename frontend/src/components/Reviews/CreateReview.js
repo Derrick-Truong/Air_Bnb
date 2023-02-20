@@ -22,6 +22,10 @@ export default function CreateReview({ spotId }) {
             setError("Please enter a review.");
             return;
         }
+        if (review.length < 10) {
+            setError("Your review must be at least 10 characters.");
+            return;
+        }
 
         if (stars < 1 || stars > 5) {
             setError("Star rating should be between 1 and 5.");
