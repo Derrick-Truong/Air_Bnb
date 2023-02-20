@@ -23,10 +23,7 @@ function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
-    const clickSub = (e) => {
-       e.preventDefault()
-        history.push('/spots/current')
-    }
+    
 
     // useEffect(() => {
     //     dispatch(getCurrentSpots())
@@ -78,7 +75,10 @@ function ProfileButton({ user }) {
         closeMenu();
         history.push('/')
     };
-
+    const clickSub = (e) => {
+        e.preventDefault()
+         history.push('/spots/current')
+     }
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
