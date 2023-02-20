@@ -6,9 +6,9 @@ const CREATE_REVIEW = 'reviews/CREATE_REVIEW'
 const CURRENT_REVIEWS = 'reviews/CURRENT_REVIEWS'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
-export const deleteOneReview = reviewId => ({
+export const deleteOneReview = payLoad => ({
     type: DELETE_REVIEW,
-    reviewId
+    payLoad
 })
 export const allSpotReviews = spotId => ({
     type: GET_ALL_REVIEWS,
@@ -27,27 +27,21 @@ export const allReviewsCurrentUser = (spotId) => ({
     spotId
 })
 export const createNewReview = (spotId, reviewNew, currentUser) => async dispatch => {
-    try {
-        const newReview = {
-            ...reviewNew,
-            userId: currentUser.id
-        };
         let res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: "POST",
-            body: JSON.stringify(newReview),
+            body: JSON.stringify(reviewNew),
             headers: {
                 "Content-Type": "application/json"
             }
         });
+
         if (res.ok) {
             const newRev = await res.json();
-            await dispatch(allSpotReviews(spotId));
-            return newRev; // return the new review object
+
+            dispatch(createReview(newRev))
+            return newRev
         }
-    } catch (err) {
-        console.error(err);
     }
-};
 
 // export const createNewReview = (spotId, reviewNew, currentUser) => async dispatch => {
 //     try {
@@ -92,7 +86,7 @@ export const createNewReview = (spotId, reviewNew, currentUser) => async dispatc
 
 
 export const getReviewsForSpotId = (spotId) => async dispatch =>{
-    const res = await fetch(`/api/spots/${spotId}/reviews`)
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     if (res.ok) {
       const information = await res.json();
       const normData = {};
@@ -161,15 +155,24 @@ const reviewReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case DELETE_REVIEW:
-            const deleteState = { ...state, spot: { ...state.spot }, currUser: { ...state.currUser } }
-            delete deleteState.spot[action.reviewId];
-            delete deleteState.currUser[action.reviewId];
-            return deleteState
+           newState = {...state}
+           delete newState.spot[action.payLoad.id]
+           const nowDeleted = {
+            ...newState,
+            spot: {
+                ...newState.spot
+            }
+           }
+           return nowDeleted
         case GET_ALL_REVIEWS:
       return {...state, spot: {...state.spot, ...action.spotId}}
     case CREATE_REVIEW:
-        newState = {...state, spot: { [action.payLoad.id]: {...action.payLoad}}}
-        return newState
+     let spot = state.spot
+     spot[action.payLoad.id] = {...action.payLoad}
+     newState = {
+        ...state, spot
+     }
+     return newState
      default:
         return state
     }

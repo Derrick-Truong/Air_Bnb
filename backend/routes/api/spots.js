@@ -147,7 +147,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 // Get details of a Spot from an id
 
-router.get('/:id', requireAuth, async(req, res, next) => {
+router.get('/:id', async(req, res, next) => {
     let spotty = await Spot.findOne({
         where: {
             id: req.params.id
@@ -455,7 +455,7 @@ let findPk = await Spot.findByPk(req.params.id);
 })
 
 //Get Reviews by Spot Id
-router.get('/:id/reviews', requireAuth, async(req, res, next) => {
+router.get('/:id/reviews', async(req, res, next) => {
 let findSpot = await Spot.findByPk(req.params.id)
 
     if (!findSpot) {

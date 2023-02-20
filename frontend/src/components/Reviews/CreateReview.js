@@ -32,10 +32,11 @@ export default function CreateReview({ spotId }) {
             review: review,
             stars: stars
         };
-        const createdReview = await dispatch(createNewReview(spotId, newReview, currentUser));
+        const createdReview = await dispatch(createNewReview(spotId, newReview));
         if (createdReview) {
-            await dispatch(getOneSpot(spotId));
             closeModal();
+            dispatch(getOneSpot(spotId))
+            return
         }
     };
 

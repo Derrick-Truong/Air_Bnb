@@ -36,7 +36,7 @@ export default function DeleteSpotModal({spotId}) {
     };
 
     return (
-        <div className="form-div">
+        <div className="form-div-delete">
             <h1 className="title">Are you sure you want to delete this spot?</h1>
             {errors.length > 0 && (
                 <ul className="errors">
@@ -47,10 +47,10 @@ export default function DeleteSpotModal({spotId}) {
             )}
             <form onSubmit={handleDelete} className="form">
                 <button type="submit" className="submit-button" id="deleteSpot-button">
-                    Yes, delete this spot
+                    Yes, (delete this spot)
                 </button>
                 <button type="button" className="cancel-button" onClick={handleCancel}>
-                    Cancel
+                    No, (keep spot)
                 </button>
             </form>
         </div>

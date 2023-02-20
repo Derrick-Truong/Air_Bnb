@@ -24,48 +24,36 @@ import { allSpotReviews, allReviewsCurrentUser } from "../../store/reviews";
 //         closeModal();
 //     }
 
-
-//     return (
-//         <div className="form-div">
-//             <h1 className="title">Are you sure you want to delete this review?</h1>
-//             <ul className="errors">
-//                 {errors.map((error, idx) => (
-//                     <li key={idx}>{error}</li>
-//                 ))}
-//             </ul>
-//             <form className="form">
-//                 <button type="submit" className="submit-button" id="deleteSpot-button" onClick={submitDelete}>
-//                     Yes Delete This Review
-//                 </button>
-//                 <button className="submit-button" onClick={closeModal}>
-//                     Cancel
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// }
-
-export default function DeleteReviewForm({reviewId }) {
+export default function DeleteReviewForm({ reviewId, spotId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-
-    const submitDelete = async (e) => {
+    const [errors, setErrors] = useState([]);
+    const handleDelete = async (e) => {
         e.preventDefault();
-        await dispatch(deleteReview(reviewId));
-        
+        // setErrors([]);
+       dispatch(deleteReview(reviewId))
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
         closeModal();
     };
 
     return (
         <div className="form-div">
             <h1 className="title">Are you sure you want to delete this review?</h1>
-            <ul className="errors">
-            </ul>
-            <form className="form">
-                <button type="submit" className="submit-button" id="deleteSpot-button" onClick={submitDelete}>
-                    Yes Delete This Review
+            {errors.length > 0 && (
+                <ul className="errors">
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
+            )}
+            <form onSubmit={handleDelete} className="form">
+                <button type="submit" className="submit-button" id="deleteSpot-button">
+                    Yes, delete this review
                 </button>
-                <button className="submit-button" onClick={closeModal}>
+                <button type="button" className="cancel-button" onClick={handleCancel}>
                     Cancel
                 </button>
             </form>
@@ -73,25 +61,6 @@ export default function DeleteReviewForm({reviewId }) {
     );
 }
 
-
-
-// export default function DeleteReviewForm({ review }) {
-//     const dispatch = useDispatch();
-//     const { closeModal } = useModal();
-
-//     const [errors, setErrors] = useState([]);
-
-//     const submitDelete = async (e) => {
-//         e.preventDefault();
-//         const deleteReview = await dispatch(deleteReview(review.id)).catch(async (err) => {
-//             const res = err.response;
-//             const data = await res.json();
-//             if (data && data.errors) setErrors(data.errors);
-//         });
-//         await dispatch(getOneSpot(review.spotId));
-//         closeModal();
-//     };
-
 //     return (
 //         <div className="form-div">
 //             <h1 className="title">Are you sure you want to delete this review?</h1>
@@ -111,3 +80,34 @@ export default function DeleteReviewForm({reviewId }) {
 //         </div>
 //     );
 // }
+
+// export default function DeleteReviewForm({reviewId }) {
+//     const dispatch = useDispatch();
+//     const { closeModal } = useModal();
+
+//     const submitDelete = async (e) => {
+//         e.preventDefault();
+//         await dispatch(deleteReview(reviewId));
+
+//         closeModal();
+//     };
+
+//     return (
+//         <div className="form-div">
+//             <h1 className="title">Are you sure you want to delete this review?</h1>
+//             <ul className="errors">
+//             </ul>
+//             <form className="form">
+//                 <button type="submit" className="submit-button" id="deleteSpot-button" onClick={submitDelete}>
+//                     Yes Delete This Review
+//                 </button>
+//                 <button className="submit-button" onClick={closeModal}>
+//                     Cancel
+//                 </button>
+//             </form>
+//         </div>
+//     );
+// }
+
+
+

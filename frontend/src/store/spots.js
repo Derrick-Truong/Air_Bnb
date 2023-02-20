@@ -38,7 +38,7 @@ export const currentSpotsLoad = currentSpots => ({
 })
 
 export const getSpots = () => async dispatch => {
-    const res = await fetch('/api/spots')
+    const res = await csrfFetch('/api/spots')
 
     if (res.ok) {
         const list = await res.json();
@@ -58,7 +58,7 @@ export const getCurrentSpots = () => async dispatch => {
 
 export const getOneSpot = (spotId) => async dispatch => {
 
-    const res = await fetch(`/api/spots/${spotId}`);
+    const res = await csrfFetch(`/api/spots/${spotId}`);
     if (res.ok) {
         const spotDetails = await res.json();
         dispatch(oneSpotLoad(spotDetails))
@@ -145,7 +145,7 @@ const spotReducer = (state = initialState, action) => {
         action.currentSpots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot));
         return newState;
         case ONE_SPOT_LOAD:
-            newState = { ...state, allSpots: { ...state.allSpots }, oneSpot: { ...state.oneSpot, ...action.spot } }
+            newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
         return newState
         case DELETE_SPOT:
             newState = { ...state, allSpots: { ...state.allSpots }, currentSpots: { ...state.currentSpots } }

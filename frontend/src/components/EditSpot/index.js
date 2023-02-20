@@ -7,7 +7,8 @@ import "./EditSpot.css";
 
 const EditSpot = () => {
     const { spotId } = useParams();
-    const spot = useSelector((state) => state.spots.oneSpot[spotId]);
+    const spots = useSelector((state) => state.spots.oneSpot);
+    const spot = Object.values(spots)
     const history = useHistory();
     const dispatch = useDispatch();
 
