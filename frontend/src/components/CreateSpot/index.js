@@ -74,7 +74,7 @@ const CreateSpotPlease = () => {
           newErrors.imageUrl3 = "URL must end in jpeg, jpg, gif, or png"
       }
       if (imageUrl4 && !checkURL(imageUrl4)) {
-          newErrors.imageUrl4('URL must end in jpeg, jpg, gif, or png')
+          newErrors.imageUrl4='URL must end in jpeg, jpg, gif, or png'
       }
     setErrors(newErrors)
 
