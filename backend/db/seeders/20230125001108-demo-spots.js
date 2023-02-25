@@ -34,7 +34,7 @@ module.exports = {
         lat: 34.1326893,
         lng: -133.6739573,
         name: "Brandon Truong",
-        description: "could be better, could be worse",
+        description: "could be better, could be worse gsdgdfgdsfgdsfgsdfgsdfgsdfgsdfgsdfgdsfgsdfg",
         price: 599
       },
       {
@@ -46,7 +46,7 @@ module.exports = {
         lat: 34.20376935,
         lng: -155.2957394,
         name: "Jessica Truong",
-        description: "please stay here",
+        description: "please stay here gsdfgdsfgdsfgdfgsdfgdsfgfgfggdsfgdsfg",
         price: 57
       },
       {
@@ -58,7 +58,7 @@ module.exports = {
         lat: 12.20126935,
         lng: -115.2957194,
         name: "Derrick Truong",
-        description: "please stay here",
+        description: "please stay here gdsfgdsfgdsfgdsfgdsfgdsfgdfgsdfgdsfgsdfgsdf",
         price: 80
       },
       {
@@ -70,7 +70,7 @@ module.exports = {
         lat: 14.20377735,
         lng: -125.2957312,
         name: "Brandon Truong",
-        description: "please stay here",
+        description: "please stay here gfdsgsdfgfdgsgdsfgdsfgsdfgsdfgdsfgddfgsdfgdsfg",
         price: 66
       }
     ], {});
