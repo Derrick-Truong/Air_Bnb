@@ -15,18 +15,29 @@ const EditSpot = () => {
     useEffect(() => {
         dispatch(getCurrentSpots())
     }, [dispatch])
-    const [address, setAddress] = useState(spot?.address);
-    const [city, setCity] = useState(spot?.city);
-    const [state, setState] = useState(spot?.state);
-    const [country, setCountry] = useState(spot?.country);
-    const [name, setName] = useState(spot?.name);
-    const [description, setDescription] = useState(spot?.description);
-    const [price, setPrice] = useState(spot?.price);
-    const [lat, setLatitude] = useState(spot?.lat)
-    const [lng, setLongitude] = useState(spot?.lng)
-    const { closeModal } = useModal();
-    const [errors, setErrors] = useState([]);
+    // const [address, setAddress] = useState(spot?.address);
+    // const [city, setCity] = useState(spot?.city);
+    // const [state, setState] = useState(spot?.state);
+    // const [country, setCountry] = useState(spot?.country);
+    // const [name, setName] = useState(spot?.name);
+    // const [description, setDescription] = useState(spot?.description);
+    // const [price, setPrice] = useState(spot?.price);
+    // const [lat, setLatitude] = useState(spot?.lat)
+    // const [lng, setLongitude] = useState(spot?.lng)
+    // const { closeModal } = useModal();
+    // const [errors, setErrors] = useState([]);
 
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const { closeModal } = useModal();
+    const [price, setPrice] = useState("");
+    const [errors, setErrors] = useState({});
+    const [lat, setLatitude] = useState("");
+    const [lng, setLongitude] = useState("");
     // const updateAddress = (e) => setAddress(e.target.value);
     // const updateCity = (e) => setCity(e.target.value);
     // const updateState = (e) => setState(e.target.value);
@@ -41,48 +52,44 @@ const EditSpot = () => {
     // const updateImageUrl2 = (e) => setImageUrl2(e.target.value)
     // const updateImageUrl3 = (e) => setImageUrl3(e.target.value)
     // const updateImageUrl4 = (e) => setImageUrl4(e.target.value)
-const valid = () => {
-    let newErrors = {};
+    const valid = () => {
+        let newErrors = {};
 
-    if (!address.length) {
-        newErrors['address'] = "Address is required."
-    }
+        if (!address) {
+            newErrors.address = "Address is required."
+        }
 
-    if (!city.length) {
-        newErrors['city'] = "City is required."
-    }
+        if (!city) {
+            newErrors.city = "City is required."
+        }
 
-    if (!state.length) {
-        newErrors['state'] = "State is required."
-    }
+        if (!state) {
+            newErrors.state = "State is required."
+        }
+        console.log('newErrors:', JSON.stringify(newErrors));
+        if (!country) {
+            newErrors.country = "Country is required."
+        }
 
-    if (!country.length) {
-        newErrors['country'] = "Country is required."
-    }
+        if (!name) {
+            newErrors.name = "Name is required."
+        }
 
-    if (!name.length) {
-        newErrors['name'] = "Name is required."
-    }
+        if (description.length < 30) {
+            newErrors.description = "Description length must be at least 30 characters."
+        }
 
-    if (!description.length) {
-        newErrors['description'] = "Description is required."
-    }
-
-    if (description.length < 30) {
-        newErrors['description1'] = "Description length must be at least 30 characters."
-    }
-
-    if (!price) {
-        newErrors['price'] = "Price per night is required."
-    }
+        if (!price) {
+            newErrors.price = "Price per night is required."
+        }
     setErrors(newErrors)
 }
     const handleSub = async (e) => {
         e.preventDefault();
-        // valid();
-        // if (errors.length) {
-        //     setErrors(errors)
-        // }
+        valid();
+        if (errors.length) {
+            setErrors({})
+        }
 
         const payLoad = {
             address: address,
@@ -115,7 +122,7 @@ const valid = () => {
         <section className="create-spot-div">
             <form onSubmit={handleSub}>
 
-                <h1 className="title">Update Your Spot!</h1>
+                <h1 className="title">Create a Spot!</h1>
 
                 <h3><b>Where's your place located? </b> </h3>
                 <br></br>
@@ -203,6 +210,16 @@ const valid = () => {
                     onChange={e => setPrice(e.target.value)}
                 />
                 {errors.price && <span className="error">{errors.price}</span>}
+
+                {/* <hr class="new1"></hr> */}
+                {/* <h3></h3> */}
+                {/* <input
+                    type="text"
+                    placeholder="Preview Image"
+                    value={previewImage}
+                    onChange={e => setPreviewImage(e.target.value)}
+                />
+                {errors.previewImage && <span className="error">{errors.previewImage}</span>} */}
 
                 <hr class="new1"></hr>
                 {/* <input

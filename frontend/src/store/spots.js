@@ -141,7 +141,7 @@ const spotReducer = (state = initialState, action) => {
         action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id]= spot))
         return newState;
         case CURRENT_SPOTS_LOAD:
-            newState = { ...state, allSpots: { ...state.allSpots }, oneSpot: { ...state.oneSpot } }
+            newState = { ...state, allSpots: {}, oneSpot: { ...state.oneSpot } }
         action.currentSpots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot));
         return newState;
         case ONE_SPOT_LOAD:
