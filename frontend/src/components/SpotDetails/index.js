@@ -30,7 +30,7 @@ const SpotDetails = () => {
         dispatch(getReviewsForSpotId(spotId))
         }
         refresh()
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if (!starRating) {
         return null
