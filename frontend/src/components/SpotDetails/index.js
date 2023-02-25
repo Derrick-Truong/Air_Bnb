@@ -120,12 +120,12 @@ const SpotDetails = () => {
                             <div className='review-name'>{review?.User?.firstName}</div>
                             <div className='review-date'>{formattedDate}</div>
                             <div className='review-comment'>{review?.review}</div>
-                            {currentUser.id === review.userId ?
+                            {currentUser?.id === review?.userId ?
                                 <div className="delete-review-button">
                                     <button>
                                         <OpenModalMenuItem
                                             itemText="Delete Review"
-                                            modalComponent={<DeleteReviewForm spotId={spots.id} reviewId={review.id} />}
+                                            modalComponent={<DeleteReviewForm spotId={spots?.id} reviewId={review?.id} />}
                                         />
                                     </button>
                                 </div>:<></>
