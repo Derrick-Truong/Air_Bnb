@@ -28,7 +28,7 @@ const CreateSpotPlease = () => {
 
 
     function checkURL(url) {
-        return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+        return /(.*)(\.png|.jpg|.jpeg)/.test(url);
     }
   const valid = () => {
     let newErrors = {};
