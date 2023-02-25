@@ -25,20 +25,20 @@ const SpotBrowser = () => {
 
     return (
         <div className="show-spots">
-            {allSpots.map(spot => {
-                const starRating = Number(spot.avgRating).toFixed(1)
-                const newPrice = Number(spot.price).toFixed(2)
+            {allSpots?.map(spot => {
+                const starRating = Number(spot?.avgRating).toFixed(1)
+                const newPrice = Number(spot?.price).toFixed(2)
                 return (
                     <nav key={spot.id} className='navSpots'>
-                        <NavLink to={`/spots/${spot.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
+                        <NavLink to={`/spots/${spot?.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
                             <div>
                                 <div className='navSpotImage'>
-                                    <img src={spot.previewImage} height='270px' width='250px' />
+                                    <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>
                                 <div className="navDetails">
                                     <div className="details-city-rating">
-                                        <div class="city-state">{spot.city}, {spot.state} </div>
-                                        <div class="avg-rating"> &#9733; {spot.avgRating ? starRating : "New"} </div>
+                                        <div class="city-state">{spot?.city}, {spot?.state} </div>
+                                        <div class="avg-rating"> &#9733; {spot?.avgRating ? starRating : "New"} </div>
                                     </div>
                                 </div>
                                 <div className="details-price">
@@ -48,7 +48,7 @@ const SpotBrowser = () => {
                             </div>
                         </NavLink>
                     </nav>
-                
+
                 )
             })}
 

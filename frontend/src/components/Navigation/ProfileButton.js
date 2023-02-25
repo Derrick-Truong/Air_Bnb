@@ -89,7 +89,7 @@ function ProfileButton({ user }) {
                             <li>Hello, {user?.username}</li>
                             <li>{user?.email}</li>
                             <hr class="new1"></hr>
-                            <li ><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
+                            <li><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
                             <li> <hr class="new1"></hr>
                                 <button class="sign-out-button" onClick={logout}>Log Out</button>
 
