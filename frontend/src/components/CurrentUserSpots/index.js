@@ -27,7 +27,7 @@ const CurrentUser = () => {
 
     return (
         <div>
-          <h1>Sorry for not paying attention during the Office, could we watch some later today?:D</h1>
+          <h1>Manage Your Spots</h1>
         <div className="show-spots">
                 {allSpots.map(spot1 => {
                     const starRating = Number(spot1.avgRating).toFixed(1)
