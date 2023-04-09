@@ -5,9 +5,13 @@ import { useModal } from "../../context/Modal";
 import { createNewReview } from "../../store/reviews";
 import { getOneSpot } from "../../store/spots";
 import { useSelector } from "react-redux";
+import { getReviewsForSpotId } from "../../store/reviews";
+import { useParams } from "react-router-dom";
 import './CreateReview.css'
 
-export default function CreateReview({ spotId }) {
+export default function CreateReview({spotId}) {
+
+    console.log('Review SpotId', spotId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const currentUser = useSelector(state => state.session.user)
@@ -36,12 +40,12 @@ export default function CreateReview({ spotId }) {
             review: review,
             stars: stars
         };
-        const createdReview = await dispatch(createNewReview(spotId, newReview));
-        if (createdReview) {
+        await dispatch(createNewReview(spotId, newReview));
+        await dispatch(getReviewsForSpotId(spotId))
             closeModal();
-            dispatch(getOneSpot(spotId))
-            return
-        }
+
+
+
     };
 
     // const onSubmit = async (e) => {
@@ -71,7 +75,7 @@ export default function CreateReview({ spotId }) {
         <div className="form-div">
             <h1 className="title">How was your stay?</h1>
             {error && <p className="error">{error}</p>}
-            <form onSubmit={onSubmit} className="form">
+            <form onClick={onSubmit}  className="form">
                 <div className="entries">
                     <input
                         id="review"
@@ -90,7 +94,7 @@ export default function CreateReview({ spotId }) {
                     <i className={stars >= 4 ? "fa fa-star" : "fa fa-star-o"} onClick={() => setStars(4)}></i>
                     <i className={stars >= 5 ? "fa fa-star" : "fa fa-star-o"} onClick={() => setStars(5)}></i>
                 </div>
-                <button type="submit" className="submit-button">
+                <button type="submit"  className="submit-button">
                     Leave Review
                 </button>
             </form>

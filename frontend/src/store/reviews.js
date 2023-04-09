@@ -6,18 +6,18 @@ const CREATE_REVIEW = 'reviews/CREATE_REVIEW'
 const CURRENT_REVIEWS = 'reviews/CURRENT_REVIEWS'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
-export const deleteOneReview = payLoad => ({
+export const deleteOneReview = reviewId => ({
     type: DELETE_REVIEW,
-    payLoad
+    reviewId
 })
-export const allSpotReviews = spotId => ({
+export const allReviews = reviews => ({
     type: GET_ALL_REVIEWS,
-    spotId
+    reviews
 })
 
-export const createReview = (payLoad) => ({
+export const createReview = (review) => ({
    type: CREATE_REVIEW,
-    payLoad
+    review
 
 })
 
@@ -26,10 +26,11 @@ export const allReviewsCurrentUser = (spotId) => ({
     type: CURRENT_REVIEWS,
     spotId
 })
-export const createNewReview = (spotId, reviewNew, currentUser) => async dispatch => {
+export const createNewReview = (spotId, review) => async dispatch => {
+    console.log('CreateReview',)
         let res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: "POST",
-            body: JSON.stringify(reviewNew),
+            body: JSON.stringify(review),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -37,9 +38,8 @@ export const createNewReview = (spotId, reviewNew, currentUser) => async dispatc
 
         if (res.ok) {
             const newRev = await res.json();
-
             dispatch(createReview(newRev))
-            return newRev
+
         }
     }
 
@@ -86,13 +86,13 @@ export const createNewReview = (spotId, reviewNew, currentUser) => async dispatc
 
 
 export const getReviewsForSpotId = (spotId) => async dispatch =>{
+    console.log('SpotId for Reviews', spotId)
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     if (res.ok) {
       const information = await res.json();
-      const normData = {};
-        information.Reviews.forEach(review => normData[review.id] = review)
-      dispatch(allSpotReviews(normData));
-      return normData
+    
+      dispatch(allReviews(information));
+
     }
 }
 
@@ -113,10 +113,7 @@ export const getReviewsForCurrent = () => async dispatch => {
     const res = await csrfFetch('/api/reviews/current')
     if (res.ok) {
         const currentInfo = await res.json();
-        const currentData = {};
-        currentInfo.Reviews.forEach(review => currentData[review.id] = review)
-        dispatch(allReviewsCurrentUser(currentData))
-        return currentData
+        dispatch(allReviewsCurrentUser(currentInfo))
     }
 }
 
@@ -138,7 +135,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
         method: 'DELETE',
     });
     if (res.ok) {
-       dispatch(deleteReview(reviewId))
+       dispatch(deleteOneReview(reviewId))
 
     }
 };
@@ -146,35 +143,33 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 
 
 const initialState = {
-    spot: {},
-    currUser:{}
+
 }
 
 
-const reviewReducer = (state = initialState, action) => {
-    let newState = {}
+const reviewReducer = (prevState = initialState, action) => {
+    let newState;
     switch (action.type) {
-        case DELETE_REVIEW:
-           newState = {...state}
-           delete newState.spot[action.payLoad.id]
-           const nowDeleted = {
-            ...newState,
-            spot: {
-                ...newState.spot
-            }
-           }
-           return nowDeleted
         case GET_ALL_REVIEWS:
-      return {...state, spot: {...state.spot, ...action.spotId}}
-    case CREATE_REVIEW:
-     let spot = state.spot
-     spot[action.payLoad.id] = {...action.payLoad}
-     newState = {
-        ...state, spot
-     }
-     return newState
-     default:
-        return state
+            newState = {}
+            // console.log('Previous State', prevState)
+            // console.log(action)
+            action.reviews.Reviews.forEach(review => {
+                newState[review.id] = review
+            })
+            console.log('New State', newState)
+            return newState;
+        case CREATE_REVIEW:
+            // newState= {}
+            // let review = prevState.review
+            newState = { ...prevState }
+            newState[action.review.id] = action.review;
+            return newState;
+        case DELETE_REVIEW:
+            newState = { ...prevState };
+            delete newState[action.reviewId];
+            return newState;
+        default: return prevState
     }
 }
 

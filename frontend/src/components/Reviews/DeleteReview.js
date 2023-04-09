@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteReview, getReviewsForCurrent } from "../../store/reviews";
-import { getOneSpot } from "../../store/spots";
+import { getReviewsForSpotId } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
+import { useParams } from "react-router-dom";
 import { allSpotReviews, allReviewsCurrentUser } from "../../store/reviews";
 
 
@@ -25,13 +26,16 @@ import { allSpotReviews, allReviewsCurrentUser } from "../../store/reviews";
 //     }
 
 export default function DeleteReviewForm({ reviewId}) {
+    console.log('Delete ReviewId', reviewId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [errors, setErrors] = useState([]);
     const handleDelete = async (e) => {
         e.preventDefault();
         // setErrors([]);
-       dispatch(deleteReview(reviewId))
+    console.log('Delete Review55', reviewId)
+    dispatch(deleteReview(reviewId))
+       closeModal();
     };
 
     const handleCancel = (e) => {

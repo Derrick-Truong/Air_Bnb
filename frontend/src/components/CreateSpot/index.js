@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createSpot } from "../../store/spots";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { getSpots, getOneSpot, getCurrentSpots } from "../../store/spots";
 import "./CreateSpot.css";
 
 const CreateSpotPlease = () => {
+
     const history = useHistory();
     const dispatch = useDispatch();
     const [address, setAddress] = useState("");
@@ -101,18 +104,14 @@ const CreateSpotPlease = () => {
             price: price
         };
             let imageList =[];
+        if (previewImage) {
             const newImage = {
                 preview: true,
                 url: previewImage
             };
             imageList.push(newImage)
-            if (imageUrl) {
-                const addImage = {
-                    preview: false,
-                    url: imageUrl
-                }
-             imageList.push(addImage)
-            };
+        }
+
         if (imageUrl) {
             const addImage = {
                 preview: false,
@@ -121,30 +120,35 @@ const CreateSpotPlease = () => {
             imageList.push(addImage)
         };
         if (imageUrl2) {
-            const addImage = {
+            const addImage2 = {
                 preview: false,
                 url: imageUrl2
             }
-            imageList.push(addImage)
+            imageList.push(addImage2)
         };
         if (imageUrl3) {
-            const addImage = {
+            const addImage3 = {
                 preview: false,
                 url: imageUrl3
             }
-            imageList.push(addImage)
+            imageList.push(addImage3)
         };
         if (imageUrl4) {
-            const addImage = {
+            const addImage4 = {
                 preview: false,
                 url: imageUrl4
             }
-            imageList.push(addImage)
+            imageList.push(addImage4)
         }
+    //    await dispatch(createSpot(payLoad, imageList));
+    //    await dispatch(getCurrentSpots())
+    // console.log('Payload', payLoad)
         const newSpot = await dispatch(createSpot(payLoad, imageList));
         if (newSpot && newSpot.id) {
             history.push(`/spots/${newSpot.id}`);
         }
+
+
     }
     //   const newSpot=  await dispatch(createOneSpot(payLoad, imageList));
     //     if (newSpot && newSpot.id) {

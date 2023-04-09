@@ -40,6 +40,7 @@ function LoginFormModal() {
                         type="text"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
+
                         required
                     />
                 </label>
@@ -62,8 +63,8 @@ function LoginFormModal() {
                      >
                      Demo User
                      </button>
-                
-                <button type="submit">Log In</button>
+
+                <button disabled={(credential.length < 4 || password.length < 6) ? true : false} type="submit">Log In</button>
             </form>
         </>
     );

@@ -90,7 +90,7 @@ function SignupFormPage() {
                     required
                 />
             </label>
-            <button type="submit">Sign Up</button>
+            <button disabled={(password.length < 6 || username.length < 4 || password !== confirmPassword || !lastName || !firstName || !email) ? true: false} type="submit">Sign Up</button>
         </form>
     );
 }

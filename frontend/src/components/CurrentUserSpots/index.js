@@ -14,12 +14,12 @@ import './CurrentUser.css'
 
 const CurrentUser = () => {
     const dispatch = useDispatch();
-    const spot = useSelector(state => state.spots.allSpots)
-    const allSpots = Object.values(spot)
+    const spot = useSelector(state => state.spots)
+    const allSpots = Object?.values(spot)
 
     useEffect(() => {
         dispatch(getCurrentSpots())
-    }, [dispatch]);
+    }, [dispatch, JSON.stringify(allSpots)]);
 
     if (!allSpots) {
         return null
@@ -29,9 +29,9 @@ const CurrentUser = () => {
         <div>
           <h1>Manage Your Spots</h1>
         <div className="show-spots">
-                {allSpots.map(spot1 => {
-                    const starRating = Number(spot1.avgRating).toFixed(1)
-                    const newPrice = Number(spot1.price).toFixed(2)
+                {allSpots?.map(spot1 => {
+                    const starRating = Number(spot1?.avgRating).toFixed(1)
+                    const newPrice = Number(spot1?.price).toFixed(2)
                     return (
                         <nav key={spot1.id} className='navSpots'>
                             <NavLink to={`/spots/${spot1.id}`} className='navEachSpot'>

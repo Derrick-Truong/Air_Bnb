@@ -8,12 +8,12 @@ import './SpotsBrowser.css'
 const SpotBrowser = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.session.user)
-    const spot = useSelector(state => state.spots.allSpots)
-    const allSpots = Object.values(spot)
+    const currentUser = useSelector(state => state?.session?.user)
+    const spots = useSelector(state => state?.spots)
+    const allSpots = Object?.values(spots)
     useEffect(() => {
         dispatch(getSpots())
-    }, [dispatch]);
+    }, [dispatch, JSON.stringify(allSpots)]);
 
     if (!allSpots) {
         return null

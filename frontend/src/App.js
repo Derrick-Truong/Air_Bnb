@@ -35,7 +35,7 @@ function App() {
             <CreateSpotPlease/>
           </Route>
           <Route exact path="/spots/current">
-            <CurrentUser />
+            <CurrentUser/>
           </Route>
           <Route exact path = "/spots/:spotId">
             <SpotDetails/>

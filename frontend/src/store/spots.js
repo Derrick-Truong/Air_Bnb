@@ -5,11 +5,11 @@ const SPOTS_LOAD = 'spots/SPOTS_LOAD';
 const ADD_TO_SPOT = 'spots/ADD_SPOT';
 const DELETE_SPOT = 'spots/DELETE_SPOT';
 const CURRENT_SPOTS_LOAD = 'spots/CURRENT_SPOTS_LOAD'
-const CREATE_SPOT_PLEASE = 'spots/CREATE_SPOT_PLEASE'
+const CREATE_SPOT = 'spots/CREATE_SPOT_PLEASE'
 const ONE_SPOT_LOAD = 'spots/ONE_SPOT_LOAD'
 
 export const createOneSpot = spot => ({
-    type: CREATE_SPOT_PLEASE,
+    type: CREATE_SPOT,
     spot
 })
 
@@ -20,6 +20,7 @@ export const remove = spotId => ({
 export const spotsLoad = spots => ({
     type: SPOTS_LOAD,
     spots
+
 });
 
 export const addToSpot = spot => ({
@@ -32,37 +33,37 @@ export const oneSpotLoad = spot => ({
     spot
 });
 
-export const currentSpotsLoad = currentSpots => ({
+export const currentSpotsLoad = spots => ({
     type: CURRENT_SPOTS_LOAD,
-    currentSpots
+    spots
 })
 
 export const getSpots = () => async dispatch => {
-    const res = await csrfFetch('/api/spots')
-
+    const res = await fetch('/api/spots')
+    console.log(res)
     if (res.ok) {
         const list = await res.json();
+    console.log(list)
         dispatch(spotsLoad(list))
-
     }
 };
 
 export const getCurrentSpots = () => async dispatch => {
     const res = await csrfFetch('/api/spots/current')
-
     if (res.ok) {
         const currentList = await res.json();
-        dispatch(currentSpotsLoad(currentList))
+        dispatch(spotsLoad(currentList))
     }
 };
 
 export const getOneSpot = (spotId) => async dispatch => {
-
-    const res = await csrfFetch(`/api/spots/${spotId}`);
+// console.log('Got it')
+    const res = await fetch(`/api/spots/${spotId}`);
     if (res.ok) {
         const spotDetails = await res.json();
+        console.log('checking spotId', spotDetails)
         dispatch(oneSpotLoad(spotDetails))
-        return spotDetails
+        // return spotDetails
     }
 
 
@@ -76,12 +77,13 @@ export const updateSpot = (spot, spotId) => async(dispatch) => {
     })
     if (res.ok) {
         const updateSpot = await res.json()
-        const data = {};
-        data[spot.id] = updateSpot;
-        dispatch(addToSpot(data));
-        return data
+        // const data = {};
+        // data[spot.id] = updateSpot;
+      await  dispatch(addToSpot(updateSpot));
+        // return updateSpot
     }
 
+    return updateSpot
 };
 
 export const createSpot = (spotCreated, imagesCreated ) => async dispatch => {
@@ -106,7 +108,8 @@ export const createSpot = (spotCreated, imagesCreated ) => async dispatch => {
             spotData.SpotImages.push(oneImage)
         }
     }
-   dispatch(createOneSpot(spotData))
+   await dispatch(createOneSpot(spotData))
+
     // return spotData
     return spotData
 
@@ -122,48 +125,73 @@ export const removeSpot = (spotId) => async dispatch => {
         dispatch(remove(spotId));
     }
 }
-
-// export const deleteSpot = ()
 const initialState = {
-    allSpots: {},
-    oneSpot: {},
-    currentSpots: {},
+
 }
 
-
-
-const spotReducer = (state = initialState, action) => {
-    let newState = {}
+const spotReducer = (prevState=initialState, action) => {
+    let newState;
     switch (action.type) {
         case SPOTS_LOAD:
-            // action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot))
-        newState = {...state, allSpots: {...state.allSpots}, oneSpot: {...state.oneSpot}}
-        action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id]= spot))
-        return newState;
-        case CURRENT_SPOTS_LOAD:
-            newState = { ...state, allSpots: {}, oneSpot: { ...state.oneSpot } }
-        action.currentSpots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot));
-        return newState;
+            newState = {}
+            action.spots.Spots.forEach(spot => {
+                newState[spot.id] = spot
+            })
+            return newState;
         case ONE_SPOT_LOAD:
-            // newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
-            newState = {...state}
-            newState.oneSpot = action.spot
-        return newState
-        case DELETE_SPOT:
-            newState = { ...state, allSpots: { ...state.allSpots }, currentSpots: { ...state.currentSpots } }
-        delete newState.allSpots[action.spotId]
-        delete newState.currentSpots[action.spotId]
-        return newState;
-        case ADD_TO_SPOT:
-            newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, currentSpots: { ...state.currentSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
+            newState = {...prevState}
+            console.log('newstate', newState, action)
+            newState[action.spot.id] = action.spot;
+            console.log('New State for One Spot', newState)
             return newState
-        case CREATE_SPOT_PLEASE:
-            newState = { ...state, allSpots: { ...state.allSpots, ...action.spot}, oneSpot: { ...state.oneSpot, ...action.spot } }
-        return newState
-         default:
-            return state
+        case CREATE_SPOT:
+            newState = {...prevState}
+            newState[action.spot.id] = action.spot;
+            return newState;
+        case ADD_TO_SPOT:
+            newState = { ...prevState }
+            newState[action.spot.id] = action.spot;
+            return newState;
+        case DELETE_SPOT:
+            newState = {...prevState};
+            delete newState[action.spotId];
+            return newState;
+    default: return prevState
     }
 }
+
+// const spotReducer = (state = initialState, action) => {
+//     let newState;
+//     switch (action.type) {
+//         case SPOTS_LOAD:
+//             // action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot))
+//         newState = {...state, allSpots: {...state.allSpots}, oneSpot: {...state.oneSpot}}
+//         action.spots.Spots.forEach((spot) => (newState.allSpots[spot.id]= spot))
+//         return newState;
+//         case CURRENT_SPOTS_LOAD:
+//             newState = { ...state, allSpots: {}, oneSpot: { ...state.oneSpot } }
+//         action.currentSpots.Spots.forEach((spot) => (newState.allSpots[spot.id] = spot));
+//         return newState;
+//         case ONE_SPOT_LOAD:
+//             // newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
+//             newState = {...state}
+//             newState.oneSpot = action.spot
+//         return newState
+//         case DELETE_SPOT:
+//             newState = { ...state, allSpots: { ...state.allSpots }, currentSpots: { ...state.currentSpots } }
+//         delete newState.allSpots[action.spotId]
+//         delete newState.currentSpots[action.spotId]
+//         return newState;
+//         case ADD_TO_SPOT:
+//             newState = { ...state, allSpots: { ...state.allSpots, ...action.spot }, currentSpots: { ...state.currentSpots, ...action.spot }, oneSpot: { ...state.oneSpot, ...action.spot } }
+//             return newState
+//         case CREATE_SPOT_PLEASE:
+//             newState = { ...state, allSpots: { ...state.allSpots, ...action.spot}, oneSpot: { ...state.oneSpot, ...action.spot } }
+//         return newState
+//          default:
+//             return state
+//     }
+
 
 export default spotReducer;
 

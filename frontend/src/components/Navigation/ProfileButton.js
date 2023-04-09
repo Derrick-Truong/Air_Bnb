@@ -9,14 +9,12 @@ import './profilebutton.css'
 import { useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getCurrentSpots } from "../../store/spots";
 
 
 function ProfileButton({ user }) {
 
-    const currentSpots = useSelector(state => state.spots.allSpots)
-
-    const currentVal = Object.values(currentSpots)
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -69,8 +67,8 @@ function ProfileButton({ user }) {
         closeMenu();
         history.push('/')
     };
-    const clickSub = (e) => {
-        e.preventDefault()
+    const clickSub = () => {
+
          history.push('/spots/current')
      }
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
