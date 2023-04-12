@@ -43,38 +43,53 @@ router.post(
                 username
             }
         })
-
+        const err = new Error('Sorry, this spot is already booked for the specified dates');
+        err.status = 403;
+        err.title = 'Conflicting Dates'
         if (sameEmail && !sameUser) {
         //    res.status(403);
-           return res.json({
-               "message": "User already exists",
-               "statusCode": 403,
-               "errors": {
-                   "username": "User with that username already exists"
-               }
-           })
+        //    return res.json({
+            //    "message": "User already exists",
+            //    "statusCode": 403,
+               err.errors = [
+                   "User with that email already exists"
+               ]
+            return next(err);
+        //    })
         }
         if (sameUser && !sameEmail) {
-            res.status(403);
-          return res.json({
-              "message": "User already exists",
-              "statusCode": 403,
-              "errors": {
-                  "email": "User with that email already exists"
-              }
-          })
+        //     res.status(403);
+        //   return res.json({
+        //       "message": "User already exists",
+        //       "statusCode": 403,
+            err.errors = [
+                "User with that username already exists"
+            ]
+            return next(err);
+            //   errors: {
+            //       "email": "User with that email already exists"
+            //   }
+        //   })
         }
 
         if (sameUser && sameEmail){
-          res.status(403);
-          return res.json({
-              "message": "User already exists",
-              "statusCode": 403,
-              "errors": {
-                  "email": "User with that email already exists",
-                  "username": "User with that username already exists"
-              }
-          })
+        //   res.status(403);
+        //   return res.json({
+        //       "message": "User already exists",
+        //       "statusCode": 403,
+              err.errors = [
+                  "User with that username already exists"
+              ]
+            return next(err);
+            //   errors: {
+            //       "email": "User with that email already exists",
+            //       "username": "User with that username already exists"
+            //   }
+        //   })
+        }
+
+        if (err.errors) {
+            return next(err)
         }
 
         const user = await User.signup({ firstName, lastName, email, username, password});

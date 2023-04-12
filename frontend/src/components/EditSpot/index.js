@@ -195,7 +195,7 @@ const EditSpot = () => {
         <section className="create-spot-div">
             <form onSubmit={handleSub}>
 
-                <h1 className="title">Create a Spot!</h1>
+                <h1 className="title">Update Your Spot!</h1>
 
                 <h3><b>Where's your place located? </b> </h3>
                 <br></br>

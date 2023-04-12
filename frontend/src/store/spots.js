@@ -96,9 +96,9 @@ export const createSpot = (spotCreated, imagesCreated ) => async dispatch => {
     spotData['SpotImages'] = [];
     //if we successfully find a spot, we will loop through to see if there are any images
     if (response.ok) {
-        const {id} = spotData
+        // const {id} = spotData
     for (let i=0; i < imagesCreated.length; i++ ) {
-        let response2 = await csrfFetch(`/api/spots/${id}/images`, {
+        let response2 = await csrfFetch(`/api/spots/${spotData.id}/images`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(imagesCreated[i] )
@@ -143,7 +143,7 @@ const spotReducer = (prevState=initialState, action) => {
             console.log('newstate', newState, action)
             newState[action.spot.id] = action.spot;
             console.log('New State for One Spot', newState)
-            return newState
+            return newState;
         case CREATE_SPOT:
             newState = {...prevState}
             newState[action.spot.id] = action.spot;

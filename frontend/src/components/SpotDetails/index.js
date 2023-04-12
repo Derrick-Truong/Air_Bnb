@@ -15,11 +15,14 @@ const SpotDetails = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spots = useSelector(state => state?.spots)
-  const currentUser = useSelector(state => state?.session)
-  const userId = currentUser?.user?.id
+  const currentUser = useSelector(state => state?.session?.user)
+  const userId = currentUser?.id
+  console.log('UserId', currentUser)
+  // const findUser = currentUser?.find(user => user?.user?.id === userId)
+
   const reviews2 = useSelector(state => state?.reviews)
   const reviewsVal = Object?.values(reviews2)
- console.log('Reviews2', reviews2)
+
   console.log('ReviewsVal', reviewsVal)
   // const imagesArr = spots.spot.SpotImages
   // const reviewsVal = getReview1[reviewId]
@@ -78,23 +81,25 @@ const SpotDetails = () => {
   // }
   return (
     <>
-      <h1>{spotsVal?.address}</h1>
+      <h1>{spotsVal?.name}</h1>
       <div className="spot-area">
         <div>{spotsVal?.city}, {spotsVal?.state}, {spotsVal?.country}</div>
       </div>
+      <div className="spot-images">
       {spotsVal?.SpotImages?.map(image => {
         return (
           // {spotsVal.SpotImages[0] && <img className="big-photo" src={spotsVal.SpotImages[0].url} height="300px" width="40%" alt="big-pic" />}
 
-          image && <img className="small-photo-1" src={image.url} height="270px" width="250px" alt="small-pic" />
+          image && <img className="small-photo-1" src={image.url} alt="small-pic" />
 
         )
       })}
+      </div>
       <div className='floating-reserve'>
 
         <div class="price">${price}  per night
 
-          {reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spotsVal?.numReviews} Review</div>
+          {reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div>{spotsVal?.numReviews} Review</div>
             : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
@@ -106,13 +111,13 @@ const SpotDetails = () => {
 
       <br></br> <hr class="new1"></hr>
       <div className='review-star-new'>
-        <h1>{reviewsVal.length === 0 ? <div>&#9733; New</div> : reviewsVal.length === 1 ? <div>{spots.numReviews} Review</div>
-          : <div> &#9733; {starRating} · {spots.numReviews} Reviews </div>}</h1>
+        <h1>{reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div>{spotsVal?.numReviews} Review</div>
+          : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}</h1>
       </div>
       <div className="review-show">
         <div className='post-review'>
 
-          {!(userId === spotsVal?.ownerId) && !foundReviewByCurrUser ?
+          {((!(userId === spotsVal?.ownerId) && !foundReviewByCurrUser && currentUser) )  ?
             <button>
               <OpenModalMenuItem
                 itemText="Post Your Review"
@@ -145,7 +150,7 @@ const SpotDetails = () => {
             }
           </div>
         );
-      }) : reviewsVal?.length === 0 && userId !== spotsVal?.ownerId ?
+      }) : reviewsVal?.length === 0 && userId !== spotsVal?.ownerId && userId ?
         <p>Be the first to post a review!</p> : <></>}
 
     </>

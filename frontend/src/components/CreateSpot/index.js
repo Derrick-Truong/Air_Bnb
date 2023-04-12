@@ -47,7 +47,7 @@ const CreateSpotPlease = () => {
     if (!state) {
         newErrors.state = "State is required."
       }
-       console.log('newErrors:', JSON.stringify(newErrors));
+
     if (!country) {
         newErrors.country = "Country is required."
     }
@@ -80,7 +80,7 @@ const CreateSpotPlease = () => {
           newErrors.imageUrl4='URL must end in jpeg, jpg, gif, or png'
       }
     setErrors(newErrors)
-
+console.log('NewErrors', newErrors)
 }
 
     const handleSub = async (e) => {
@@ -144,9 +144,9 @@ const CreateSpotPlease = () => {
     //    await dispatch(getCurrentSpots())
     // console.log('Payload', payLoad)
         const newSpot = await dispatch(createSpot(payLoad, imageList));
-        if (newSpot && newSpot.id) {
+        // if (newSpot && newSpot.id) {
             history.push(`/spots/${newSpot.id}`);
-        }
+        // }
 
 
     }
@@ -201,7 +201,7 @@ const CreateSpotPlease = () => {
                     />
                                     <h4></h4>
                     <label htmlFor="State">
-                    <div><div>State</div>{errors.state && <span className="error">{errors.state}</span>}</div>
+                    <div><div>State</div>{errors?.state && <span className="error">{errors?.state}</span>}</div>
                     </label>
                     <input
                      type="text2"

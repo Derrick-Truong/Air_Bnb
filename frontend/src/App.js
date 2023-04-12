@@ -31,9 +31,9 @@ function App() {
          <Route exact path="/signup">
             <SignupFormPage/>
           </Route>
-          <Route exact path="/spots/new">
-            <CreateSpotPlease/>
-          </Route>
+          <Route exact path="/spots/new" component={CreateSpotPlease}/>
+            {/* <CreateSpotPlease/> */}
+          {/* </Route> */}
           <Route exact path="/spots/current">
             <CurrentUser/>
           </Route>

@@ -25,7 +25,7 @@ function SignupFormPage() {
             return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    if (data && data?.errors) setErrors(data?.errors);
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -34,7 +34,7 @@ function SignupFormPage() {
     return (
         <form onSubmit={handleSubmit}>
             <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
             <label>
                 Email
@@ -90,9 +90,11 @@ function SignupFormPage() {
                     required
                 />
             </label>
-            <button disabled={(password.length < 6 || username.length < 4 || password !== confirmPassword || !lastName || !firstName || !email) ? true: false} type="submit">Sign Up</button>
+            <button disabled={(password.length < 6 || username.length < 4 || password !== confirmPassword || !lastName || !firstName || !email) ? true : false}
+
+ type="submit">Sign Up</button>
         </form>
     );
 }
-
+// disabled = {(password.length < 6 || username.length < 4 || password !== confirmPassword || !lastName || !firstName || !email) ? true : false}
 export default SignupFormPage;

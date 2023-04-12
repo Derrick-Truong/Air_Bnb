@@ -259,8 +259,9 @@ router.post('/', [requireAuth, validateSpot],
     // console.log(validateSpot);
         res.statusCode = 201
         res.json(spotAns)
-      
+
     })
+
 
 // Create an Image to a Spot based on the Spot's id
 router.post('/:id/images', requireAuth, async(req, res, next) => {
