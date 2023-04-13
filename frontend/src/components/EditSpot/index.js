@@ -115,8 +115,8 @@ const EditSpot = () => {
             newErrors.description = "Description length must be at least 30 characters."
         }
 
-        if (!price) {
-            newErrors.price = "Price per night is required."
+        if (!price || !Number.isInteger(price)) {
+            newErrors.price = "Price per night is required and needs to be a number."
         }
         setErrors(newErrors)
 

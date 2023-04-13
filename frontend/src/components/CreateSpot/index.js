@@ -60,8 +60,12 @@ const CreateSpotPlease = () => {
         newErrors.description = "Description length must be at least 30 characters."
     }
 
-    if (!price) {
+    if (!price ) {
         newErrors.price = "Price per night is required."
+    }
+
+    if (price && !(Number.isInteger(price))) {
+        newErrors.price = "Price is required needs to be a number."
     }
 
     if (!previewImage || !checkURL(previewImage)) {
@@ -144,9 +148,9 @@ console.log('NewErrors', newErrors)
     //    await dispatch(getCurrentSpots())
     // console.log('Payload', payLoad)
         const newSpot = await dispatch(createSpot(payLoad, imageList));
-        // if (newSpot && newSpot.id) {
+
             history.push(`/spots/${newSpot.id}`);
-        // }
+       
 
 
     }

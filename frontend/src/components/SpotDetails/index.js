@@ -99,7 +99,7 @@ const SpotDetails = () => {
 
         <div class="price">${price}  per night
 
-          {reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div>{spotsVal?.numReviews} Review</div>
+          {reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div> &#9733; {starRating} · {spotsVal?.numReviews} Review</div>
             : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
@@ -111,7 +111,7 @@ const SpotDetails = () => {
 
       <br></br> <hr class="new1"></hr>
       <div className='review-star-new'>
-        <h1>{reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div>{spotsVal?.numReviews} Review</div>
+        <h1>{reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div> &#9733; {starRating} · {spotsVal?.numReviews} Review </div>
           : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}</h1>
       </div>
       <div className="review-show">

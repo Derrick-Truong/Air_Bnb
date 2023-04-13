@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from "../SignupFormModal";
-import SignupFormPage   from '../SignupFormPage';
+import SignupFormPage from '../SignupFormPage';
 import { useHistory } from "react-router-dom";
 import './profilebutton.css'
 import { useSelector } from "react-redux";
@@ -70,8 +70,8 @@ function ProfileButton({ user }) {
     };
     const clickSub = () => {
 
-         history.push('/spots/current')
-     }
+        history.push('/spots/current')
+    }
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (

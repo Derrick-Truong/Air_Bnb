@@ -90,7 +90,7 @@ export const getReviewsForSpotId = (spotId) => async dispatch =>{
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     if (res.ok) {
       const information = await res.json();
-    
+
       dispatch(allReviews(information));
 
     }
@@ -154,7 +154,7 @@ const reviewReducer = (prevState = initialState, action) => {
             newState = {}
             // console.log('Previous State', prevState)
             // console.log(action)
-            action.reviews.Reviews.forEach(review => {
+            action.reviews?.Reviews?.forEach(review => {
                 newState[review.id] = review
             })
             console.log('New State', newState)
