@@ -18,6 +18,7 @@ const SpotDetails = () => {
   const currentUser = useSelector(state => state?.session?.user)
   const userId = currentUser?.id
   console.log('UserId', currentUser)
+  const night = "per night"
   // const findUser = currentUser?.find(user => user?.user?.id === userId)
 
   const reviews2 = useSelector(state => state?.reviews)
@@ -97,10 +98,9 @@ const SpotDetails = () => {
       </div>
       <div className='floating-reserve'>
 
-        <div class="price">${price}  per night
+        <div class="price">
 
-          {reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div> &#9733; {starRating} · {spotsVal?.numReviews} Review</div>
-            : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
+          {reviewsVal?.length === 0 ? <div> {price} per night &#9733; New</div> : reviewsVal?.length === 1 ? <div>{price} {night} &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div>{price}  per night &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
 
@@ -112,7 +112,7 @@ const SpotDetails = () => {
       <br></br> <hr class="new1"></hr>
       <div className='review-star-new'>
         <h1>{reviewsVal?.length === 0 ? <div>&#9733; New</div> : reviewsVal?.length === 1 ? <div> &#9733; {starRating} · {spotsVal?.numReviews} Review </div>
-          : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}</h1>
+ : <div> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}</h1>
       </div>
       <div className="review-show">
         <div className='post-review'>

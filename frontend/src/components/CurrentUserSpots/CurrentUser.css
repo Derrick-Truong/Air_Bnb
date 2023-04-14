@@ -156,7 +156,10 @@ navEachSpotEdit::after{
     border-top: 2px solid black;
     border-bottom: 4px solid black;
 } */
+.navSpots{
+border-style: solid;
 
+}
 .navSpotImage {
     height: 270px;
     width: 100%;
