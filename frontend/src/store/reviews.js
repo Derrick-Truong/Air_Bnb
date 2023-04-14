@@ -87,7 +87,7 @@ export const createNewReview = (spotId, review) => async dispatch => {
 
 export const getReviewsForSpotId = (spotId) => async dispatch =>{
     console.log('SpotId for Reviews', spotId)
-    const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const res = await fetch(`/api/spots/${spotId}/reviews`)
     if (res.ok) {
       const information = await res.json();
 

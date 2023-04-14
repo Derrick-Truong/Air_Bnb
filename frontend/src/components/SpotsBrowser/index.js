@@ -29,10 +29,11 @@ const SpotBrowser = () => {
                 const starRating = Number(spot?.avgRating).toFixed(1)
                 const newPrice = Number(spot?.price).toFixed(2)
                 return (
+                    <div className="spot-container">
                     <nav key={spot.id} className='navSpots'>
                         <NavLink to={`/spots/${spot?.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
-                            <div>
-                                <div className='navSpotImage'>
+
+                                <div className='navSpotImage1'>
                                     <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>
                                 <div className="navDetails">
@@ -44,10 +45,9 @@ const SpotBrowser = () => {
                                 <div className="details-price">
                                     $  {newPrice} per night
                                 </div>
-
-                            </div>
                         </NavLink>
                     </nav>
+                    </div>
 
                 )
             })}

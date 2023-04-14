@@ -28,6 +28,11 @@ const CurrentUser = () => {
     return (
         <div>
           <h1>Manage Your Spots</h1>
+            <span className='create-spot'>
+                <NavLink exact to="/spots/new" className="create-spot-2">
+                    Create a New Spot
+                </NavLink>
+            </span>
         <div className="show-spots">
                 {allSpots?.map(spot1 => {
                     const starRating = Number(spot1?.avgRating).toFixed(1)
@@ -52,15 +57,32 @@ const CurrentUser = () => {
                                 </div>
                             </NavLink>
                             <div className= "current-buttons">
-                            <NavLink to={`/spots/${spot1.id}/edit`} className='navEachSpotEdit'>
-                                <button>Update</button>
-                            </NavLink>
-                            <button className="current-delete-button">
+                                <a href={`/spots/${spot1.id}/edit`} className='navEachSpotEdit'>
+                                    <span>Update</span>
+                                    <span>Update</span>
+                            {/* <NavLink to={`/spots/${spot1.id}/edit`} >
+                                Update
+                            </NavLink> */}
+                                </a>
+                                <br></br>
+                                <a className='navEachSpotEdit'>
+                                <span><OpenModalMenuItem
+                                        itemText="Delete"
+                                        modalComponent={<DeleteSpotModal spotId={spot1.id} />}
+                                    />
+                                    </span>
+                                    <span><OpenModalMenuItem
+                                        itemText="Delete"
+                                        modalComponent={<DeleteSpotModal spotId={spot1.id} />}
+                                    />
+                                    </span>
+                                </a>
+                            {/* <button className="current-delete-button">
                         <OpenModalMenuItem
                         itemText="Delete"
                         modalComponent={<DeleteSpotModal spotId={spot1.id}/>}
                         />
-                            </button>
+                            </button> */}
                         </div>
                         </nav>
 

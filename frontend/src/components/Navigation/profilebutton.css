@@ -23,7 +23,8 @@
 .profile-dropdown {
     position: absolute;
     top: 50px;
-
+    /* transition: .4s ease-in;
+    z-index: 1; */
     width: 200px;
     background-color: white;
     border: 1px solid #EBEBEB;
@@ -34,7 +35,12 @@
     list-style-type: none;
     text-align: center;
 }
-
+/* .profile-dropdown::before,
+.profile-dropdown::after{
+    position: absolute;
+    content:"";
+    z-index:-1
+} */
 .profile-dropdown ul {
     list-style: none;
     padding: 0;

@@ -62,7 +62,7 @@ export const getOneSpot = (spotId) => async dispatch => {
     if (res.ok) {
         const spotDetails = await res.json();
         console.log('checking spotId', spotDetails)
-        dispatch(oneSpotLoad(spotDetails))
+       await dispatch(oneSpotLoad(spotDetails))
         // return spotDetails
     }
 

@@ -8,12 +8,42 @@ import "./EditSpot.css";
 const EditSpot = () => {
     const { spotId } = useParams();
     const spots = useSelector((state) => state?.spots);
-    const spotsVal = spots[spotId];
-    console.log('spotsVal', spotsVal)
+    const spotsVal = spots[spotId]
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const { closeModal } = useModal();
+    const [price, setPrice] = useState("");
+    const [errors, setErrors] = useState({});
+    const [lat, setLatitude] = useState("");
+    const [lng, setLongitude] = useState("");
+    const [previewImage, setPreviewImage] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrl2, setImageUrl2] = useState("");
+    const [imageUrl3, setImageUrl3] = useState("");
+    const [imageUrl4, setImageUrl4] = useState("")
+    // const spots = useSelector((state) => state?.spots);
+    // console.log('Spots', spots)
+    // const spotsVal = spots[spotId]
+    // console.log('spotsVal', spotsVal)
     const history = useHistory();
     const dispatch = useDispatch();
-
+    // const [address, setAddress] = useState(spotsVal?.address);
+    // const [city, setCity] = useState(spotsVal?.city);
+    // const [state, setState] = useState(spotsVal?.state);
+    // const [country, setCountry] = useState(spotsVal?.country);
+    // const [name, setName] = useState(spotsVal?.name);
+    // const [description, setDescription] = useState(spotsVal?.description);
+    // const [price, setPrice] = useState(spotsVal?.price);
+    // const [lat, setLatitude] = useState(spotsVal?.lat)
+    // const [lng, setLongitude] = useState(spotsVal?.lng)
+    // const { closeModal } = useModal();
+    // const [errors, setErrors] = useState({});
     useEffect(() => {
+
         // let newErrors = {};
 
         // if (!address) {
@@ -50,18 +80,29 @@ const EditSpot = () => {
         // setErrors(newErrors)
 
         dispatch(getOneSpot(spotId))
-    }, [dispatch, JSON?.stringify(spotId)])
-    const [address, setAddress] = useState(spotsVal?.address);
-    const [city, setCity] = useState(spotsVal?.city);
-    const [state, setState] = useState(spotsVal?.state);
-    const [country, setCountry] = useState(spotsVal?.country);
-    const [name, setName] = useState(spotsVal?.name);
-    const [description, setDescription] = useState(spotsVal?.description);
-    const [price, setPrice] = useState(spotsVal?.price);
-    const [lat, setLatitude] = useState(spotsVal?.lat)
-    const [lng, setLongitude] = useState(spotsVal?.lng)
-    const { closeModal } = useModal();
-    const [errors, setErrors] = useState({});
+        setCountry(spotsVal?.country)
+        setAddress(spotsVal?.address)
+        setCity(spotsVal?.city)
+        setState(spotsVal?.state)
+        setDescription(spotsVal?.description)
+        setName(spotsVal?.name)
+        setPrice(spotsVal?.price)
+    }, [dispatch, JSON?.stringify(spotId), spotsVal?.country, spotsVal?.address, spotsVal?.city, spotsVal?.state, spotsVal?.description, spotsVal?.price])
+
+    // const spots = useSelector((state) => state?.spots);
+    console.log('Spots', spotsVal)
+    // const spotsVal = spots[spotId]
+    // const [address, setAddress] = useState(spotsVal?.address);
+    // const [city, setCity] = useState(spotsVal?.city);
+    // const [state, setState] = useState(spotsVal?.state);
+    // const [country, setCountry] = useState(spotsVal?.country);
+    // const [name, setName] = useState(spotsVal?.name);
+    // const [description, setDescription] = useState(spotsVal?.description);
+    // const [price, setPrice] = useState(spotsVal?.price);
+    // const [lat, setLatitude] = useState(spotsVal?.lat)
+    // const [lng, setLongitude] = useState(spotsVal?.lng)
+    // const { closeModal } = useModal();
+    // const [errors, setErrors] = useState({});
 
     // const [address, setAddress] = useState("");
     // const [city, setCity] = useState("");
@@ -111,7 +152,7 @@ const EditSpot = () => {
             newErrors.name = "Name is required."
         }
 
-        if ( description.length < 30 ) {
+        if ( description?.length < 30 ) {
             newErrors.description = "Description length must be at least 30 characters."
         }
 
@@ -159,7 +200,7 @@ const EditSpot = () => {
         //     return
         // }
         // setErrors(newErrors)
-        if (errors.length) {
+        if (errors?.length) {
             return setErrors()
         }
         const payLoad = {

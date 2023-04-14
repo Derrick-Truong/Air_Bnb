@@ -83,7 +83,7 @@ const SpotDetails = () => {
     <>
       <h1>{spotsVal?.name}</h1>
       <div className="spot-area">
-        <div>{spotsVal?.city}, {spotsVal?.state}, {spotsVal?.country}</div>
+        <h3>{spotsVal?.city}, {spotsVal?.state}, {spotsVal?.country}</h3>
       </div>
       <div className="spot-images">
       {spotsVal?.SpotImages?.map(image => {
@@ -117,11 +117,10 @@ const SpotDetails = () => {
       <div className="review-show">
         <div className='post-review'>
 
-          {((!(userId === spotsVal?.ownerId) && !foundReviewByCurrUser && currentUser) )  ?
-            <button>
+          {(((userId !== spotsVal?.ownerId) && !foundReviewByCurrUser && currentUser) )  ?
+            <button className="button">
               <OpenModalMenuItem
                 itemText="Post Your Review"
-
                 modalComponent={<CreateReview spotId={spotsVal?.id} />}
               />
             </button> : <></>
