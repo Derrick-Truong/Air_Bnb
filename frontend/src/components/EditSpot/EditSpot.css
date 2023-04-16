@@ -13,6 +13,9 @@ form {
 
 
 }
+.error {
+    color: red;
+}
 .title {
     text-align: center;
 }
@@ -24,12 +27,13 @@ input {
     border-radius: 5px;
     font-size: 16px;
     text-align: center;
-   
+
 
 }
 
-button[type="submit"] {
-    width: 100%;
+button[type="submit"], button[type="click"] {
+    width: 150px;
+    /* width: 100%; */
     height: 50px;
     background-color: #ff5a5f;
     color: #fff;
@@ -40,9 +44,10 @@ button[type="submit"] {
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s;
+    margin: 10px;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover, button[type="click"]:hover {
     background-color: #e60000;
 }
 

@@ -1,0 +1,28 @@
+button + button {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    /* margin-right: 10px; */
+
+}
+
+.log-in-container, form li {
+    text-align: center;
+}
+
+ul li {
+    list-style-type: none;
+    color: red;
+    margin-right: 40px;
+}
+/* .log-in-title {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    color: red;
+
+} */
+/* button {
+    margin-left: 10px;
+} */

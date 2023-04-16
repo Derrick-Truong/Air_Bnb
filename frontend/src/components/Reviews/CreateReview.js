@@ -22,12 +22,12 @@ export default function CreateReview({spotId}) {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (!review) {
-            setError("Please enter a review.");
-            return;
-        }
-        if (review.length < 10) {
-            setError("Your review must be at least 10 characters.");
+        // if (!review) {
+        //     setError("Please enter a review.");
+        //     return;
+        // }
+        if (!review || review.length < 10) {
+            setError("Please enter a review that is at least 10 characters long.");
             return;
         }
 
@@ -75,7 +75,7 @@ export default function CreateReview({spotId}) {
         <div className="form-div">
             <h1 className="title">How was your stay?</h1>
             {error && <p className="error">{error}</p>}
-            <form onClick={onSubmit}  className="form">
+            <form onSubmit={onSubmit}  className="form">
                 <div className="entries">
                     <input
                         id="review"

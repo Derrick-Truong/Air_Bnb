@@ -68,12 +68,12 @@ const CurrentUser = () => {
                                 <a className='navEachSpotEdit'>
                                 <span><OpenModalMenuItem
                                         itemText="Delete"
-                                        modalComponent={<DeleteSpotModal spotId={spot1.id} />}
+                                        modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
                                     />
                                     </span>
                                     <span><OpenModalMenuItem
                                         itemText="Delete"
-                                        modalComponent={<DeleteSpotModal spotId={spot1.id} />}
+                                        modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
                                     />
                                     </span>
                                 </a>

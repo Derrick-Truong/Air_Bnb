@@ -64,7 +64,7 @@ const CreateSpotPlease = () => {
         newErrors.price = "Price per night is required."
     }
 
-    if (price && !(Number.isInteger(price))) {
+    if (price && !(parseInt(price))) {
         newErrors.price = "Price is required needs to be a number."
     }
 
@@ -150,7 +150,7 @@ console.log('NewErrors', newErrors)
         const newSpot = await dispatch(createSpot(payLoad, imageList));
 
             history.push(`/spots/${newSpot.id}`);
-       
+
 
 
     }
@@ -180,7 +180,7 @@ console.log('NewErrors', newErrors)
                     value={country}
                     onChange={e => setCountry(e.target.value)}
                 />
-                {errors.country && <span className="error">{errors.country}</span>}
+                {errors?.country && <span className="error">{errors?.country}</span>}
                 <h4></h4>
                 <label htmlFor="address">
                     {/* <b><br></br>Address</b> */}

@@ -74,10 +74,10 @@
 } */
 
 .navDetails {
-    display: column;
+    display: flex;
     justify-content: space-between;
     height: 50%;
-    padding: 10px;
+    padding: 10px 0 10px 10px 10px;
     font-size: 17px;
     text-align: center;
     color: #000000;
@@ -85,8 +85,11 @@
 
 
 
-.city-state {
-    align-self: flex-start;
+.city-state-rating{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .price {
@@ -122,8 +125,9 @@
 .details-city-rating {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
 }
+
 
 .city-state {
     font-size: 15px;

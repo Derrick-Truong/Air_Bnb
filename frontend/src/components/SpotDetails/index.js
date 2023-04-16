@@ -99,8 +99,7 @@ const SpotDetails = () => {
       <div className='floating-reserve'>
 
         <div class="price">
-
-          {reviewsVal?.length === 0 ? <div> {price} per night &#9733; New</div> : reviewsVal?.length === 1 ? <div>{price} {night} &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div>{price}  per night &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
+          {reviewsVal?.length === 0 ? <div> <span>${price} per night</span> &#9733; New</div> : reviewsVal?.length === 1 ? <div><span>${price} per night </span> &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div><span>{price} per night</span> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
 
@@ -132,7 +131,7 @@ const SpotDetails = () => {
         const reviewDate = new Date(review.createdAt);
         const formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(reviewDate);
         return (
-          <div key={review?.id} clasName="Review-User-Info">
+          <div key={review?.id} className="review-user-info">
             <div className='review-name'>{review?.User?.firstName}</div>
             <div className='review-date'>{formattedDate}</div>
             <div className='review-comment'>{review?.review}</div>

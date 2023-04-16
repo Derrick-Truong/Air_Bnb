@@ -11,6 +11,7 @@ const SpotBrowser = () => {
     const currentUser = useSelector(state => state?.session?.user)
     const spots = useSelector(state => state?.spots)
     const allSpots = Object?.values(spots)
+    const space = "                          "
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch, JSON.stringify(allSpots)]);
@@ -36,12 +37,11 @@ const SpotBrowser = () => {
                                 <div className='navSpotImage1'>
                                     <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>
-                                <div className="navDetails">
-                                    <div className="details-city-rating">
-                                        <div class="city-state">{spot?.city}, {spot?.state} </div>
-                                        <div class="avg-rating"> &#9733; {spot?.avgRating ? starRating : "New"} </div>
-                                    </div>
-                                </div>
+
+                                        <div class="city-state-rating"><span>{spot?.city}, {spot?.state}</span><span>&#9733; {spot?.avgRating ? starRating : "New"}</span></div>
+                                        {/* <div class="avg-rating">&#9733;{spot?.avgRating ? starRating:"New"}</div> */}
+
+
                                 <div className="details-price">
                                     $  {newPrice} per night
                                 </div>
