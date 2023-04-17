@@ -5,6 +5,7 @@ import { getCurrentSpots } from "../../store/spots";
 import '../SpotsBrowser/SpotsBrowser.css'
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpot';
 
@@ -13,8 +14,10 @@ import './CurrentUser.css'
 
 
 const CurrentUser = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
-    const spot = useSelector(state => state.spots)
+    const user = useSelector(state => state?.session.user)
+    const spot = useSelector(state => state?.spots)
     const allSpots = Object?.values(spot)
 
     useEffect(() => {
@@ -24,7 +27,9 @@ const CurrentUser = () => {
     if (!allSpots) {
         return null
     }
-
+    if (!user) {
+        history.push("/")
+    }
     return (
         <div>
           <h1>Manage Your Spots</h1>
@@ -47,7 +52,7 @@ const CurrentUser = () => {
                                         <img src={spot1?.previewImage} height='270px' width='250px' />
                                     </div>
 
-                                        
+
                                             <div class="city-state-rating"><span>{spot1?.city}, {spot1?.state}</span><span>&#9733; {spot1?.avgRating ? starRating : "New"}</span></div>
 
 
