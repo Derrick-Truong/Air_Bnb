@@ -22,7 +22,7 @@ module.exports = {
         country: "United States of America",
         lat: 21.1243254,
         lng: -122.1234567,
-        name: "Derrick Truong",
+        name: "Fun Land",
         description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 3
       },
@@ -34,7 +34,7 @@ module.exports = {
         country: "United States of America",
         lat: 34.1326893,
         lng: -133.6739573,
-        name: "Brandon Truong",
+        name: "Candy House",
         description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 599
       },
@@ -46,7 +46,7 @@ module.exports = {
         country: "United States of America",
         lat: 34.20376935,
         lng: -155.2957394,
-        name: "Jessica Truong",
+        name: "Mid",
         description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 57
       },
@@ -58,7 +58,7 @@ module.exports = {
         country: "United States of America",
         lat: 12.20126935,
         lng: -115.2957194,
-        name: "Derrick Truong",
+        name: "Not My Cup of Tea",
         description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 80
       },
@@ -70,11 +70,11 @@ module.exports = {
         country: "United States of America",
         lat: 14.20377735,
         lng: -125.2957312,
-        name: "Brandon Truong",
+        name: "Perfect Land",
         description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 66
       }
-    ], { individualHooks: true });
+    ], {});
 
   },
 
@@ -83,7 +83,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ["Derrick Truong", "Brandon Truong", "Jessica Truong"] }
+      name: { [Op.in]: ["Candy House", "Not My Cup of Tea", "Perfect Land"] }
     }, {});
 
   }
