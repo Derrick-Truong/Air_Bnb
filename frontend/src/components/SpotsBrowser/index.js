@@ -21,14 +21,14 @@ const SpotBrowser = () => {
     }
 
     const clickSub = (spot) => {
-        history.push(`/spots/${spot.id}`)
+        history.push(`/spots/${spot?.id}`)
     }
 
     return (
         <div className="show-spots">
             {allSpots?.map(spot => {
-                const starRating = Number(spot?.avgRating).toFixed(1)
-                const newPrice = Number(spot?.price).toFixed(2)
+                const starRating = Number(spot?.avgRating)?.toFixed(1)
+                const newPrice = Number(spot?.price)?.toFixed(2)
                 return (
                     <div className="spot-container">
                     <nav key={spot?.id} className='navSpots'>
@@ -43,7 +43,7 @@ const SpotBrowser = () => {
 
 
                                 <div className="details-price">
-                                    $  {newPrice} per night
+                                    $  {newPrice} night
                                 </div>
                         </NavLink>
                     </nav>

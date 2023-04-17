@@ -68,8 +68,8 @@
     transition: 0.5s ease-in-out;
     transition-delay: 0.5s;
 }
-.current-buttons a:nth-child(2)::before,
-.current-buttons a:nth-child(2)::after{
+.current-buttons a:nth-child(3)::before,
+.current-buttons a:nth-child(3)::after{
     background: red;
 }
 .current-buttons a:hover::before,
@@ -91,7 +91,7 @@ span:first-child {
 
 }
 .navEachSpotEdit:nth-child(2)::before,
- .navEachSpotEdit:nth-child(2)::after{
+ .navEachSpotEdit:nth-child(3)::after{
     background: red;
 }
 .navEachSpotEdit:hover span:first-child{

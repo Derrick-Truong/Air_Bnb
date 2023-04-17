@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
+
  options.tableName = 'Spots';
     return queryInterface.bulkInsert(options, [
       {
@@ -22,7 +23,7 @@ module.exports = {
         lat: 21.1243254,
         lng: -122.1234567,
         name: "Derrick Truong",
-        description: "Happiness place on Earth",
+        description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 3
       },
       {
@@ -34,7 +35,7 @@ module.exports = {
         lat: 34.1326893,
         lng: -133.6739573,
         name: "Brandon Truong",
-        description: "could be better, could be worse gsdgdfgdsfgdsfgsdfgsdfgsdfgsdfgsdfgdsfgsdfg",
+        description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 599
       },
       {
@@ -46,7 +47,7 @@ module.exports = {
         lat: 34.20376935,
         lng: -155.2957394,
         name: "Jessica Truong",
-        description: "please stay here gsdfgdsfgdsfgdfgsdfgdsfgfgfggdsfgdsfg",
+        description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 57
       },
       {
@@ -58,7 +59,7 @@ module.exports = {
         lat: 12.20126935,
         lng: -115.2957194,
         name: "Derrick Truong",
-        description: "please stay here gdsfgdsfgdsfgdsfgdsfgdsfgdfgsdfgdsfgsdfgsdf",
+        description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 80
       },
       {
@@ -70,17 +71,20 @@ module.exports = {
         lat: 14.20377735,
         lng: -125.2957312,
         name: "Brandon Truong",
-        description: "please stay here gfdsgsdfgfdgsgdsfgdsfgsdfgsdfgdsfgddfgsdfgdsfg",
+        description: "Happiness place on Earth, might be the go to spot if I am being honest. Nice get away from your children",
         price: 66
       }
-    ], {});
+    ], { individualHooks: true });
+
   },
 
   async down (queryInterface, Sequelize) {
+
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
       name: { [Op.in]: ["Derrick Truong", "Brandon Truong", "Jessica Truong"] }
     }, {});
+
   }
 };

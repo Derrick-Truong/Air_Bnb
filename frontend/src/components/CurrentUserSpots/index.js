@@ -48,8 +48,8 @@ const CurrentUser = () => {
                                     </div>
                                     <div className="navDetails">
                                         <div className="details-city-rating">
-                                            <div class="city-state">{spot1.city}, {spot1.state} </div>
-                                            <div class="avg-rating"> &#9733; {spot1.avgRating ? starRating : "New"} </div>
+                                            <div class="city-state">{spot1?.city}, {spot1?.state} </div>
+                                            <div class="avg-rating"> &#9733; {spot1?.avgRating ? starRating : "New"} </div>
                                         </div>
                                     </div>
                                     <div className="details-price">
@@ -59,7 +59,7 @@ const CurrentUser = () => {
                                 </div>
                             </NavLink>
                             <div className= "current-buttons">
-                                <a href={`/spots/${spot1.id}/edit`} className='navEachSpotEdit'>
+                                <a href={`/spots/${spot1?.id}/edit`} className='navEachSpotEdit'>
                                     <span>Update</span>
                                     <span>Update</span>
                             {/* <NavLink to={`/spots/${spot1.id}/edit`} >
@@ -69,6 +69,7 @@ const CurrentUser = () => {
                                 <br></br>
                                 <a className='navEachSpotEdit'>
                                 <span><OpenModalMenuItem
+                                        type="submit"
                                         itemText="Delete"
                                         modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
                                     />

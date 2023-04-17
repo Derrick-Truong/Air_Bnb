@@ -44,7 +44,7 @@ const SpotDetails = () => {
     console.log('SpotId Check', spotId)
     dispatch(getReviewsForSpotId(spotId))
 
-  }, [dispatch, JSON.stringify(spotsVal), JSON.stringify(reviewsVal)])
+  }, [dispatch, JSON?.stringify(spotsVal), JSON?.stringify(reviewsVal)])
 
   // if (!starRating) {
   //     return null
@@ -91,7 +91,7 @@ const SpotDetails = () => {
         return (
           // {spotsVal.SpotImages[0] && <img className="big-photo" src={spotsVal.SpotImages[0].url} height="300px" width="40%" alt="big-pic" />}
 
-          image && <img className="small-photo-1" src={image.url} alt="small-pic" />
+          image && <img className="small-photo-1" src={image?.url} alt="small-pic" />
 
         )
       })}
@@ -99,7 +99,7 @@ const SpotDetails = () => {
       <div className='floating-reserve'>
 
         <div class="price">
-          {reviewsVal?.length === 0 ? <div> <span>${price} per night</span> &#9733; New</div> : reviewsVal?.length === 1 ? <div><span>${price} per night </span> &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div><span>{price} per night</span> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
+          {reviewsVal?.length === 0 ? <div> <span>${price} night</span> &#9733; New</div> : reviewsVal?.length === 1 ? <div><span>${price} per night </span> &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div><span>{price} night</span> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
 
@@ -127,7 +127,7 @@ const SpotDetails = () => {
           }
         </div>
       </div>
-      {reviewsVal?.length ? reviewsVal.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map(review => {
+      {reviewsVal?.length ? reviewsVal.sort((a, b) => new Date(b?.createdAt) - new Date(a.createdAt))?.map(review => {
         const reviewDate = new Date(review.createdAt);
         const formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(reviewDate);
         return (
