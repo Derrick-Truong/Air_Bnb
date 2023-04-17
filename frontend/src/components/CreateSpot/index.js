@@ -247,7 +247,7 @@ console.log('NewErrors', newErrors)
                 </label>
                 <input
                     type="text"
-                    placeholder="Price"
+                    placeholder="Price per night (USD)"
                     value={price}
                     onChange={e => setPrice(e.target.value)}
                 />

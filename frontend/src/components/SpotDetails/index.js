@@ -99,7 +99,7 @@ const SpotDetails = () => {
       <div className='floating-reserve'>
 
         <div class="price">
-          {reviewsVal?.length === 0 ? <div> <span>${price} night</span> &#9733; New</div> : reviewsVal?.length === 1 ? <div><span>${price} per night </span> &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div><span>{price} night</span> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
+          {reviewsVal?.length === 0 ? <div> <span>${price} night</span> &#9733; New</div> : reviewsVal?.length === 1 ? <div><span>${price} night </span> &#9733; {starRating} · {spotsVal?.numReviews} Review</div> : <div><span>{price} night</span> &#9733; {starRating} · {spotsVal?.numReviews} Reviews </div>}
           <button type="reserve-button" onClick={() => alert('This feature is coming')} className="reserve-button">Register</button></div>
 
 
