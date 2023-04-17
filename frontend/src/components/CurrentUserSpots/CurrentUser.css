@@ -276,11 +276,7 @@ border-style: solid;
     }
 }
 
-.details-city-rating {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .city-state {
     font-size: 15px;

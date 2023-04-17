@@ -44,16 +44,15 @@ const CurrentUser = () => {
                             <NavLink to={`/spots/${spot1.id}`} className='navEachSpot'>
                                 <div>
                                     <div className='navSpotImage'>
-                                        <img src={spot1.previewImage} height='270px' width='250px' />
+                                        <img src={spot1?.previewImage} height='270px' width='250px' />
                                     </div>
-                                    <div className="navDetails">
-                                        <div className="details-city-rating">
-                                            <div class="city-state">{spot1?.city}, {spot1?.state} </div>
-                                            <div class="avg-rating"> &#9733; {spot1?.avgRating ? starRating : "New"} </div>
-                                        </div>
-                                    </div>
+
+                                        
+                                            <div class="city-state-rating"><span>{spot1?.city}, {spot1?.state}</span><span>&#9733; {spot1?.avgRating ? starRating : "New"}</span></div>
+
+
                                     <div className="details-price">
-                                        $  {newPrice} per night
+                                        ${newPrice} night
                                     </div>
 
                                 </div>
