@@ -3,11 +3,13 @@ import { getOneSpot, updateSpot } from "../../store/spots";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useModal } from "../../context/Modal";
+
 import "./EditSpot.css";
 
 const EditSpot = () => {
     const { spotId } = useParams();
     const spots = useSelector((state) => state?.spots);
+    const user = useSelector((state) => state?.session?.user)
     const spotsVal = spots[spotId]
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -89,6 +91,9 @@ const EditSpot = () => {
         setPrice(spotsVal?.price)
     }, [dispatch, JSON?.stringify(spotId), spotsVal?.country, spotsVal?.address, spotsVal?.city, spotsVal?.state, spotsVal?.description, spotsVal?.price])
 
+    if (!user || user?.id !== spotsVal?.ownerId) {
+        history.push("/")
+    }
     // const spots = useSelector((state) => state?.spots);
     console.log('Spots', spotsVal)
     // const spotsVal = spots[spotId]
