@@ -47,7 +47,7 @@ button[type="submit"], button[type="click"] {
     transition: all 0.3s;
 }
 
-button[type="submit"]:hover, button[type="click"]:hover   {
+button[type="submit"]:hover:not([disabled]), button[type="click"]:hover:not([disabled])   {
     background-color: #e60000;
 }
 

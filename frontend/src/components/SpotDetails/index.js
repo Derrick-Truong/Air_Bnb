@@ -127,7 +127,7 @@ const SpotDetails = () => {
           }
         </div>
       </div>
-      {reviewsVal?.length ? reviewsVal.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(review => {
+      {reviewsVal?.length ? reviewsVal.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map(review => {
         const reviewDate = new Date(review.createdAt);
         const formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(reviewDate);
         return (

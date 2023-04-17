@@ -29,9 +29,11 @@ const CurrentUser = () => {
         <div>
           <h1>Manage Your Spots</h1>
             <span className='create-spot'>
+                <button type="click">
                 <NavLink exact to="/spots/new" className="create-spot-2">
                     Create a New Spot
                 </NavLink>
+                </button>
             </span>
         <div className="show-spots">
                 {allSpots?.map(spot1 => {

@@ -53,14 +53,14 @@ export default function DeleteReviewForm({ reviewId}) {
                     ))}
                 </ul>
             )}
-            <form onSubmit={handleDelete} className="form">
-                <button type="submit" className="submit-button" id="deleteSpot-button">
+            {/* <form onSubmit={handleDelete} className="form"> */}
+                <button  onClick={handleDelete} type="submit" className="submit-button" id="deleteSpot-button">
                     Yes, delete this review
                 </button>
-                <button type="button" className="cancel-button" onClick={handleCancel}>
+                <button type="button" onClick={handleCancel}>
                     Cancel
                 </button>
-            </form>
+            {/* </form> */}
         </div>
     );
 }

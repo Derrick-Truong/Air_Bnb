@@ -225,12 +225,12 @@ console.log('NewErrors', newErrors)
                     rows="10" cols="60"
                     // style="height: 200px"
                     type="text3"
-                    placeholder="Description"
+                    placeholder="Please write at least 30 characters"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
 
-                <div>{errors.description && <span className="error">{errors.description}</span>}</div>
+                <div>{errors?.description && <span className="error">{errors.description}</span>}</div>
                 <hr class="new1"></hr>
                 <label htmlFor="name">
                     <h1>Create a title for your spot</h1>
@@ -238,7 +238,7 @@ console.log('NewErrors', newErrors)
                         your place special</h8>
                 </label>
                 <input id="name" type="text" placeholder="Name your Spot" value={name} onChange={(e) => setName(e.target.value)} />
-                {errors.name && <span className="error">{errors.name}</span>}
+                {errors?.name && <span className="error">{errors?.name}</span>}
                 <hr class="new1"></hr>
                 <label htmlFor="Price">
                     <h3> Set a base price for your spot </h3>
@@ -254,7 +254,8 @@ console.log('NewErrors', newErrors)
                 {errors.price && <span className="error">{errors.price}</span>}
 
                 <hr class="new1"></hr>
-                {/* <h3></h3> */}
+                <h3>Liven up your spot with photos</h3>
+                <h4>Submit a link to at least one photo to publish your spot.</h4>
                 <input
                     type="text"
                     placeholder="Preview Image"

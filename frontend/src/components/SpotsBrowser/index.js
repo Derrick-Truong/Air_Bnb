@@ -31,9 +31,9 @@ const SpotBrowser = () => {
                 const newPrice = Number(spot?.price).toFixed(2)
                 return (
                     <div className="spot-container">
-                    <nav key={spot.id} className='navSpots'>
+                    <nav key={spot?.id} className='navSpots'>
                         <NavLink to={`/spots/${spot?.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
-
+                            <div className="tool-tip">{spot?.name}</div>
                                 <div className='navSpotImage1'>
                                     <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>

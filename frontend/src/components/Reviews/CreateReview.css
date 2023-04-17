@@ -107,7 +107,8 @@
     color: #ff5a5f;
 }
 
-.submit-button {
+/* .review-submit-button {
+
     background-color: rgb(227, 28, 95);
     width: 100%;
     border: none;
@@ -116,8 +117,23 @@
     color: white;
     font-weight: bold;
     margin-top: 20px;
-}
+    margin-left: 60px;
+} */
 
+.review-submit-button {
+width: 150px;
+height: 50px;
+background-color: #ff5a5f;
+color: #fff;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+font-weight: 700;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.3s;
+margin: 10px 10px 10px 120px;
+}
 #leave-review-button {
     margin-top: 20px;
 }

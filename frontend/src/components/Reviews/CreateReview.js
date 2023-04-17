@@ -94,7 +94,7 @@ export default function CreateReview({spotId}) {
                     <i className={stars >= 4 ? "fa fa-star" : "fa fa-star-o"} onClick={() => setStars(4)}></i>
                     <i className={stars >= 5 ? "fa fa-star" : "fa fa-star-o"} onClick={() => setStars(5)}></i>
                 </div>
-                <button type="submit"  className="submit-button">
+                <button className="review-submit-button">
                     Leave Review
                 </button>
             </form>

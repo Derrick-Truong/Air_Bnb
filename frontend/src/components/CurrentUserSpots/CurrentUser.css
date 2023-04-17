@@ -184,6 +184,45 @@ border-style: solid;
 }
 
 
+/* .create-spot {
+    margin-bottom: 15px;
+    margin-left: 8px;
+    text-align: center;
+    color: white;
+    background: green;
+    text-decoration: none;
+    text-transform: uppercase;
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.2s;
+    transition-property: transform, boxshadow;
+} */
+.create-spot button {
+
+    text-align: center;
+    color: white;
+    background: green;
+    text-decoration: none;
+    text-transform: uppercase;
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: transform, box-shadow;
+    transition-property: transform, boxshadow;
+}
+
+.create-spot button:hover,
+.create-spot button:focus,
+.create-spot button:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+}
 
 .city-state {
     align-self: flex-start;

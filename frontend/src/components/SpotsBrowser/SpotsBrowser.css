@@ -83,7 +83,26 @@
     color: #000000;
 }
 
+.navSpots .tool-tip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    max-width: 100%;
+    /* text-align: center; */
+    border-radius: 6px;
+    padding: 5px 0;
 
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    left: 25%;
+}
+
+.navSpots:hover .tool-tip {
+    visibility: visible;
+}
 
 .city-state-rating{
     display: flex;
