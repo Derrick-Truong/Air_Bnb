@@ -91,9 +91,9 @@ const EditSpot = () => {
         setPrice(spotsVal?.price)
     }, [dispatch, JSON?.stringify(spotId), spotsVal?.country, spotsVal?.address, spotsVal?.city, spotsVal?.state, spotsVal?.description, spotsVal?.price])
 
-    if (!user || user?.id !== spotsVal?.ownerId) {
-        history.push("/")
-    }
+    // if (!user || user?.id !== spotsVal?.ownerId) {
+    //     history.push("/")
+    // }
     // const spots = useSelector((state) => state?.spots);
     console.log('Spots', spotsVal)
     // const spotsVal = spots[spotId]
