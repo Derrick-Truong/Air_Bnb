@@ -315,7 +315,7 @@ h3 {
 .spot-images {
     --gap: 16px;
     --num-cols: 6;
-    --row-height: 175px;
+    /* --row-height: 175px; */
     box-sizing: border-box;
 padding: var(--gap);
 display:grid;
@@ -402,12 +402,6 @@ gap: var(--gap);
 }
 
 
-@media screen and (max-width: 1024px) {
-    .spot-images {
-    --num-cols: 2;
-    --row-height: 100px;
-    }
-}
 /* .small-photo-2 {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
