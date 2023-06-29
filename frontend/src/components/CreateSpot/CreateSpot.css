@@ -46,7 +46,15 @@ button[type="submit"], button[type="click"] {
     cursor: pointer;
     transition: all 0.3s;
 }
+.create-spot-title{
+    font-size:40px;
+    font-weight: 700;
+}
 
+.create-spot-form label{
+    font-weight: 600;
+    font-size: 18px;
+}
 /* button[type="submit"]:hover:not([disabled]), button[type="click"]:hover:not([disabled])   {
     background-color: #e60000;
 } */
@@ -59,6 +67,7 @@ button:focus {
 } */
 .error {
     color: red;
+    font-weight: 600;
 }
 input::placeholder {
     color: #b4b4b4;

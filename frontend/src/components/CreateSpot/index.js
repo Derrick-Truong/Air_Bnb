@@ -162,17 +162,15 @@ console.log('NewErrors', newErrors)
 
     return (
         <section className="create-spot-div">
-            <form onSubmit = {handleSub}>
+            <form className="create-spot-form" onSubmit = {handleSub}>
 
-                <h1 className="title">Create a Spot!</h1>
+                <div className="create-spot-title">Create a Spot!</div>
 
-                <h3><b>Where's your place located? </b> </h3>
-                    <br></br>
+                <h3>Where's your place located?</h3>
                     Guests will only get your exact address once they booked a
-                    reservation <br></br>
-                <h4></h4>
+                    reservation
                 <label htmlFor="Country">
-                    <b>Country <br></br></b>
+                    <b>Country</b>
                 </label>
                 <input
                     type="text"
@@ -181,7 +179,6 @@ console.log('NewErrors', newErrors)
                     onChange={e => setCountry(e.target.value)}
                 />
                 {errors?.country && <span className="error">{errors?.country}</span>}
-                <h4></h4>
                 <label htmlFor="address">
                     {/* <b><br></br>Address</b> */}
                     <div> <div>Address</div>  {errors.address && <span className="error">{errors.address}</span>} </div>
@@ -193,7 +190,6 @@ console.log('NewErrors', newErrors)
                     onChange= {e => setAddress(e.target.value)}
                     />
                 {/* {errors.address && <span className="error">{errors.address}</span>} */}
-                <h4></h4>
                     <label htmlFor="City">
                     <div><div>City</div>{errors.city && <span className="error">{errors.city}</span>} </div>
                     </label>
@@ -203,7 +199,6 @@ console.log('NewErrors', newErrors)
                         value={city}
                     onChange={e => setCity(e.target.value)}
                     />
-                                    <h4></h4>
                     <label htmlFor="State">
                     <div><div>State</div>{errors?.state && <span className="error">{errors?.state}</span>}</div>
                     </label>
@@ -213,14 +208,12 @@ console.log('NewErrors', newErrors)
                         value={state}
                     onChange={e => setState(e.target.value)}
                         />
-                <hr class="new1"></hr>
                 <label htmlFor="Description">
                     <h3> Describe your place to your guests </h3>
 
                     <h8>Mention the best features of your space, any special amentities like
                         fast wif or parking, and what you love about the neighborhood.</h8>
                 </label>
-
                 <textarea
                     rows="10" cols="60"
                     // style="height: 200px"
@@ -231,7 +224,6 @@ console.log('NewErrors', newErrors)
                 />
 
                 <div>{errors?.description && <span className="error">{errors.description}</span>}</div>
-                <hr class="new1"></hr>
                 <label htmlFor="name">
                     <h1>Create a title for your spot</h1>
                     <h8>Catch guests' attention with a spot title that highlights what makes
@@ -239,7 +231,6 @@ console.log('NewErrors', newErrors)
                 </label>
                 <input id="name" type="text" placeholder="Name your Spot" value={name} onChange={(e) => setName(e.target.value)} />
                 {errors?.name && <span className="error">{errors?.name}</span>}
-                <hr class="new1"></hr>
                 <label htmlFor="Price">
                     <h3> Set a base price for your spot </h3>
                     <h8>Competitive pricing can help your listing stand out and rank higher
@@ -253,7 +244,6 @@ console.log('NewErrors', newErrors)
                 />
                 {errors.price && <span className="error">{errors.price}</span>}
 
-                <hr class="new1"></hr>
                 <h3>Liven up your spot with photos</h3>
                 <h4>Submit a link to at least one photo to publish your spot.</h4>
                 <input
@@ -264,7 +254,6 @@ console.log('NewErrors', newErrors)
                 />
                 {errors.previewImage && <span className="error">{errors.previewImage}</span>}
 
-                <h4></h4>
                 <input
                     type="text"
                     placeholder="Image Url"
@@ -272,14 +261,12 @@ console.log('NewErrors', newErrors)
                     onChange={e => setImageUrl(e.target.value)}
                 />
                 {errors.imageUrl && <span className="error">{errors.imageUrl}</span>}
-                <h4></h4>
                 <input
                     type="text"
                     placeholder="Image-Url2"
                     value={imageUrl2}
                     onChange={e => setImageUrl2(e.target.value)}
                 />
-                <h4></h4>
                 {errors.imageUrl2 && <span className="error">{errors.imageUrl2}</span>}
                 <input
                     type="text"
@@ -287,7 +274,6 @@ console.log('NewErrors', newErrors)
                     value={imageUrl3}
                     onChange={e => setImageUrl3(e.target.value)}
                 />
-                <h4></h4>
                 {errors.imageUrl3 && <span className="error">{errors.imageUrl3}</span>}
                 <input
                     type="text"
