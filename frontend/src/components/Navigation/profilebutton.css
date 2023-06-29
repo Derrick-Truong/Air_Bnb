@@ -39,7 +39,7 @@
 .profile-dropdown .user-firstname, .profile-dropdown .sign-out-button-list{
     display: flex;
     justify-content: center;
-  
+
 }
 /* .profile-dropdown::before,
 .profile-dropdown::after{
@@ -90,7 +90,7 @@
     align-items: center;
     width: 1000px;
     height: 30px;
-    background-color: rgb(212, 212, 228);
+    background-color: rgb(231, 50, 50);
     color: white;
     cursor: pointer;
     border-radius: 15px;

@@ -311,10 +311,9 @@ list-style: none;
 }
 .create-spot {
     list-style: none;
-
-    border-radius: 15px;
+    border: 1px solid #dedddd;
     text-align: center;
-    height: 20px;
+    height: 15px;
     justify-content: center;
     cursor: pointer;
     width: 150px;
