@@ -1,0 +1,384 @@
+.show-spots {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    border: 0px solid #ddd;
+    padding: 50px;
+    padding-top: 30px;
+    padding-left: 100px;
+    justify-content: space-evenly;
+
+}
+
+/* .navEachSpotEdit {
+    position: relative;
+    border: none;
+    transition: .4s ease-in;
+    z-index: 1;
+}
+.navEachSpotEdit::before,
+.navEachSpotEdit::after{
+    position:absolute;
+    content:"";
+    z-index: -1;
+} */
+.current-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    flex-direction: row;
+    position: relative;
+
+}
+
+.current-buttons a {
+    list-style-type: none;
+    position: relative;
+    display: flex;
+    padding: 10px 15px;
+    background: black;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 15px 10px;
+    width: 60px;
+    height: 24px;
+    overflow: hidden;
+    border-radius: 60px;
+}
+
+.current-buttons a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: green;
+    transition: 0.5s ease-in-out;
+    transition-delay: 0.5s;
+}
+
+.current-buttons a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: green;
+    transition: 0.5s ease-in-out;
+    transition-delay: 0.5s;
+}
+
+.current-buttons a:nth-child(3)::before,
+.current-buttons a:nth-child(3)::after {
+    background: red;
+}
+
+.current-buttons a:hover::before,
+.current-buttons a:hover::after {
+    width: 50%;
+    transition-delay: 0s;
+}
+
+.navEachSpotEdit span {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-size: 12px;
+    transition: 0.5s;
+
+}
+
+span:first-child {
+    transition-delay: 0.75s;
+
+}
+
+.navEachSpotEdit:nth-child(2)::before,
+.navEachSpotEdit:nth-child(3)::after {
+    background: red;
+}
+
+.navEachSpotEdit:hover span:first-child {
+    transform: scale(0);
+    transition-delay: 0s;
+
+}
+
+.navEachSpotEdit span:nth-child(2) {
+    transition-delay: 0s;
+    opacity: 0;
+    color: white;
+    transform: scale(3);
+
+    /* transform: scale(3);
+    opacity: 0;
+    color: white;
+    transition-delay: 0s; */
+}
+
+.navEachSpotEdit:hover span:nth-child(2) {
+    transform: scale(1);
+    transition-delay: 0s;
+    transition-delay: 0.5s;
+    opacity: 1;
+    z-index: 10;
+
+}
+
+.navEachSpotEdit {
+    position: absolute;
+}
+
+/* .navEachSpotEdit:hover {
+    color: #f8f5f5;
+    background: #2196f3;
+    /* box-shadow: 00 5px #ff96ad, 00 25px #ff96ad, 00 50px #ff96ad, 00 200px #ff96ad; */
+/* letter-spacing: 0.25em; */
+/* Change background color on hover */
+/* box-shadow: 0 0 10px #2196f3, 0 0 10px #2196f3, 0 0 10px #2196f3 */
+
+/* } */
+/* .navEachSpot {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin: 10px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+} */
+/* .navEachSpotEdit:hover {
+    border: 2px solid black;
+}
+
+navEachSpotEdit::before {
+    content: "";
+    position: absolute;
+}
+
+navEachSpotEdit::after{
+    content:"";
+    position: absolute;
+    inset: 8px 0;
+    border-top: 2px solid black;
+    border-bottom: 4px solid black;
+} */
+.navSpots {
+    border-style: solid;
+
+}
+
+.navSpotImage img {
+    height: 270px;
+    width: 250px;
+    overflow: hidden;
+    /* border-radius: 20px; */
+}
+
+/* .navSpotImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+} */
+
+.navDetails {
+    display: flex;
+    justify-content: space-between;
+    height: 50%;
+    padding: 10px 0 10px 0;
+    font-size: 17px;
+    text-align: center;
+    color: #000000;
+}
+
+
+/* .create-spot {
+    margin-bottom: 15px;
+    margin-left: 8px;
+    text-align: center;
+    color: white;
+    background: green;
+    text-decoration: none;
+    text-transform: uppercase;
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.2s;
+    transition-property: transform, boxshadow;
+} */
+.create-spot button {
+
+    text-align: center;
+    color: white;
+    background: green;
+    text-decoration: none;
+    text-transform: uppercase;
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: transform, box-shadow;
+    transition-property: transform, boxshadow;
+}
+
+.create-spot button:hover,
+.create-spot button:focus,
+.create-spot button:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+}
+
+.city-state {
+    align-self: flex-start;
+}
+
+.price {
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.avg-rating {
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: right;
+
+}
+
+.create-spot {
+    list-style: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    margin-right: 27px;
+    border-radius: 15px;
+    text-align: center;
+    height: 30px;
+    justify-content: center;
+    cursor: pointer;
+    width: 150px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create-spot:hover {
+    background-color: rgba(225, 225, 225, 0.25);
+    /* letter-spacing: 0.25em ; */
+}
+
+@media screen and (max-width: 768px) {
+    .show-spots {
+        padding: 0;
+        border: none;
+    }
+
+    .navEachSpot {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .navSpotImage {
+        height: 200px;
+    }
+}
+
+
+
+.city-state {
+    font-size: 15px;
+}
+
+.avg-rating {
+    font-size: 15px;
+}
+
+.details-price {
+    font-size: 20px;
+}
+
+.current-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* .current-delete-button{
+    padding: 10px;
+} */
+/* .current-delete-button{
+ list-style-type: none;
+} */
+
+/* .show-spots-current {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.navCurrentImage {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin: 10px;
+    text-decoration: none;
+    color: #222;
+}
+
+.navSpotImage {
+    height: 270px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.navSpotImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.navCurrentDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+}
+
+.navCurrentDetails div {
+    margin-bottom: 5px;
+}
+
+.navCurrentDetails div:first-child {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .show-spots-current {
+        padding: 0;
+        border: none;
+    }
+
+    .navCurrentImage {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .navSpotImage {
+        height: 200px;
+    }
+} */

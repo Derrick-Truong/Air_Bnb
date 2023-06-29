@@ -85,12 +85,15 @@ function ProfileButton({ user }) {
                 {user ? (
                     <>
                         <div className="profile-list">
-                            <li>Hello, {user?.username}</li>
-                            <li>{user?.email}</li>
+                            <li className="user-firstname">Hello, {user?.firstName}</li>
+                            {/* <li>{user?.email}</li> */}
                             <hr class="new1"></hr>
                             <li><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
-                            <li> <hr class="new1"></hr>
-                                <button class="sign-out-button" onClick={logout}>Log Out</button>
+                            <li><NavLink exact to="/bookings/current">Manage Your Bookings</NavLink></li>
+                            <li><NavLink exact to="/reviews/current">Manage Your Reviews</NavLink></li>
+                            <hr class="new1"></hr>
+                            <li className="sign-out-button-list">
+                                <button className="sign-out-button" onClick={logout}>Log Out</button>
 
                             </li>
                         </div>

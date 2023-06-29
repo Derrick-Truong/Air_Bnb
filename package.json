@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/Derrick-Truong/Air_Bnb#readme",
   "dependencies": {
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "react-calendar": "^4.3.0",
+    "rsuite": "^5.35.1"
   }
 }

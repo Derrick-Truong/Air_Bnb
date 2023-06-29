@@ -13,7 +13,7 @@ import './CurrentUser.css'
 
 
 
-const CurrentUser = () => {
+const CurrentUserSpots = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state?.session.user)
@@ -46,7 +46,7 @@ const CurrentUser = () => {
                     const newPrice = Number(spot1?.price).toFixed(2)
                     return (
                         <nav key={spot1.id} className='navSpots'>
-                            <NavLink to={`/spots/${spot1.id}`} className='navEachSpot'>
+                            <NavLink to={`/spots/${spot1?.id}`} className='navEachSpot'>
                                 <div>
                                     <div className='navSpotImage'>
                                         <img src={spot1?.previewImage} height='270px' width='250px' />
@@ -105,6 +105,6 @@ const CurrentUser = () => {
 
 }
 
-export default CurrentUser
+export default CurrentUserSpots
 
 

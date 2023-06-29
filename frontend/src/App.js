@@ -7,9 +7,13 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails";
-import CurrentUser from "./components/CurrentUserSpots";
+import CurrentUserSpots from "./components/CurrentUserSpots/CurrentUserSpots";
 import EditSpot from "./components/EditSpot";
 import CreateSpot from "./components/CreateSpot";
+import Dates from "./components/SpotDetails/Dates";
+import CurrentUserBookings from "./components/CurrentUserSpots/CurrentUserBookings";
+
+
 
 import CreateSpotPlease from "./components/CreateSpot";
 
@@ -35,13 +39,19 @@ function App() {
             {/* <CreateSpotPlease/> */}
           {/* </Route> */}
           <Route exact path="/spots/current">
-            <CurrentUser/>
+            <CurrentUserSpots/>
+          </Route>
+          <Route exact path="/bookings/current">
+          <CurrentUserBookings/>
+          </Route>
+          <Route exact path='/spots/:spotId/edit'>
+            <EditSpot/>
           </Route>
           <Route exact path = "/spots/:spotId">
             <SpotDetails/>
           </Route>
-          <Route exact path = "/spots/:spotId/edit">
-            <EditSpot/>
+          <Route exact path="/spots/:spotId/dates">
+            <Dates/>
           </Route>
         </Switch>
       )}

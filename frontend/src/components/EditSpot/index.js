@@ -91,11 +91,9 @@ const EditSpot = () => {
         setPrice(spotsVal?.price)
     }, [dispatch, JSON?.stringify(spotId), spotsVal?.country, spotsVal?.address, spotsVal?.city, spotsVal?.state, spotsVal?.description, spotsVal?.price])
 
-    // if (!user || user?.id !== spotsVal?.ownerId) {
-    //     history.push("/")
-    // }
+
     // const spots = useSelector((state) => state?.spots);
-    console.log('Spots', spotsVal)
+
     // const spotsVal = spots[spotId]
     // const [address, setAddress] = useState(spotsVal?.address);
     // const [city, setCity] = useState(spotsVal?.city);
@@ -205,7 +203,7 @@ const EditSpot = () => {
         //     return
         // }
         // setErrors(newErrors)
-        if (errors?.length) {
+        if (errors?.length > 0) {
             return setErrors()
         }
         const payLoad = {
@@ -228,10 +226,10 @@ const EditSpot = () => {
 
 
 
-        const updated = await dispatch(updateSpot(payLoad, spotId));
-        if (updated) {
+       dispatch(updateSpot(payLoad, spotId));
+
             history.push(`/spots/${spotId}`);
-        }
+
 
 
     }

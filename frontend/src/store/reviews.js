@@ -5,6 +5,7 @@ const GET_ALL_REVIEWS = 'reviews/GET_REVIEWS'
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW'
 const CURRENT_REVIEWS = 'reviews/CURRENT_REVIEWS'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
+const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 
 export const deleteOneReview = reviewId => ({
     type: DELETE_REVIEW,
@@ -19,6 +20,11 @@ export const createReview = (review) => ({
    type: CREATE_REVIEW,
     review
 
+})
+
+export const updateOneReview = (review) => ({
+    type: UPDATE_REVIEW,
+    review
 })
 
 export const allReviewsCurrentUser = (spotId) => ({
@@ -43,6 +49,22 @@ export const createNewReview = (spotId, review) => async dispatch => {
         }
     }
 
+export const updateReview = (reviewId, review) => async dispatch => {
+    console.log('CreateReview',)
+    let res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: "PUT",
+        body: JSON.stringify(review),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (res.ok) {
+        const newRev = await res.json();
+        dispatch(updateOneReview(newRev))
+
+    }
+}
 // export const createNewReview = (spotId, reviewNew, currentUser) => async dispatch => {
 //     try {
 //         const newReview = {
@@ -113,7 +135,7 @@ export const getReviewsForCurrent = () => async dispatch => {
     const res = await csrfFetch('/api/reviews/current')
     if (res.ok) {
         const currentInfo = await res.json();
-        dispatch(allReviewsCurrentUser(currentInfo))
+        dispatch(allReviews(currentInfo))
     }
 }
 
@@ -152,16 +174,16 @@ const reviewReducer = (prevState = initialState, action) => {
     switch (action.type) {
         case GET_ALL_REVIEWS:
             newState = {}
-            // console.log('Previous State', prevState)
-            // console.log(action)
             action.reviews?.Reviews?.forEach(review => {
                 newState[review.id] = review
             })
             console.log('New State', newState)
             return newState;
         case CREATE_REVIEW:
-            // newState= {}
-            // let review = prevState.review
+            newState = { ...prevState }
+            newState[action.review.id] = action.review;
+            return newState;
+        case UPDATE_REVIEW:
             newState = { ...prevState }
             newState[action.review.id] = action.review;
             return newState;

@@ -1,0 +1,9 @@
+.dates{
+    text-align: center;
+    padding-top: 30px;
+}
+.error-messages {
+    color: red;
+    margin-bottom: 10px;
+    list-style: none;
+}

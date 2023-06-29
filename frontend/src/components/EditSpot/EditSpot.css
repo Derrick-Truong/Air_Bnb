@@ -30,10 +30,10 @@ input {
 
 
 }
-button[disabled]:hover:not([disabled]) {
+/* button[disabled]:hover:not([disabled]) {
     background: #ff5a5f;
 
-}
+} */
 button[type="submit"], button[type="click"] {
     width: 150px;
     /* width: 100%; */
@@ -50,16 +50,16 @@ button[type="submit"], button[type="click"] {
     margin: 10px;
 }
 
-button[type="submit"]:hover:not([disabled]), button[type="click"]:hover:not([disabled]) {
+/* button[type="submit"]:hover:not([disabled]), button[type="click"]:hover:not([disabled]) {
     background-color: #e60000;
-}
+} */
 
-input:focus,
-button:focus {
+/* input:focus,
+button:focus{
     outline: none;
     border-color: #ff5a5f;
     box-shadow: 0 0 5px #ff5a5f;
-}
+} */
 
 input::placeholder {
     color: #b4b4b4;

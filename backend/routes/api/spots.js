@@ -342,11 +342,12 @@ router.put('/:id', requireAuth, validateSpot, async(req, res, next) => {
 
 router.post('/:id/bookings', requireAuth, async (req, res, next) => {
     const {startDate, endDate} = req.body
-    let spotBook = await Spot.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
+
+    const utcStartDate = new Date(startDate);
+    const utcEndDate = new Date(endDate);
+
+    const today = new Date();
+    let spotBook = await Spot.findByPk(req.params.id)
     if (!spotBook) {
         res.status(404);
         return res.json({
@@ -361,16 +362,29 @@ router.post('/:id/bookings', requireAuth, async (req, res, next) => {
          "statusCode": 403
         })
     }
+
+        if (utcStartDate <= today || utcEndDate <= today) {
+            res.status(400);
+            return res.json({
+                message: 'Validation error',
+                statusCode: 400,
+                errors: ['End date and start date must be after today'],
+            });
+        }
+
+
     if (startDate >= endDate) {
         res.status(400);
         return res.json({
             "message": "Validation error",
             "statusCode": 400,
             "errors": [
-                "endDate cannot be on or before startDate"
+                "End date cannot be on or before start date"
             ]
         })
     }
+
+
     // let image;
     // let err = new Error('Sorry, this spot is already booked for the specified dates');
     // err.status = 403;
@@ -437,13 +451,8 @@ let findPk = await Spot.findByPk(req.params.id);
 
     if (findBook[0].toJSON().userId !== req.user.id) {
       findBook.forEach(book => {
-        book.toJSON();
-      const message = {
-        'spotId': book.spotId,
-        'startDate': book.startDate,
-        'endDate': book.endDate
-      }
-      bookList.push(message)
+        bookList.push(book.toJSON())
+
       })
     return res.json({
         "Bookings": bookList

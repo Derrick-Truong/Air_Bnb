@@ -33,7 +33,13 @@
     padding: 20px;
     z-index: 2;
     list-style-type: none;
-    text-align: center;
+    /* text-align: center; */
+}
+
+.profile-dropdown .user-firstname, .profile-dropdown .sign-out-button-list{
+    display: flex;
+    justify-content: center;
+  
 }
 /* .profile-dropdown::before,
 .profile-dropdown::after{
@@ -45,6 +51,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+
 }
 
 .profile-dropdown li {

@@ -24,22 +24,23 @@ router.get('/current', requireAuth, async(req, res, next) => {
 
     })
     if (bookingAns) {}
-    let bookArray = [];
+    let Bookings = [];
     bookingAns.forEach(book => {
-        bookArray.push(book.toJSON())
+        Bookings.push(book.toJSON())
     })
 
-    bookArray.forEach(book => {
+    Bookings.forEach(book => {
         book.Spot.SpotImages.forEach(image => {
             if (image.preview === true) {
         book.Spot.previewImage = image.url
             }
         })
-        delete book.Spot.SpotImages
+        book.previewImage = book.Spot.previewImage
+        delete book.Spot
     })
 
  res.json({
-    "Bookings":bookArray
+   Bookings
  })
 });
 
