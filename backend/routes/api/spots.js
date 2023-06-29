@@ -427,7 +427,7 @@ router.post('/:id/bookings', requireAuth, async (req, res, next) => {
 });
 
 //Get a Booking based off Spot Id
-router.get('/:id/bookings', requireAuth, async(req, res, next) => {
+router.get('/:id/bookings', async(req, res, next) => {
 let findPk = await Spot.findByPk(req.params.id);
 
     if (!findPk) {
