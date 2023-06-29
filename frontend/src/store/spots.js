@@ -8,12 +8,12 @@ const CURRENT_SPOTS_LOAD = 'spots/CURRENT_SPOTS_LOAD'
 const CREATE_SPOT = 'spots/CREATE_SPOT_PLEASE'
 const ONE_SPOT_LOAD = 'spots/ONE_SPOT_LOAD'
 
-export const createOneSpot = spot => ({
+const createOneSpot = spot => ({
     type: CREATE_SPOT,
     spot
 })
 
-export const remove = spotId => ({
+const remove = spotId => ({
     type: DELETE_SPOT,
     spotId
 })
@@ -23,12 +23,12 @@ export const spotsLoad = spots => ({
 
 });
 
-export const addToSpot = spot => ({
+const addToSpot = spot => ({
     type: ADD_TO_SPOT,
     spot
 })
 
-export const oneSpotLoad = spot => ({
+const oneSpotLoad = spot => ({
     type: ONE_SPOT_LOAD,
     spot
 });

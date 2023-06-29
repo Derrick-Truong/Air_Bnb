@@ -28,8 +28,8 @@ dispatch(getReviewsForCurrent())
                     const avgRating = review?.stars
                     const formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(reviewDate);
                     return (
-                        <div key={review?.id}>
-                        <nav className='navSpots'>
+                        <div>
+                            <nav key={review?.id}  className='navSpots'>
                             <NavLink to={`/spots/${review?.Spot?.id}`} className='reviews-navEachSpot'>
                                 <div className="reviews-navSpotImage-container">
                                     <div className='navSpotImage-2'>
@@ -64,7 +64,7 @@ dispatch(getReviewsForCurrent())
                                     <p>{review?.review}</p>
                                 </div>
                             </div>
-                        </nav>
+                            </nav>
                             <div className="update-delete-container">
                                 <button className="update-bookings-button"><OpenModalMenuItem
                                     type="submit"

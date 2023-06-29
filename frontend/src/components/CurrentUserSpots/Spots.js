@@ -49,6 +49,7 @@ const CurrentUserSpots = () => {
                     const starRating = Number(spot1?.avgRating).toFixed(1)
                     const newPrice = Number(spot1?.price).toFixed(2)
                     return (
+                        <div>
                         <nav key={spot1.id} className='navSpots'>
                             <NavLink to={`/spots/${spot1?.id}`} className='navEachSpot'>
                                 <div>
@@ -67,18 +68,18 @@ const CurrentUserSpots = () => {
 
                                 </div>
                             </NavLink>
-
+                            </nav>
                             <div className="update-delete-container">
                                 <a href={`/spots/${spot1?.id}/edit`} className="update-bookings-button">Update</a>
                                 <button className="delete-bookings-button"><OpenModalMenuItem
                                     type="submit"
                                     itemText="Delete"
-                                    modalComponent={<DeleteSpotModal bookingId={spot1?.id} />}
+                                    modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
                                 />
                                 </button>
                             </div>
-                        </nav>
 
+                        </div>
                     )
                 })}
 

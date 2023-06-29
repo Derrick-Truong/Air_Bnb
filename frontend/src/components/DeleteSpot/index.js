@@ -14,7 +14,7 @@ export default function DeleteSpotModal({spotId}) {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        // setErrors([]);
+        setErrors([]);
         dispatch(removeSpot(spotId))
         .then(closeModal)
             .catch(
@@ -23,12 +23,7 @@ export default function DeleteSpotModal({spotId}) {
                     if (data && data.errors) setErrors(data.errors);
                 }
             );
-        try {
-            await dispatch(removeSpot(spotId));
-            closeModal();
-        } catch (err) {
-            setErrors(err.response?.data?.errors || ['An unknown error occurred']);
-        }
+
     };
 
     const handleCancel = (e) => {
@@ -40,7 +35,7 @@ export default function DeleteSpotModal({spotId}) {
        <div className="form-div-delete">
             <h1 className="title">Are you sure you want to delete this spot?</h1>
             {errors.length > 0 && (
-                <ul className="errors">
+                <ul className="error-messages">
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}

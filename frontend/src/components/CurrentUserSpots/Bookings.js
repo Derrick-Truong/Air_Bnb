@@ -29,6 +29,7 @@ const CurrentUserBookings = () => {
                     const endDate = new Date(booking?.endDate);
                     const formattedEndDate = endDate?.toISOString()?.split('T')[0];
                     return (
+                        <div>
                         <nav key={booking?.id} className='navSpots'>
                             <NavLink to={`/spots/${booking?.Spot?.id}`} className='navEachSpot'>
                                 <div>
@@ -45,7 +46,7 @@ const CurrentUserBookings = () => {
 
                                 </div>
                             </NavLink>
-
+                            </nav>
                             <div className="update-delete-container">
                                 <button className="update-bookings-button"><OpenModalMenuItem
                                     type="submit"
@@ -60,8 +61,8 @@ const CurrentUserBookings = () => {
                                 />
                                 </button>
                             </div>
-                        </nav>
 
+                        </div>
                     )
                 })}
             </div>
