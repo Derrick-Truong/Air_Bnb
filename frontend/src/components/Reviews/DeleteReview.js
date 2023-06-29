@@ -25,7 +25,7 @@ import { allSpotReviews, allReviewsCurrentUser } from "../../store/reviews";
 //         closeModal();
 //     }
 
-export default function DeleteReviewForm({ reviewId}) {
+export default function DeleteReview ({ reviewId}) {
     console.log('Delete ReviewId', reviewId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();

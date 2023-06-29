@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getReviewsForCurrent } from '../../store/reviews';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { deleteReview } from '../../store/reviews';
+import DeleteReview from '../Reviews/DeleteReview';
 import UpdateReview from '../Reviews/UpdateReview';
 
 import './Reviews.css'
@@ -75,7 +75,7 @@ dispatch(getReviewsForCurrent())
                                 <button className="delete-bookings-button"><OpenModalMenuItem
                                     type="submit"
                                     itemText="Delete"
-                                    modalComponent={<deleteReview reviewId={review.id} />}
+                                    modalComponent={<DeleteReview reviewId={review.id} />}
                                 />
                                 </button>
                             </div>
