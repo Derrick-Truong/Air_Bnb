@@ -36,7 +36,7 @@ const CurrentUserSpots = () => {
             <div>
                     {allSpots?.length > 0 ? <h1>Manage Your Spots</h1> : <h1>No Spots Owned!</h1>}
                 </div>
-            <div className='create-spot'>
+            <div className="create-spot-container">
                 <button type="click">
                 <NavLink exact to="/spots/new" className="create-spot-1">
                     Create a New Spot
