@@ -115,7 +115,6 @@
 width: 150px;
 height: 50px;
 background-color:#FF385C;
-background-color: #ffe83d;
 color: white;
 border: none;
 border-radius: 5px;
@@ -143,9 +142,9 @@ margin: 10px 10px 10px 120px;
 .star-icon {
     top: 10px;
     right: 10px;
-    color: rgb(255, 221, 0);
-    color:rgb(252, 229, 98);
-    font-size: 24px;
+    /* color: rgb(255, 221, 0); */
+    color:#ffe83d;
+    font-size: 35px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }

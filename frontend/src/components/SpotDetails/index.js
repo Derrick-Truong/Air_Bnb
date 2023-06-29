@@ -105,7 +105,7 @@ const SpotDetails = () => {
       <div className='floating-reserve'>
 
         <div class="price">
-          {reviewsVal?.length === 0 ? <div> <span>${price} night</span> <span><span className="star">&#9733;</span> New</span></div> : reviewsVal?.length === 1 ? <div><span>${price} night </span><span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Review</span></div> : <div><span>{price} night</span> <span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Reviews </span></div>}
+          {reviewsVal?.length === 0 ? <div> <span>${price} night</span><span><span className="star">&#9733;</span><span>New</span></span></div> : reviewsVal?.length === 1 ? <div><span>${price} night </span><span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Review</span></div> : <div><span>{price} night</span> <span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Reviews </span></div>}
 
 
           {(currentUser?.id !== spotsVal?.ownerId) && !foundBookingByCurrUser && currentUser ?

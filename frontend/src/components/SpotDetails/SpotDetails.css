@@ -232,21 +232,7 @@ width: 250px;
 h3 {
     font-size: 25px;
 }
-/* .post-review {
-    width: fit-content;
-    margin: 150px auto;
-} */
-/* .post-review {
-    /* position: relative; */
-    /* transform: translate(-50%, -50%) */
-/* } */
-/* .post-review{
-    position: absolute;
-    top: 70%;
-    right: 84%;
-    transform: translate(-50%, -50%);
 
-} */
 .restaurant-reviews-title {
     /* padding-bottom: 20px; */
     font-size: 30px;
@@ -333,60 +319,7 @@ h3 {
     /* margin: 5px; */
     transition: color 0.4s linear;
 }
-/*
-.button:hover { */
-    /* background:transparent;
-    border: 2px solid #eb3c59;
-    color: #eb3c59;
-    padding-top: 5px; */
-    /* color: white; */
-/* } */
 
-/* .button::before {
-    /* content:""; */
-    /* width: 100%;
-    height: 100%;
-    border: 2px solid #eb3c59;
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    transition: top 0.5s, left 0.5s; */
-    /* content:"";
-    position: relative;
-    right: 0;
-    top:0;
-    width: 100%;
-    height: 100%;
-    background:#000;
-    z-index: -1;
-    transition: transform 0.5s;
-    transform-origin: 0 0;
-    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7) */
-
-/* } */
-
-/* .button::before{
-    transform: scaleX(0);
-}
-
-.button:hover::before{
-    transform:scaleX(1)
-} */
-
-/* .post-review button:hover::after{
-
-    top: 5px;
-    left: 5px;
-    box-sizing: content-box;
-
-} */
-
-/* .image-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-} */
 
 .review-delete-button {
     background-color: gray;

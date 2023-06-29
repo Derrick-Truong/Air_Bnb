@@ -77,9 +77,10 @@ export default function CreateReview({spotId}) {
             {error && <p className="error">{error}</p>}
             <form onSubmit={onSubmit}  className="form">
                 <div className="entries">
-                    <input
+                    <textarea
                         id="review"
                         type="text"
+                        rows="10" cols="50"
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
                         placeholder="Leave your review here..."
