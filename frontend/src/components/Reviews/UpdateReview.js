@@ -1,22 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-// import { useModal } from "your-modal-library";
-import { createNewReview } from "../../store/reviews";
-import { getOneSpot } from "../../store/spots";
 import { useSelector } from "react-redux";
-import { getReviewsForSpotId } from "../../store/reviews";
-import { useParams } from "react-router-dom";
-import './CreateReview.css'
-
-export default function CreateReview({spotId}) {
-
-    console.log('Review SpotId', spotId)
+import { updateReview } from "../../store/reviews";
+import { getReviewsForCurrent } from "../../store/reviews";
+const UpdateReview = ({review}) => {
+    const reviewId = review?.id
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const currentUser = useSelector(state => state.session.user)
-    const [review, setReview] = useState("");
-    const [stars, setStars] = useState("");
+    const [updatedReview, setReview] = useState(review?.review);
+    const [stars, setStars] = useState(review?.stars);
     const [error, setError] = useState([]);
 
     const onSubmit = async (e) => {
@@ -26,7 +20,7 @@ export default function CreateReview({spotId}) {
         //     setError("Please enter a review.");
         //     return;
         // }
-        if (!review || review.length < 10) {
+        if (!updatedReview || updatedReview.length < 10) {
             setError("Please enter a review that is at least 10 characters long.");
             return;
         }
@@ -37,15 +31,11 @@ export default function CreateReview({spotId}) {
         }
 
         const newReview = {
-            review: review,
+            review: updatedReview,
             stars: stars
         };
-        await dispatch(createNewReview(spotId, newReview));
-        await dispatch(getReviewsForSpotId(spotId))
-            closeModal();
-
-
-
+        await dispatch(updateReview(reviewId, newReview)).then(closeModal);
+        await dispatch(getReviewsForCurrent())
     };
 
 
@@ -53,13 +43,13 @@ export default function CreateReview({spotId}) {
         <div className="form-div">
             <h1 className="title">How was your stay?</h1>
             {error && <p className="error">{error}</p>}
-            <form onSubmit={onSubmit}  className="form">
+            <form onSubmit={onSubmit} className="form">
                 <div className="entries">
                     <textarea
                         id="review"
                         type="text"
                         rows="10" cols="50"
-                        value={review}
+                        value={updatedReview}
                         onChange={(e) => setReview(e.target.value)}
                         placeholder="Leave your review here..."
                         required
@@ -74,11 +64,13 @@ export default function CreateReview({spotId}) {
                     <i className={stars >= 5 ? "fa fa-star" : "fa fa-star-o"} onClick={() => setStars(5)}></i>
                 </div>
                 <div className="review-submit-button-container">
-                <button className="review-submit-button">
-                    Leave Review
-                </button>
+                    <button className="review-submit-button">
+                        Leave Review
+                    </button>
                 </div>
             </form>
         </div>
     );
 }
+
+export default UpdateReview

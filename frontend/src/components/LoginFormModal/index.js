@@ -37,15 +37,20 @@ function LoginFormModal() {
         <div className ="log-in-container">
             <h1 className="log-in-title">Log In</h1>
             <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors?.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
+                {errors.length > 0 && (
+                    <ul className="error-messages">
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                )}
                 <label>
+                    <div className="log-in-input-title">
                     Username or Email
+                    </div>
                     <h7></h7>
                     <input
+                        className="log-in-input"
                         type="text"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
@@ -54,8 +59,11 @@ function LoginFormModal() {
                     />
                 </label>
                 <label>
+                    <div className="log-in-input-title">
                     Password
+                    </div>
                     <input
+                        className="log-in-input"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -73,7 +81,8 @@ function LoginFormModal() {
                      Demo User
                      </button> */}
 
-                <button disabled={(credential.length < 4 || password.length < 6) ? true : false} type="submit">Log In</button>
+                {/* <button disabled={(credential.length < 4 || password.length < 6) ? true : false} type="submit">Log In</button> */}
+                <button type="submit">Log In</button>
             </form>
             <button
                 className="demo-login-submit-button"
@@ -82,7 +91,7 @@ function LoginFormModal() {
                 //     setCredential("DerrickTruong");
                 //     setPassword("password");
                 // }}
-                type="click"
+                type="submit"
             >
                 Demo User
             </button>

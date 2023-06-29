@@ -7,27 +7,27 @@ const CURRENT_REVIEWS = 'reviews/CURRENT_REVIEWS'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 
-export const deleteOneReview = reviewId => ({
+const deleteOneReview = reviewId => ({
     type: DELETE_REVIEW,
     reviewId
 })
-export const allReviews = reviews => ({
+const allReviews = reviews => ({
     type: GET_ALL_REVIEWS,
     reviews
 })
 
-export const createReview = (review) => ({
+const createReview = (review) => ({
    type: CREATE_REVIEW,
     review
 
 })
 
-export const updateOneReview = (review) => ({
+const updateOneReview = (review) => ({
     type: UPDATE_REVIEW,
     review
 })
 
-export const allReviewsCurrentUser = (spotId) => ({
+const allReviewsCurrentUser = (spotId) => ({
 
     type: CURRENT_REVIEWS,
     spotId

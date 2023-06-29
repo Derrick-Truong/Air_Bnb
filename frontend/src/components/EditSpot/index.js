@@ -242,10 +242,8 @@ const EditSpot = () => {
                 <h1 className="title">Update Your Spot!</h1>
 
                 <h3><b>Where's your place located? </b> </h3>
-                <br></br>
                 Guests will only get your exact address once they booked a
                 reservation <br></br>
-                <h4></h4>
                 <label htmlFor="Country">
                     <b>Country <br></br></b>
                 </label>
@@ -256,7 +254,6 @@ const EditSpot = () => {
                     onChange={e => setCountry(e.target.value)}
                 />
                 {errors?.country && <span className="error">{errors?.country}</span>}
-                <h4></h4>
                 <label htmlFor="address">
                     {/* <b><br></br>Address</b> */}
                     <div> <div>Address</div>  {errors?.address && <span className="error">{errors?.address}</span>} </div>
@@ -268,7 +265,6 @@ const EditSpot = () => {
                     onChange={e => setAddress(e?.target?.value)}
                 />
                 {/* {errors.address && <span className="error">{errors.address}</span>} */}
-                <h4></h4>
                 <label htmlFor="City">
                     <div><div>City</div>{errors?.city && <span className="error">{errors?.city}</span>} </div>
                 </label>
@@ -278,7 +274,6 @@ const EditSpot = () => {
                     value={ city}
                     onChange={e => setCity(e?.target?.value)}
                 />
-                <h4></h4>
                 <label htmlFor="State">
                     <div><div>State</div>{errors?.state && <span className="error">{errors?.state}</span>}</div>
                 </label>
@@ -288,7 +283,6 @@ const EditSpot = () => {
                     value={state}
                     onChange={e => setState(e?.target?.value)}
                 />
-                <hr class="new1"></hr>
                 <label htmlFor="Description">
                     <h3> Describe your place to your guests </h3>
 
@@ -305,7 +299,6 @@ const EditSpot = () => {
                 />
                  <div>{errors?.description && <span className="error">{errors?.description}</span>}</div>
 
-                <hr class="new1"></hr>
                 <label htmlFor="name">
                     <h1>Create a title for your spot</h1>
                     <h8>Catch guests' attention with a spot title that highlights what makes
@@ -318,7 +311,6 @@ const EditSpot = () => {
                     value={ name}
                     onChange={(e) => setName(e?.target?.value)} />
                 {errors?.name && <span className="error">{errors?.name}</span>}
-                <hr class="new1"></hr>
                 <label htmlFor="Price">
                     <h3> Set a base price for your spot </h3>
                     <h8>Competitive pricing can help your listing stand out and rank higher
@@ -342,7 +334,6 @@ const EditSpot = () => {
                 />
                 {errors.previewImage && <span className="error">{errors.previewImage}</span>} */}
 
-                <hr class="new1"></hr>
 
                 <button type="submit" className="update-button" >Update Spot</button>
             </form>

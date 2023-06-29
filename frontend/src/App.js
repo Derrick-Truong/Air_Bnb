@@ -7,11 +7,12 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotBrowser from "./components/SpotsBrowser";
 import SpotDetails from "./components/SpotDetails";
-import CurrentUserSpots from "./components/CurrentUserSpots/CurrentUserSpots";
+import CurrentUserSpots from "./components/CurrentUserSpots/Spots";
 import EditSpot from "./components/EditSpot";
 import CreateSpot from "./components/CreateSpot";
 import Dates from "./components/SpotDetails/Dates";
-import CurrentUserBookings from "./components/CurrentUserSpots/CurrentUserBookings";
+import CurrentUserBookings from "./components/CurrentUserSpots/Bookings";
+import Reviews from "./components/CurrentUserSpots/Reviews";
 
 
 
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/bookings/current">
           <CurrentUserBookings/>
+          </Route>
+          <Route exact path="/reviews/current">
+            <Reviews/>
           </Route>
           <Route exact path='/spots/:spotId/edit'>
             <EditSpot/>

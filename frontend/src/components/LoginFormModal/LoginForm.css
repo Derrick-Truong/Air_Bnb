@@ -8,13 +8,20 @@ button + button {
 .log-in-container, form li {
     text-align: center;
 }
-
+.log-in-input-title{
+    padding-bottom:10px;
+}
 ul li {
     list-style-type: none;
     color: red;
     margin-right: 40px;
+    font-weight:600;
+    font-size:18px;
 }
 
+.log-in-input{
+width:264px
+}
 
 /* .log-in-title {
     text-align: center;

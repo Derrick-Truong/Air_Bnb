@@ -123,11 +123,15 @@ font-weight: 600;
 text-transform: uppercase;
 cursor: pointer;
 transition: all 0.3s;
-margin: 10px 10px 10px 120px;
+margin-bottom:20px;
 }
 
 
-
+.review-submit-button-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 .review-submit-button:hover{
     background-color:#e12e4f;
 }

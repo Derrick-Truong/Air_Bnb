@@ -10,7 +10,9 @@
     justify-content: space-evenly;
 
 }
-
+.current-bookings-title{
+    text-align: center;
+}
 /* .navEachSpotEdit {
     position: relative;
     border: none;
@@ -229,7 +231,49 @@ navEachSpotEdit::after{
     -webkit-transition-property: transform, box-shadow;
     transition-property: transform, boxshadow;
 }
+.update-bookings-button{
+list-style: none;
+background-color: rgb(4, 191, 4);
+    border: 1px solid #c8c9c9;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    height: 44px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    transition: background-color .3s ease;
+}
+.delete-bookings-button{
+list-style: none;
+    background-color: rgb(255, 46, 46);
+    border: 1px solid #c8c9c9;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    height: 44px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 12px 24px;
+    text-transform: uppercase;
+    transition: background-color .3s ease;
+}
+.update-bookings-button:hover{
+    background-color: rgb(5, 160, 5);
+}
 
+.delete-bookings-button:hover{
+        background-color: rgb(224, 4, 4);
+}
 .create-spot button:hover,
 .create-spot button:focus,
 .create-spot button:active {
@@ -253,16 +297,24 @@ navEachSpotEdit::after{
     text-align: right;
 
 }
-
+.spots-title-container{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding-bottom:20px;
+}
+.create-spot-1{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
 .create-spot {
     list-style: none;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    margin-right: 27px;
+
     border-radius: 15px;
     text-align: center;
-    height: 30px;
+    height: 20px;
     justify-content: center;
     cursor: pointer;
     width: 150px;
@@ -301,7 +353,7 @@ navEachSpotEdit::after{
 }
 
 .details-price {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .current-buttons {
@@ -309,76 +361,8 @@ navEachSpotEdit::after{
     gap: 20px;
 }
 
-/* .current-delete-button{
-    padding: 10px;
-} */
-/* .current-delete-button{
- list-style-type: none;
-} */
-
-/* .show-spots-current {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: stretch;
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-.navCurrentImage {
-    display: block;
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    margin: 10px;
-    text-decoration: none;
-    color: #222;
-}
-
-.navSpotImage {
-    height: 270px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.navSpotImage img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.navCurrentDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 130px;
-    padding: 10px;
-    font-size: 16px;
+.booking-end-date, .booking-start-date{
     text-align: center;
-    color: #555;
+    font-size:16px;
+    font-weight: 600;
 }
-
-.navCurrentDetails div {
-    margin-bottom: 5px;
-}
-
-.navCurrentDetails div:first-child {
-    font-weight: bold;
-}
-
-@media screen and (max-width: 768px) {
-    .show-spots-current {
-        padding: 0;
-        border: none;
-    }
-
-    .navCurrentImage {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .navSpotImage {
-        height: 200px;
-    }
-} */

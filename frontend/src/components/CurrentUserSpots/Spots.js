@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpot';
 
-import './CurrentUser.css'
+import './Spots.css'
 
 
 
@@ -31,15 +31,19 @@ const CurrentUserSpots = () => {
         history.push("/")
     }
     return (
-        <div>
-          <h1>Manage Your Spots</h1>
-            <span className='create-spot'>
+        <>
+        <div className="spots-title-container">
+            <div>
+                    {allSpots?.length > 0 ? <h1>Manage Your Spots</h1> : <h1>No Spots Owned!</h1>}
+                </div>
+            <div className='create-spot'>
                 <button type="click">
-                <NavLink exact to="/spots/new" className="create-spot-2">
+                <NavLink exact to="/spots/new" className="create-spot-1">
                     Create a New Spot
                 </NavLink>
                 </button>
-            </span>
+            </div>
+            </div>
         <div className="show-spots">
                 {allSpots?.map(spot1 => {
                     const starRating = Number(spot1?.avgRating).toFixed(1)
@@ -49,11 +53,12 @@ const CurrentUserSpots = () => {
                             <NavLink to={`/spots/${spot1?.id}`} className='navEachSpot'>
                                 <div>
                                     <div className='navSpotImage'>
+                                        <div className="tool-tip">{spot1?.name}</div>
                                         <img src={spot1?.previewImage} height='270px' width='250px' />
                                     </div>
 
 
-                                            <div class="city-state-rating"><span>{spot1?.city}, {spot1?.state}</span><span>&#9733; {spot1?.avgRating ? starRating : "New"}</span></div>
+                                            <div class="city-state-rating"><span>{spot1?.city}, {spot1?.state}</span><span><span className="star">&#9733;</span> {spot1?.avgRating ? starRating : "New"}</span></div>
 
 
                                     <div className="details-price">
@@ -62,35 +67,16 @@ const CurrentUserSpots = () => {
 
                                 </div>
                             </NavLink>
-                            <div className= "current-buttons">
-                                <a href={`/spots/${spot1?.id}/edit`} className='navEachSpotEdit'>
-                                    <span>Update</span>
-                                    <span>Update</span>
-                            {/* <NavLink to={`/spots/${spot1.id}/edit`} >
-                                Update
-                            </NavLink> */}
-                                </a>
-                                <br></br>
-                                <a className='navEachSpotEdit'>
-                                <span><OpenModalMenuItem
-                                        type="submit"
-                                        itemText="Delete"
-                                        modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
-                                    />
-                                    </span>
-                                    <span><OpenModalMenuItem
-                                        itemText="Delete"
-                                        modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
-                                    />
-                                    </span>
-                                </a>
-                            {/* <button className="current-delete-button">
-                        <OpenModalMenuItem
-                        itemText="Delete"
-                        modalComponent={<DeleteSpotModal spotId={spot1.id}/>}
-                        />
-                            </button> */}
-                        </div>
+
+                            <div className="update-delete-container">
+                                <a href={`/spots/${spot1?.id}/edit`} className="update-bookings-button">Update</a>
+                                <button className="delete-bookings-button"><OpenModalMenuItem
+                                    type="submit"
+                                    itemText="Delete"
+                                    modalComponent={<DeleteSpotModal bookingId={spot1?.id} />}
+                                />
+                                </button>
+                            </div>
                         </nav>
 
                     )
@@ -99,8 +85,8 @@ const CurrentUserSpots = () => {
 
 
 
-        </div >
         </div>
+        </>
     );
 
 }

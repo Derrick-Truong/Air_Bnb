@@ -21,8 +21,7 @@ export default function Dates ({spotId}){
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async(e) => {
-        const today = new Date()
-        console.log('today', today)
+        
         e.preventDefault()
         setErrors([]);
         const success = {

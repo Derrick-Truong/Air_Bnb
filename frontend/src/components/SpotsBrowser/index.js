@@ -38,7 +38,7 @@ const SpotBrowser = () => {
                                     <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>
 
-                                        <div class="city-state-rating"><span>{spot?.city}, {spot?.state}</span><span>&#9733; {spot?.avgRating ? starRating : "New"}</span></div>
+                                <div class="city-state-rating"><span>{spot?.city}, {spot?.state}</span><span><span className="star">&#9733;</span> {spot?.avgRating ? starRating : "New"}</span></div>
                                         {/* <div class="avg-rating">&#9733;{spot?.avgRating ? starRating:"New"}</div> */}
 
 

@@ -13,6 +13,7 @@
     line-height: 20px;
     font-size: 30px;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 .spots-details-info-container{
     box-sizing: border-box;
@@ -168,6 +169,7 @@ background: rgb(107, 107, 107);
 }
 
 .price div {
+    font-weight:600;
     display: flex;
     justify-content: space-between;
 }

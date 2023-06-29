@@ -45,22 +45,24 @@
 }
 
 .form-div-delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
+        background-color: #fff;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        justify-content: center;
+        width: 400px;
+        height:300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    width: 400px;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    text-align: center;
+    padding-top:10px;
+    font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
 }
 
 .errors {
@@ -77,7 +79,6 @@
     color: #fff;
     cursor: pointer;
     font-size: 10px;
-    margin-top: 15px;
     padding: 5px 10px;
     transition: background-color 0.2s ease-in-out;
 }

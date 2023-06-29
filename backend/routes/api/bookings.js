@@ -36,7 +36,6 @@ router.get('/current', requireAuth, async(req, res, next) => {
             }
         })
         book.previewImage = book.Spot.previewImage
-        delete book.Spot
     })
 
  res.json({

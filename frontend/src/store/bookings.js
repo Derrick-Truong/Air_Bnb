@@ -21,13 +21,13 @@ export const createbooking = (booking) => ({
     booking
 
 })
-export const updateBooking = (booking) => ({
+const updateBooking = (booking) => ({
     type: UPDATE_BOOKING,
     booking
 
 })
 
-export const allbookingsCurrentUser = (bookings) => ({
+const allbookingsCurrentUser = (bookings) => ({
 
     type: CURRENT_BOOKINGS,
     bookings
@@ -55,7 +55,7 @@ export const updatebooking = (bookingId, booking) => async dispatch => {
     if (res.ok) {
         const newRev = await res.json();
         dispatch(updateBooking(newRev))
-
+        return newRev
     }
 }
 // export const createNewbooking = (spotId, bookingNew, currentUser) => async dispatch => {
