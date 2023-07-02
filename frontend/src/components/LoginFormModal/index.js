@@ -46,11 +46,11 @@ function LoginFormModal() {
                 )}
                 <label>
                     <div className="log-in-input-title">
-                    Username or Email
                     </div>
                     <h7></h7>
                     <input
                         className="log-in-input"
+                        placeholder="Username or email address"
                         type="text"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
@@ -60,10 +60,11 @@ function LoginFormModal() {
                 </label>
                 <label>
                     <div className="log-in-input-title">
-                    Password
+
                     </div>
                     <input
                         className="log-in-input"
+                        placeholder="Password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

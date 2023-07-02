@@ -49,7 +49,19 @@
     box-sizing: border-box;
 }
 
-.create-spot {
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #484848;
+    width: 50px;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+
+}
+.create-spot-nav {
     list-style: none;
     padding-left: 5px;
     padding-right: 5px;
@@ -58,12 +70,13 @@
     border-radius: 4px;
     text-align: center;
     height: 30px;
+    border: 1px solid #dedddd;
     justify-content: center;
     cursor: pointer;
     width: 150px;
     font-family: 'Montserrat', sans-serif;
 }
 
-.create-spot:hover {
+.create-spot-nav:hover {
     background-color: rgba(225, 225, 225, 0.25);
 }

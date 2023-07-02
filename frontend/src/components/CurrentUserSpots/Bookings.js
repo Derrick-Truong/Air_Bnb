@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Bookings.css'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import OpenModalButton from "../Navigation/OpenModalButton";
 import DeleteBooking from "../Bookings/DeleteBooking";
 import UpdateBookings from "../Bookings/UpdateBookings";
 
@@ -45,21 +45,22 @@ const CurrentUserBookings = () => {
                                     </div>
 
                                 </div>
-                            </NavLink>
+                                </NavLink>
                             </nav>
                             <div className="update-delete-container">
-                                <button className="update-bookings-button"><OpenModalMenuItem
+
+                                <span className="update-bookings-button"><OpenModalButton
                                     type="submit"
-                                    itemText="Update"
+                                    buttonText="Update"
                                     modalComponent={<UpdateBookings bookingId={booking.id} booking={booking} />}
                                 />
-                                </button>
-                                <button className="delete-bookings-button"><OpenModalMenuItem
+                                </span>
+                                <span className="delete-bookings-button"><OpenModalButton
                                     type="submit"
-                                    itemText="Delete"
+                                    buttonText="Delete"
                                     modalComponent={<DeleteBooking bookingId={booking.id} />}
                                 />
-                                </button>
+                                </span>
                             </div>
 
                         </div>

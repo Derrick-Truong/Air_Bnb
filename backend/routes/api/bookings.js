@@ -48,6 +48,9 @@ router.get('/current', requireAuth, async(req, res, next) => {
 
 router.put('/:id', requireAuth,  async (req, res, next) => {
 const {startDate, endDate} = req.body
+    const utcStartDate = new Date(startDate);
+    const utcEndDate = new Date(endDate);
+    const today = new Date();
 
 let currentBook = await Booking.findByPk(req.params.id);
 
@@ -67,6 +70,14 @@ if (currentBook.userId !== req.user.id) {
         "statusCode": 403
     })
 };
+    if (utcStartDate <= today || utcEndDate <= today) {
+        res.status(400);
+        return res.json({
+            message: 'Validation error',
+            statusCode: 400,
+            errors: ['End date and start date must be after today'],
+        });
+    }
 
 if (startDate > endDate) {
     res.status(400);

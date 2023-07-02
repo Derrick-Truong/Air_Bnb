@@ -10,8 +10,9 @@ button + button {
 }
 .log-in-input-title{
     padding-bottom:10px;
+    font-weight: 600;
 }
-ul li {
+.error-messages li {
     list-style-type: none;
     color: red;
     margin-right: 40px;

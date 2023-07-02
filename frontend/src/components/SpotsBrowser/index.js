@@ -31,22 +31,22 @@ const SpotBrowser = () => {
                 const newPrice = Number(spot?.price)?.toFixed(2)
                 return (
                     <div className="spot-container">
-                    <nav key={spot?.id} className='navSpots'>
-                        <NavLink to={`/spots/${spot?.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
-                            <div className="tool-tip">{spot?.name}</div>
+                        <nav key={spot?.id} className='navSpots'>
+                            <NavLink to={`/spots/${spot?.id}`} className='navEachSpot' onClick={() => clickSub(spot)}>
+                                <div className="tool-tip">{spot?.name}</div>
                                 <div className='navSpotImage1'>
                                     <img src={spot?.previewImage} height='270px' width='250px' />
                                 </div>
 
                                 <div class="city-state-rating"><span>{spot?.city}, {spot?.state}</span><span><span className="star">&#9733;</span> {spot?.avgRating ? starRating : "New"}</span></div>
-                                        {/* <div class="avg-rating">&#9733;{spot?.avgRating ? starRating:"New"}</div> */}
+                                {/* <div class="avg-rating">&#9733;{spot?.avgRating ? starRating:"New"}</div> */}
 
 
                                 <div className="details-price">
                                     $  {newPrice} night
                                 </div>
-                        </NavLink>
-                    </nav>
+                            </NavLink>
+                        </nav>
                     </div>
 
                 )

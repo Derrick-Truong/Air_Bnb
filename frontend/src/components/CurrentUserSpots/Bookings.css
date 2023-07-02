@@ -231,7 +231,7 @@ navEachSpotEdit::after{
     -webkit-transition-property: transform, box-shadow;
     transition-property: transform, boxshadow;
 }
-.update-bookings-button{
+.update-bookings-button button{
 list-style: none;
 background-color: rgb(4, 191, 4);
     border: 1px solid #c8c9c9;
@@ -249,10 +249,10 @@ background-color: rgb(4, 191, 4);
     text-transform: uppercase;
     transition: background-color .3s ease;
 }
-.delete-bookings-button{
+.delete-bookings-button button{
 list-style: none;
     background-color: rgb(255, 46, 46);
-    border: 1px solid #c8c9c9;
+    border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: none;
     box-sizing: border-box;
@@ -267,20 +267,14 @@ list-style: none;
     text-transform: uppercase;
     transition: background-color .3s ease;
 }
-.update-bookings-button:hover{
+.update-bookings-button button:hover{
     background-color: rgb(5, 160, 5);
 }
 
-.delete-bookings-button:hover{
+.delete-bookings-button button:hover{
         background-color: rgb(224, 4, 4);
 }
-.create-spot button:hover,
-.create-spot button:focus,
-.create-spot button:active {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1)
-}
+      
 
 .city-state {
     align-self: flex-start;

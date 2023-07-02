@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import OpenModalMenuItem from './OpenModalMenuItem';
+import OpenModalButton from './OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import CreateSpot from '../CreateSpot';
 import please from '../../assets/images/please.jpeg'
@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
                     <div className='right-nav-div'>
                 <div className='right-nav-div'>
                     {sessionUser ? (
-                        <span className='create-spot'>
+                        <span className='create-spot-nav'>
                     <NavLink exact to="/spots/new" className="create-spot-2">
                         Create a New Spot
                     </NavLink>

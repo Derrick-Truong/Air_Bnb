@@ -1,66 +1,113 @@
-
-.navSpotImage-2{
-    height:200px
+.show-reviews{
+    display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: stretch;
+        border: 0px solid #ddd;
+        padding: 50px;
+        padding-top: 30px;
+        padding-left: 100px;
+        justify-content: space-evenly;
 }
+
 
 .navSpotImage-2 img{
     width:100%;
-    height:100%;
+    height:200px;
 }
 .reviews-navEachSpot{
-        /* position: relative; */
         display: block;
-        margin: 10px;
-        text-decoration: none;
-        object-fit: cover;
-        color: black;
-        font-size: 15px;
-        background-color: white;
-        border-style: solid;
-        padding: 3px;
-        cursor: pointer;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        transition-duration: 0.3s;
-        transition-property: box-shadow,
-        transform;
+            margin: 10px;
+            text-decoration: none;
+            object-fit: cover;
+            color: black;
+            font-size: 15px;
+            background-color: white;
+            border-style: solid;
+            padding: 3px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
 
 }
-.navSpotImage-2 .tool-tip{
+.reviews-navEachSpot:hover,
+.reviews-navEachspot:focus,
+.reviews-navEachspot:active {
+    transition-duration: 0.5s;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+}
+.review-navSpots .review-tool-tip{
         visibility: hidden;
         width: 120px;
         background-color: black;
         color: #fff;
         text-align: center;
-        /* text-align: center; */
         border-radius: 6px;
         padding: 5px 0;
-
-        /* Position the tooltip */
         position: absolute;
         z-index: 1;
-        left: 30%;
+        left: 40%;
+}
+
+.review-navSpots:hover .review-tool-tip{
+    visibility: visible;
 }
 .current-reviews-title{
     text-align: center;
 }
-.navSpots .reviews-box{
-    padding:10px;
+.user-reviews-box{
+    padding:5px;
     /* background-color:rgb(241, 240, 240); */
-    background-color: #fff;
+    width: 500px;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+
+    }
+
+.update-review-button, .delete-review-button{
+    border: 1px solid #c8c9c9;
+        border-radius: 4px;
+        box-shadow: none;
+        box-sizing: border-box;
+        font-size: 13px;
+        font-weight: 700;
+        height: 44px;
+        list-style: none;
+        margin-right: 10px;
+        margin-top: 10px;
+        padding: 12px 24px;
+        transition: background-color .3s ease;
+}
+.delete-review-button{
+    background-color: #ff2e2e;
+        color: #fff;
+        cursor: pointer;
+        text-transform: uppercase;
+}
+.update-review-button{
+    background-color: #04bf04
 }
 
-@media screen and (max-width: 768px) {
-    .show-spots {
-        padding: 0;
-        border: none;
+.update-review-button:hover{
+    background-color: rgb(5, 160, 5);
+}
+.delete-review-button{
+background-color: rgb(255, 46, 46);
+}
+.delete-review-button:hover {
+    background-color: rgb(224, 4, 4);
+}
+@media screen and (max-width: 1024px) {
+    .show-reviews {
+        --num-cols: 4;
+            --row-height: 100px;
+            padding: 0;
     }
 
-    .reviews-navEachSpot {
-        width: 100%;
-        margin: 10px 0;
-    }
 
-    .navSpotImage-2 {
-        height: 200px;
-    }
 }

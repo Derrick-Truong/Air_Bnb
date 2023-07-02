@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
+import OpenModalButton from './OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from "../SignupFormModal";
 import SignupFormPage from '../SignupFormPage';
@@ -68,10 +68,7 @@ function ProfileButton({ user }) {
         closeMenu();
         history.push('/')
     };
-    const clickSub = () => {
 
-        history.push('/spots/current')
-    }
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
@@ -81,41 +78,41 @@ function ProfileButton({ user }) {
                 <i className="fa fa-user-circle-o" />
             </div>
 
-            <ul className={ulClassName} ref={ulRef}>
+            <div className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <div className="profile-list">
-                            <li className="user-firstname">Hello, {user?.firstName}</li>
-                            {/* <li>{user?.email}</li> */}
-                            <hr class="new1"></hr>
-                            <li><NavLink exact to="/spots/current">Manage Your Spots</NavLink></li>
-                            <li><NavLink exact to="/bookings/current">Manage Your Bookings</NavLink></li>
-                            <li><NavLink exact to="/reviews/current">Manage Your Reviews</NavLink></li>
-                            <hr class="new1"></hr>
-                            <li className="sign-out-button-list">
-                                <button className="sign-out-button" onClick={logout}>Log Out</button>
 
-                            </li>
-                        </div>
+                        <div className="log-sign-up-name">Hello, {user?.firstName}</div>
+                            {/* <li>{user?.email}</li> */}
+                        <div className="new1"></div>
+                        <div className="log-sign-up"><NavLink exact to="/spots/current">Manage Your Spots</NavLink></div>
+                        <div className="log-sign-up"><NavLink exact to="/bookings/current">Manage Your Bookings</NavLink></div>
+                        <div className="log-sign-up"><NavLink exact to="/reviews/current">Manage Your Reviews</NavLink></div>
+                            <hr className="new1"></hr>
+                            <div className="log-sign-up">
+                                <button onClick={logout}>Log Out</button>
+                            </div>
                     </>
 
                 ) : (
                     <>
                         <div className="log-sign-up">
-                            <OpenModalMenuItem
-                                itemText="Log In"
-                                onItemClick={closeMenu}
+
+                                    <OpenModalButton
+                                buttonText="Log In"
                                 modalComponent={<LoginFormModal />}
                             />
-                            <OpenModalMenuItem
-                                itemText="Sign Up"
-                                onItemClick={closeMenu}
+                            </div>
+                            <div className="log-sign-up">
+                                    <OpenModalButton
+                                buttonText="Sign Up"
                                 modalComponent={<SignupFormModal />}
                             />
-                        </div>
-                    </>
+                            </div>
+                            </>
+
                 )}
-            </ul>
+            </div>
         </>
     );
 }

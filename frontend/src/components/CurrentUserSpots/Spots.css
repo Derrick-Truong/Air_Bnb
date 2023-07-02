@@ -72,22 +72,7 @@
 .current-buttons a:nth-child(3)::after{
     background: red;
 }
-.tool-tip {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    max-width: 100%;
-    /* text-align: center; */
-    border-radius: 6px;
-    padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    left: 25%;
-}
 .current-buttons a:hover::before,
 .current-buttons a:hover::after
 {
@@ -211,7 +196,28 @@ border-style: solid;
     color: #000000;
 }
 
+.update-spot-button{
+    list-style: none;
+        background-color: rgb(4, 191, 4);
+        border: 1px solid #c8c9c9;
+        border-radius: 4px;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        height: 44px;
+        margin-right: 10px;
+        margin-top: 10px;
+        padding: 12px 24px;
+        text-transform: uppercase;
+        transition: background-color .3s ease;
+}
 
+.update-spot-button:hover{
+        background-color: rgb(5, 160, 5);
+}
 /* .create-spot {
     margin-bottom: 15px;
     margin-left: 8px;
@@ -245,13 +251,7 @@ border-style: solid;
     transition-property: transform, boxshadow;
 }
 
-.create-spot button:hover,
-.create-spot button:focus,
-.create-spot button:active {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1)
-}
+
 
 .city-state {
     align-self: flex-start;

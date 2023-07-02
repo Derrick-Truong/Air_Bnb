@@ -5,7 +5,7 @@ import { getOneSpot } from '../../store/spots';
 import { useParams } from 'react-router-dom';
 import { getReviewsForSpotId } from '../../store/reviews';
 import CreateReview from '../Reviews/CreateReview';
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import OpenModalButton from '../Navigation/OpenModalButton';
 import { getbookingsForSpotId } from '../../store/bookings';
 import DeleteReviewForm from '../Reviews/DeleteReview';
 import { useModal } from '../../context/Modal';
@@ -105,13 +105,15 @@ const SpotDetails = () => {
       <div className='floating-reserve'>
 
         <div class="price">
-          {reviewsVal?.length === 0 ? <div> <span>${price} night</span><span><span className="star">&#9733;</span><span>New</span></span></div> : reviewsVal?.length === 1 ? <div><span>${price} night </span><span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Review</span></div> : <div><span>{price} night</span> <span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Reviews </span></div>}
+          {reviewsVal?.length === 0 ? <div><span>${price}/night</span> <span><span className="star">&#9733;</span> New</span></div> :
+          reviewsVal?.length === 1 ? <div><span>${price}/night </span><span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Review</span></div> :
+          <div><span>${price}/night</span> <span><span className="star">&#9733;</span> {starRating} · {spotsVal?.numReviews} Reviews </span></div>}
 
 
           {(currentUser?.id !== spotsVal?.ownerId) && !foundBookingByCurrUser && currentUser ?
                 <button className="reserve-button">
-                  <OpenModalMenuItem
-                    itemText="Book Your Stay"
+              <OpenModalButton
+                    buttonText="Book Your Stay"
                     modalComponent={<Dates spotId={spotsVal?.id} />}
                   />
             </button> : (currentUser?.id !== spotsVal?.ownerId) && foundBookingByCurrUser && currentUser ?
@@ -138,8 +140,8 @@ const SpotDetails = () => {
 
           {(((userId !== spotsVal?.ownerId) && !foundReviewByCurrUser && currentUser) )  ?
             <button className="button">
-              <OpenModalMenuItem
-                itemText="Post Your Review"
+                <OpenModalButton
+                buttonText="Post Your Review"
                 modalComponent={<CreateReview spotId={spotsVal?.id} />}
               />
             </button> : <></>

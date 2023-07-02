@@ -6,7 +6,7 @@ import '../SpotsBrowser/SpotsBrowser.css'
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import OpenModalButton from '../Navigation/OpenModalButton';
 import DeleteSpotModal from '../DeleteSpot';
 
 import './Spots.css'
@@ -34,7 +34,14 @@ const CurrentUserSpots = () => {
         <>
         <div className="spots-title-container">
             <div>
-                    {allSpots?.length > 0 ? <h1>Manage Your Spots</h1> : <h1>No Spots Owned!</h1>}
+                    {allSpots?.length > 0 ? <h1>Manage Your Spots</h1> :
+                    <>
+                    <div><h1>No Spots Owned!</h1></div><div className='create-spot-nav'>
+                    <NavLink exact to="/spots/new" className="create-spot-2">
+                        Create a New Spot
+                    </NavLink>
+                        </div>
+                        </>}
                 </div>
             <div className="create-spot-container">
             </div>
@@ -65,13 +72,13 @@ const CurrentUserSpots = () => {
                             </NavLink>
                             </nav>
                             <div className="update-delete-container">
-                                <a href={`/spots/${spot1?.id}/edit`} className="update-bookings-button">Update</a>
-                                <button className="delete-bookings-button"><OpenModalMenuItem
+                                <a href={`/spots/${spot1?.id}/edit`} className="update-spot-button">Update</a>
+                                <span className="delete-bookings-button"><OpenModalButton
                                     type="submit"
-                                    itemText="Delete"
+                                    buttonText="Delete"
                                     modalComponent={<DeleteSpotModal spotId={spot1?.id} />}
                                 />
-                                </button>
+                                </span>
                             </div>
 
                         </div>

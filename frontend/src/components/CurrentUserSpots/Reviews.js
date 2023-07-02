@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getReviewsForCurrent } from '../../store/reviews';
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import OpenModalButton from '../Navigation/OpenModalButton';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import DeleteReview from '../Reviews/DeleteReview';
 import UpdateReview from '../Reviews/UpdateReview';
@@ -20,25 +20,22 @@ dispatch(getReviewsForCurrent())
     return (
         <>
             <div className="current-reviews-title">
-                {reviewsVal?.length > 0 ? <h1>Manage Your Reviews</h1> : <h1>No Current reviews!</h1>}
+                {reviewsVal?.length > 0 ? <h1>Manage Your Reviews</h1> : <h1>No Reviews Posted!</h1>}
             </div>
-            <div className="show-spots">
+            <div className="show-reviews">
                 {reviewsVal?.map(review => {
                     const reviewDate = new Date(review.createdAt);
                     const avgRating = review?.stars
                     const formattedDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(reviewDate);
                     return (
                         <div>
-                            <nav key={review?.id}  className='navSpots'>
+                            <nav key={review?.id}  className='review-navSpots'>
                             <NavLink to={`/spots/${review?.Spot?.id}`} className='reviews-navEachSpot'>
-                                <div className="reviews-navSpotImage-container">
                                     <div className='navSpotImage-2'>
+                                        <div className="review-tool-tip">{review?.Spot?.name}</div>
                                         <img src={review?.previewImage}/>
                                     </div>
-                                </div>
-                            </NavLink>
-
-                            <div className="reviews-box">
+                            <div className="user-reviews-box">
                                 <div className="reviews-card-top">
                                     <div className="user">
                                         <div className="user-img">
@@ -64,20 +61,22 @@ dispatch(getReviewsForCurrent())
                                     <p>{review?.review}</p>
                                 </div>
                             </div>
+                                </NavLink>
                             </nav>
                             <div className="update-delete-container">
-                                <button className="update-bookings-button"><OpenModalMenuItem
+
+                                <span className="update-bookings-button"><OpenModalButton
                                     type="submit"
-                                    itemText="Update"
+                                    buttonText="Update"
                                     modalComponent={<UpdateReview reviewId={review.id} review={review} />}
                                 />
-                                </button>
-                                <button className="delete-bookings-button"><OpenModalMenuItem
+                                </span>
+                                <span className="delete-bookings-button"><OpenModalButton
                                     type="submit"
-                                    itemText="Delete"
+                                    buttonText="Delete"
                                     modalComponent={<DeleteReview reviewId={review.id} />}
                                 />
-                                </button>
+                                </span>
                             </div>
                         </div>
                     )
