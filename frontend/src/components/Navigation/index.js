@@ -14,6 +14,7 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     return (
+        <div className='nav-wrapper'>
         <div className='navigation-bar'>
             <div className='nav-innerdiv'>
                 <div className='left-nav-div'>
@@ -43,7 +44,15 @@ function Navigation({ isLoaded }) {
 
             </div>
         </div>
-
+            <div className='footer'>
+                <p className="links-footer">
+                    <a className="linkedin" href="https://www.linkedin.com/in/derrick-truong-1a092121a/" target="_blank">LinkedIn</a>
+                    <a className="github" href="https://github.com/Derrick-Truong" target="_blank">Github</a>
+                    {/* <a className="portfolio" href="https://kishaonia.github.io/KishaOnia/" target="_blank">Portfolio</a> */}
+                    <a className="email" href="mailto:dtruong169@gmail.com" target="_blank">Email</a>
+                </p>
+            </div>
+    </div>
     );
 
 }
