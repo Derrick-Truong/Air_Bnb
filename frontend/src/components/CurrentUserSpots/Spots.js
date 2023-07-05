@@ -33,7 +33,7 @@ const CurrentUserSpots = () => {
     return (
         <>
         <div className="spots-title-container">
-            <div>
+
                     {allSpots?.length > 0 ? <h1>Manage Your Spots</h1> :
                     <>
                     <div><h1>No Spots Owned!</h1></div><div className='create-spot-nav'>
@@ -42,7 +42,7 @@ const CurrentUserSpots = () => {
                     </NavLink>
                         </div>
                         </>}
-                </div>
+                
             <div className="create-spot-container">
             </div>
             </div>

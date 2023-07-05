@@ -111,12 +111,11 @@ const SpotDetails = () => {
 
 
           {(currentUser?.id !== spotsVal?.ownerId) && !foundBookingByCurrUser && currentUser ?
-                <button className="reserve-button">
               <OpenModalButton
                     buttonText="Book Your Stay"
                     modalComponent={<Dates spotId={spotsVal?.id} />}
                   />
-            </button> : (currentUser?.id !== spotsVal?.ownerId) && foundBookingByCurrUser && currentUser ?
+          : (currentUser?.id !== spotsVal?.ownerId) && foundBookingByCurrUser && currentUser ?
               <button className="reserve-button">
                 <NavLink exact to="/bookings/current">Update Your Reservation</NavLink>
               </button>:<></>

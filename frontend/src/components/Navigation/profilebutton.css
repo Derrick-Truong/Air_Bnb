@@ -48,9 +48,9 @@ position: absolute;
     cursor: pointer;
 }
 
-.sign-out-button:hover {
+/* .sign-out-button:hover {
     background-color: #bbb;
-}
+} */
 
 .button-container {
     display: flex;

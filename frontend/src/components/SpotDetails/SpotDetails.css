@@ -279,6 +279,18 @@ h3 {
     font-weight: 600;
 
 }
+.price button{
+    padding: 8px;
+        font-size: 20px;
+        font-weight: 300px;
+        background-color: #ff5a5f;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 400px;
+        margin-top: 10px;
+}
 .reviews-createdAt{
     font-size:12px;
 }
@@ -287,6 +299,7 @@ h3 {
     color: white;
     font-weight: 600;
 }
+
 .avg-rating {
     margin-left: 8px;
     margin-top: -2px;
