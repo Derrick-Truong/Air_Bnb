@@ -99,7 +99,7 @@ border-top: 1px solid #ebebeb;
     background-color: transparent;
     border: 1px solid transparent;
     font-size: 16px;
-    cursor: pointer;
+    /* cursor: pointer; */
     /* padding: 8px; */
     width: 100%;
 

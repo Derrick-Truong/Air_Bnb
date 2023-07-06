@@ -22,7 +22,6 @@ const SpotDetails = () => {
   const bookings = useSelector(state => state.bookings)
   const bookingsVal = Object.values(bookings)
   const userId = currentUser?.id
- console.log('Bookings', bookingsVal)
   const night = "per night"
 
   // const findUser = currentUser?.find(user => user?.user?.id === userId)
@@ -37,11 +36,8 @@ const SpotDetails = () => {
   const price = Number(spotsVal?.price).toFixed(2)
   const foundReviewByCurrUser = reviewsVal?.find(review2 => review2?.userId === userId || review2?.spotId === spotsVal)
   const foundBookingByCurrUser = bookingsVal?.find(booking => booking.userId == userId )
-  console.log(spotId)
   useEffect(() => {
-    console.log('SpotId Check', spotId)
     dispatch(getOneSpot(spotId));
-    console.log('SpotId Check', spotId)
     dispatch(getReviewsForSpotId(spotId))
     dispatch(getbookingsForSpotId(spotId))
   }

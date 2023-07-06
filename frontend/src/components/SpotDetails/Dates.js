@@ -13,7 +13,6 @@ import './Dates.css'
 
 export default function Dates ({spotId}){
     const today = new Date()
-    console.log('today', today)
     const {closeModal} = useModal()
     const dispatch = useDispatch()
     const [startDate, setStartDate] = useState(null);
@@ -21,7 +20,7 @@ export default function Dates ({spotId}){
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async(e) => {
-        
+
         e.preventDefault()
         setErrors([]);
         const success = {

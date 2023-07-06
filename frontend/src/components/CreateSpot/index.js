@@ -84,7 +84,6 @@ const CreateSpotPlease = () => {
           newErrors.imageUrl4='URL must end in jpeg, jpg, gif, or png'
       }
     setErrors(newErrors)
-console.log('NewErrors', newErrors)
 }
 
     const handleSub = async (e) => {
@@ -251,6 +250,7 @@ console.log('NewErrors', newErrors)
                     placeholder="Preview Image"
                     value={previewImage}
                     onChange={e => setPreviewImage(e.target.value)}
+                    required
                 />
                 {errors.previewImage && <span className="error">{errors.previewImage}</span>}
 

@@ -11,7 +11,6 @@ import './CreateReview.css'
 
 export default function CreateReview({spotId}) {
 
-    console.log('Review SpotId', spotId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const currentUser = useSelector(state => state.session.user)

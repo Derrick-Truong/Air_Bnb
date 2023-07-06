@@ -40,10 +40,8 @@ export const currentSpotsLoad = spots => ({
 
 export const getSpots = () => async dispatch => {
     const res = await fetch('/api/spots')
-    console.log(res)
     if (res.ok) {
         const list = await res.json();
-    console.log(list)
         dispatch(spotsLoad(list))
     }
 };
@@ -57,11 +55,9 @@ export const getCurrentSpots = () => async dispatch => {
 };
 
 export const getOneSpot = (spotId) => async dispatch => {
-// console.log('Got it')
     const res = await fetch(`/api/spots/${spotId}`);
     if (res.ok) {
         const spotDetails = await res.json();
-        console.log('checking spotId', spotDetails)
        await dispatch(oneSpotLoad(spotDetails))
         // return spotDetails
     }
@@ -140,9 +136,7 @@ const spotReducer = (prevState=initialState, action) => {
             return newState;
         case ONE_SPOT_LOAD:
             newState = {...prevState}
-            console.log('newstate', newState, action)
             newState[action.spot.id] = action.spot;
-            console.log('New State for One Spot', newState)
             return newState;
         case CREATE_SPOT:
             newState = {...prevState}

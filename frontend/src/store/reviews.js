@@ -33,7 +33,6 @@ const allReviewsCurrentUser = (spotId) => ({
     spotId
 })
 export const createNewReview = (spotId, review) => async dispatch => {
-    console.log('CreateReview',)
         let res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: "POST",
             body: JSON.stringify(review),
@@ -50,7 +49,6 @@ export const createNewReview = (spotId, review) => async dispatch => {
     }
 
 export const updateReview = (reviewId, review) => async dispatch => {
-    console.log('CreateReview',)
     let res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         body: JSON.stringify(review),
@@ -108,7 +106,6 @@ export const updateReview = (reviewId, review) => async dispatch => {
 
 
 export const getReviewsForSpotId = (spotId) => async dispatch =>{
-    console.log('SpotId for Reviews', spotId)
     const res = await fetch(`/api/spots/${spotId}/reviews`)
     if (res.ok) {
       const information = await res.json();
@@ -177,7 +174,6 @@ const reviewReducer = (prevState = initialState, action) => {
             action.reviews?.Reviews?.forEach(review => {
                 newState[review.id] = review
             })
-            console.log('New State', newState)
             return newState;
         case CREATE_REVIEW:
             newState = { ...prevState }

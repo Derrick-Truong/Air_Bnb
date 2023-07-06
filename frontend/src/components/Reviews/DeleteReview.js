@@ -26,14 +26,12 @@ import { allSpotReviews, allReviewsCurrentUser } from "../../store/reviews";
 //     }
 
 export default function DeleteReview ({ reviewId}) {
-    console.log('Delete ReviewId', reviewId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [errors, setErrors] = useState([]);
     const handleDelete = async (e) => {
         e.preventDefault();
         // setErrors([]);
-    console.log('Delete Review55', reviewId)
     dispatch(deleteReview(reviewId))
        closeModal();
     };
