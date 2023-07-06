@@ -67,9 +67,9 @@ background-color: rgb(255, 46, 46);
     background-color: rgb(224, 4, 4);
 }
 
-.log-sign-up button:hover{
+/* .log-sign-up button:hover{
 background-color: rgba(225, 225, 225, 0.25);
-}
+} */
 .log-sign-up:hover {
     background-color: rgba(225, 225, 225, 0.25);
 }
@@ -119,9 +119,12 @@ border-top: 1px solid #ebebeb;
 
 }
 .log-sign-up a{
-    margin-left:5px;
+display: block;
+    color: #999;
+    margin-left: 5px;
     text-decoration: none;
-        color: rgb(153, 153, 153);
+    width: 100%;
+    cursor: pointer;
 }
 
 /* .log-sign-up-container{
