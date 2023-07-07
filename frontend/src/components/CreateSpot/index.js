@@ -143,9 +143,7 @@ const CreateSpotPlease = () => {
             }
             imageList.push(addImage4)
         }
-    //    await dispatch(createSpot(payLoad, imageList));
-    //    await dispatch(getCurrentSpots())
-    // console.log('Payload', payLoad)
+
         const newSpot = await dispatch(createSpot(payLoad, imageList));
 
             history.push(`/spots/${newSpot.id}`);

@@ -101,7 +101,6 @@ export const updatebooking = (bookingId, booking) => async dispatch => {
 
 
 export const getbookingsForSpotId = (spotId) => async dispatch => {
-    console.log('SpotId for bookings', spotId)
     const res = await fetch(`/api/spots/${spotId}/bookings`)
     if (res.ok) {
         const information = await res.json();
@@ -167,8 +166,7 @@ const bookingReducer = (prevState = initialState, action) => {
     switch (action.type) {
         case GET_ALL_BOOKINGS:
             newState = {}
-            // console.log('Previous State', prevState)
-            // console.log(action)
+
             action.bookings?.Bookings.forEach(booking => {
                 newState[booking.id] = booking
             })

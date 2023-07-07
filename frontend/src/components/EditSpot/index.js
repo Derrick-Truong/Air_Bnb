@@ -27,10 +27,7 @@ const EditSpot = () => {
     const [imageUrl2, setImageUrl2] = useState("");
     const [imageUrl3, setImageUrl3] = useState("");
     const [imageUrl4, setImageUrl4] = useState("")
-    // const spots = useSelector((state) => state?.spots);
-    // console.log('Spots', spots)
-    // const spotsVal = spots[spotId]
-    // console.log('spotsVal', spotsVal)
+
     const history = useHistory();
     const dispatch = useDispatch();
     // const [address, setAddress] = useState(spotsVal?.address);
